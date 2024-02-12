@@ -1,0 +1,9 @@
+.required::after{
+    content: " *";
+    color: red;
+}
+
+.required-before::before{
+    content: " * ";
+    color: red;   
+}

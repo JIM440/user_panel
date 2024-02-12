@@ -1,0 +1,210 @@
+#product-detail {
+  .container {
+    .product-detail-columns {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr;
+      justify-content: center;
+      @include breakpointDynamic(900px) {
+        & {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .img {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 1rem;
+        background-color: $bg-light;
+        border-radius: 8px;
+        padding: 1.4rem 1rem;
+
+        .big-image {
+          width: 100%;
+          img {
+            width: 100%;
+            max-width: unset;
+          }
+        }
+
+        .small-images-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+
+          button {
+            width: 60px;
+            height: 60px;
+            border: 2px solid $primary-color;
+            border-radius: 100%;
+            padding: 3px;
+
+            img {
+              object-fit: contain;
+              border-radius: 100%;
+              height: 100%;
+            }
+          }
+        }
+        @include breakpointDynamic(900px) {
+          & {
+            flex-direction: row;
+          }
+          .small-images-container {
+            flex-direction: column;
+          }
+        }
+      }
+
+      .text {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        h2 {
+          text-align: left;
+        }
+
+        .price {
+          display: flex;
+          gap: 1rem;
+
+          .sale-price {
+            color: $text-muted;
+            text-decoration: line-through;
+          }
+        }
+        .rating {
+          display: flex;
+          gap: 1rem;
+
+          a {
+            text-decoration: underline;
+          }
+        }
+        .color-container {
+          display: flex;
+          gap: 1rem;
+
+          & > .colors {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            button {
+              width: 24px;
+              height: 24px;
+              background-color: $primary-color;
+              border-radius: 100%;
+            }
+          }
+        }
+
+        .btn-container {
+          align-items: center;
+          justify-content: start;
+          gap: 2rem;
+          button {
+            border-radius: 8px;
+            border: 1px solid $text-muted;
+            color: $black;
+            padding: 10px 16px;
+            height: fit-content;
+
+            &:hover {
+              background-color: darken($white, 5%);
+            }
+          }
+          .btn {
+            border-radius: 8px;
+            padding: 10px 16px;
+          }
+        }
+
+        .product-icons {
+          display: flex;
+          gap: 1rem;
+          justify-content: center;
+
+          & > div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+
+            img {
+              width: 60px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#related-products {
+  .overflow {
+    overflow-x: scroll;
+    grid-template-columns: none;
+    display: flex;
+    justify-content: unset;
+  }
+}
+
+#reviews {
+  .container {
+    max-width: 830px;
+    margin-inline: auto;
+
+    .review-container {
+      & > div:first-of-type {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .review-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding-block: 2rem;
+
+        .review {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          .name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            span {
+              padding: 8px;
+              font-size: 16px;
+              background-color: purple;
+              border-radius: 100%;
+              color: $white;
+            }
+          }
+          .rating-date {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .stars {
+              display: flex;
+              gap: 4px;
+
+              i {
+                color: gold;
+                font-size: 24px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

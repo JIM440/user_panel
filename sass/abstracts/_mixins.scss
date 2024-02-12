@@ -1,0 +1,6 @@
+// breakpoints
+@mixin breakpointDynamic($width) {
+  @media (min-width: $width) {
+    @content;
+  }
+}

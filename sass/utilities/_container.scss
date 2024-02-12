@@ -1,0 +1,10 @@
+.container{
+    margin: 0px;
+    margin-inline: auto;
+    max-width: 1440px;
+    padding: 80px 5%;
+
+    &>h2{
+        margin-bottom: 32px;
+    }
+}

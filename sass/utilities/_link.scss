@@ -1,0 +1,18 @@
+.link{
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    span{
+        text-decoration: underline;
+        color: $primary-color;
+        font-weight: 500;
+        font-size: 18px;
+    }
+    i{
+        color: $primary-color;
+        font-size: 24px;
+    }
+}
