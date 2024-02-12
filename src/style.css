@@ -26,7 +26,8 @@ button {
   background-color: transparent;
 }
 
-a, p {
+a,
+p {
   color: black;
 }
 
@@ -182,6 +183,27 @@ button {
   color: #524a4a;
 }
 
+.product-container.overflow {
+  overflow-x: scroll;
+  grid-template-columns: none;
+  display: flex;
+  justify-content: unset;
+  scrollbar-width: thin;
+}
+
+/* For WebKit-based browsers (Chrome, Safari) */
+.product-container.overflow::-webkit-scrollbar {
+  width: 12px;
+}
+
+.product-container.overflow::-webkit-scrollbar-track {
+  border-radius: 22px;
+}
+
+.product-container.overflow::-webkit-scrollbar-thumb {
+  border-radius: 22px;
+}
+
 .cart-hover-container {
   display: none;
   padding-top: 30px;
@@ -276,10 +298,12 @@ button {
   height: 100%;
 }
 
-.cart-icon:hover + .cart-hover-container, .cart-hover-container:hover {
-  display: flex;
+@media (min-width: 780px) {
+  .cart-icon:hover + .cart-hover-container,
+  .cart-hover-container:hover {
+    display: flex;
+  }
 }
-
 .container {
   margin: 0px;
   margin-inline: auto;
@@ -600,11 +624,8 @@ button {
   }
 }
 
-#product-catalogue-about .container .product-container {
-  overflow-x: scroll;
-  grid-template-columns: none;
-  display: flex;
-  justify-content: unset;
+#product-catalogue-about .container .product-container .product-card {
+  height: 370px;
 }
 #product-catalogue-about .container p {
   text-align: center;
@@ -684,7 +705,8 @@ button {
 #testimonials .testimonial-container {
   display: flex;
   gap: 32px;
-  overflow-x: scroll;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 #testimonials .testimonial-container .testimonial-box {
   min-width: 180px;
@@ -714,7 +736,7 @@ button {
 #partners .partner-container {
   display: flex;
   justify-content: center;
-  overflow-x: scroll;
+  flex-wrap: wrap;
   gap: 10px;
 }
 #partners .partner-container .partner {
@@ -761,6 +783,9 @@ button {
 #contact form > div label.required::after {
   content: " *";
   color: red;
+}
+#contact form > div textarea {
+  height: 70px;
 }
 #contact iframe {
   width: 100%;
@@ -972,13 +997,6 @@ button {
 }
 #product-detail .container .product-detail-columns .text .product-icons > div img {
   width: 60px;
-}
-
-#related-products .overflow {
-  overflow-x: scroll;
-  grid-template-columns: none;
-  display: flex;
-  justify-content: unset;
 }
 
 #reviews .container {

@@ -1,5 +1,4 @@
 #header-about {
-
   img {
     min-height: 300px;
     object-fit: cover;
@@ -51,10 +50,9 @@
 #product-catalogue-about {
   .container {
     .product-container {
-      overflow-x: scroll;
-      grid-template-columns: none;
-      display: flex;
-      justify-content: unset;
+      .product-card {
+        height: 370px;
+      }
     }
     p {
       text-align: center;
@@ -72,8 +70,8 @@
     .even-columns {
       padding-inline: 32px;
 
-      @include breakpointDynamic(730px){
-        .text{
+      @include breakpointDynamic(730px) {
+        .text {
           order: 2;
         }
       }
@@ -154,7 +152,8 @@
   .testimonial-container {
     display: flex;
     gap: 32px;
-    overflow-x: scroll;
+    justify-content: center;
+    flex-wrap: wrap;
 
     .testimonial-box {
       min-width: 180px;
@@ -188,7 +187,7 @@
   .partner-container {
     display: flex;
     justify-content: center;
-    overflow-x: scroll;
+    flex-wrap: wrap;
     gap: 10px;
 
     .partner {
@@ -241,6 +240,9 @@
       label.required::after {
         content: ' *';
         color: red;
+      }
+      textarea {
+        height: 70px;
       }
     }
   }

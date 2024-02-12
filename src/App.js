@@ -2,8 +2,8 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 
 
 // pages
-import Home from './pages/home/index'
 import About from './pages/about/index'
+import Home from './pages/home/index'
 import Cart from './pages/cart/index'
 import Contact from './pages/contact/index'
 import Category from './pages/product_category/index'
@@ -28,9 +28,9 @@ const router = createBrowserRouter(
     <Route path='/' element={<RootLayout />}>
       <Route index element={<Home />} />
       <Route path='about' element={<About />} />
-      <Route path='category' element={<Category />} />
-      <Route path='detail' element={<Detail />} />
-      <Route path='overview' element={<Overview />} />
+      <Route path=':category' element={<Category />} />
+      <Route path=':category/:detail' element={<Detail />} />
+      <Route path=':overview' element={<Overview />} />
       <Route path='cart' element={<Cart />} />
       {/* contact */}
       <Route path='contact' element={<Contact />}>

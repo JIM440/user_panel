@@ -167,15 +167,6 @@
   }
 }
 
-#related-products {
-  .overflow {
-    overflow-x: scroll;
-    grid-template-columns: none;
-    display: flex;
-    justify-content: unset;
-  }
-}
-
 #reviews {
   .container {
     max-width: 830px;

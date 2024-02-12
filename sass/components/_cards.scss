@@ -43,10 +43,10 @@
     gap: 16px;
     text-align: center;
 
-    .product-image{
+    .product-image {
       height: 256px;
 
-      img{
+      img {
         max-width: 100%;
         max-height: 100%;
       }
@@ -58,8 +58,27 @@
     }
   }
 }
+.product-container.overflow {
+  overflow-x: scroll;
+  grid-template-columns: none;
+  display: flex;
+  justify-content: unset;
+  scrollbar-width: thin;
+}
+/* For WebKit-based browsers (Chrome, Safari) */
+.product-container.overflow::-webkit-scrollbar {
+  width: 12px;
+}
 
-.cart-hover-container{
+.product-container.overflow::-webkit-scrollbar-track {
+  border-radius: 22px;
+}
+
+.product-container.overflow::-webkit-scrollbar-thumb {
+  border-radius: 22px;
+}
+
+.cart-hover-container {
   display: none;
   padding-top: 30px;
   position: absolute;
@@ -75,12 +94,12 @@
     gap: 1rem;
     box-shadow: 0px 2px 2px $text-muted;
     z-index: 1000;
-  
+
     .cart-items {
       display: flex;
       flex-direction: column;
       gap: 10px;
-  
+
       .cart-item-header,
       .cart-item-box {
         display: flex;
@@ -96,7 +115,7 @@
         min-width: 200px;
         display: flex;
         gap: 1rem;
-  
+
         .item-image {
           border-radius: 8px;
           background-color: $bg-grey;
@@ -104,17 +123,17 @@
           min-width: 70px;
           width: 80px;
           height: 80px;
-  
+
           img {
             width: 100% !important;
           }
         }
-  
+
         .item-attributes {
           display: flex;
           flex-direction: column;
           gap: 6px;
-  
+
           .remove {
             text-decoration: underline;
             color: rgb(122, 17, 17);
@@ -125,7 +144,7 @@
       .remove > i.bx-x {
         font-size: 24px;
       }
-  
+
       .qty {
         align-items: center;
         border: 1px solid $text-muted;
@@ -133,7 +152,7 @@
         width: fit-content;
         height: fit-content;
         padding: 0px;
-  
+
         button {
           display: inline-block;
           border: none;
@@ -161,6 +180,9 @@
   }
 }
 
-.cart-icon:hover + .cart-hover-container, .cart-hover-container:hover{
-  display: flex;
+@include breakpointDynamic(780px) {
+  .cart-icon:hover + .cart-hover-container,
+  .cart-hover-container:hover {
+    display: flex;
+  }
 }

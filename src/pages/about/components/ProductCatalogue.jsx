@@ -24,7 +24,7 @@ const ProductCatalogue = () => {
           models to powerful MacBooks, iPads, and Apple Watches, our product
           range covers all your technology needs.
         </p>
-        <div className="product-container">
+        <div className="product-container overflow">
           {products.length > 0 ? (
             products.map((product) => (
               <div className="product-card" key={product.id}>

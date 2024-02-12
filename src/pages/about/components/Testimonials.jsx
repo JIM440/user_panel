@@ -49,26 +49,6 @@ export default Testimonials;
 // import cheng from '../../../assets/images/about/cheng wei.svg';
 // import xhang from '../../../assets/images/about/xhang mei.svg';
 // const Testimonials = () => {
-//   const testimonialss = [
-//     {
-//       name: 'John Doe',
-//       image: anisha,
-//       content:
-//         "I absolutely love this product! It has made a significant difference in my life and I can't recommend it enough. The quality is top-notch and the results are amazing. Thank you!",
-//     },
-//     {
-//       name: 'Jane Smith',
-//       image: cheng,
-//       content:
-//         "This product exceeded my expectations! The innovative features and user-friendly design have made it a game-changer for me. I'm so glad I found it and now I can't imagine my life without it.",
-//     },
-//     {
-//       name: 'David Johnson',
-//       image: xhang,
-//       content:
-//         "I was skeptical at first, but this product has proven to be worth every penny. It has simplified my daily routine and the results have been remarkable. I've recommended it to all my friends and family.",
-//     },
-//   ];
 
 //   const [testimonials, setTestimonials] = useState([]);
 
