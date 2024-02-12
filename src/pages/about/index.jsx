@@ -129,9 +129,6 @@ const Cart = () => {
       <section id="workplace">
         <div className="container">
           <div className="even-columns">
-            <div className="image">
-              <img src={workplace} alt="" />
-            </div>
             <div className="text">
             <h2>Our Workplace</h2>
               <p>
@@ -141,6 +138,9 @@ const Cart = () => {
                 knowledge and expertise to provide exceptional service to our
                 customers.
               </p>
+            </div>
+            <div className="image">
+              <img src={workplace} alt="" />
             </div>
           </div>
         </div>

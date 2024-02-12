@@ -183,7 +183,7 @@ const Cart = () => {
                 </span>
               </div>
             </div>
-            <button className="checkout btn">Checkout</button>
+            <button className="checkout btn">Proceed To Checkout</button>
           </div>
         </div>
       </section>

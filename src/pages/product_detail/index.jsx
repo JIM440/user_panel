@@ -19,7 +19,7 @@ const Detail = () => {
           <div className="img">
             {/* small images */}
             <div className="small-images-container">
-              <button className="small-img"><img src={small} alt="" /></button>
+              <button className="small-img active"><img src={small} alt="" /></button>
               <button className="small-img"><img src={small} alt="" /></button>
               <button className="small-img"><img src={small} alt="" /></button>
             </div>

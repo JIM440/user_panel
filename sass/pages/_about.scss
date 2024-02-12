@@ -1,6 +1,7 @@
 #header-about {
+
   img {
-    min-height: 400px;
+    min-height: 300px;
     object-fit: cover;
     border-radius: 22px;
   }
@@ -70,6 +71,12 @@
 
     .even-columns {
       padding-inline: 32px;
+
+      @include breakpointDynamic(730px){
+        .text{
+          order: 2;
+        }
+      }
     }
   }
 }
@@ -77,6 +84,7 @@
 #team {
   .team-container {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 24px;
 
