@@ -36,10 +36,21 @@
   .product-card {
     width: 260px;
     min-width: 250px;
+    height: 430px;
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     gap: 16px;
     text-align: center;
+
+    .product-image{
+      height: 256px;
+
+      img{
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
 
     .description {
       text-align: left;

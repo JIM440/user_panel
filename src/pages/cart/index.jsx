@@ -45,7 +45,7 @@ const Cart = () => {
                 </span>
 
                 <button className="remove show-desktop">
-                  <i class="bx bx-x"></i>
+                  <i className="bx bx-x"></i>
                 </button>
               </div>
               <div className="cart-item-box">
@@ -78,7 +78,7 @@ const Cart = () => {
                 </span>
 
                 <button className="remove show-desktop">
-                  <i class="bx bx-x"></i>
+                  <i className="bx bx-x"></i>
                 </button>
               </div>
               <div className="cart-item-box">
@@ -111,7 +111,7 @@ const Cart = () => {
                 </span>
 
                 <button className="remove show-desktop">
-                  <i class="bx bx-x"></i>
+                  <i className="bx bx-x"></i>
                 </button>
               </div>
               <div className="cart-item-box">
@@ -144,7 +144,7 @@ const Cart = () => {
                 </span>
 
                 <button className="remove show-desktop">
-                  <i class="bx bx-x"></i>
+                  <i className="bx bx-x"></i>
                 </button>
               </div>
             </div>

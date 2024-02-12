@@ -12,6 +12,8 @@ import Overview from './pages/product_overview/index'
 import Login from "./pages/login";
 import Register from "./pages/register";
 import NotFound from "./pages/notFound";
+import OrderPage from "./pages/contact/components/OrderPage";
+import General from "./pages/contact/components/General";
 
 // layout
 import RootLayout from "./layout/RootLayout";
@@ -30,7 +32,12 @@ const router = createBrowserRouter(
       <Route path='detail' element={<Detail />} />
       <Route path='overview' element={<Overview />} />
       <Route path='cart' element={<Cart />} />
-      <Route path='contact' element={<Contact />} />
+      {/* contact */}
+      <Route path='contact' element={<Contact />}>
+        <Route path="general" element={<General />} />
+        <Route path="order" element={<OrderPage />} />
+      </Route>
+      {/* login and register */}
       <Route path='register' element={<Register />} />
       <Route path='login' element={<Login />} />
       <Route path='*' element={<NotFound />} />

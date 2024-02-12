@@ -1,3 +1,14 @@
+.contact-page-links{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    a.active{
+        color: $primary-color;
+        font-weight: 500;
+    }
+}
+
 .form-container{
     margin-top: 1rem;
     padding: 1rem;
@@ -97,6 +108,7 @@ button{
             gap: 10px;
             padding: 16px 10px;
             border: 1px solid $text-muted;
+            cursor: pointer;
 
             .question{
                 display: flex;
@@ -107,6 +119,10 @@ button{
                 i{
                     font-size: 24px;
                 }
+
+            }
+            .question.active i{
+                rotate: 180deg;
             }
             .answer{
                 display: none;
