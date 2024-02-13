@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ProductCartBoxSkeleton from '../../../commons/skeletons/ProductCartBoxSkeleton';
 
 const ProductCatalogue = () => {
   const [products, setProducts] = useState([]);
@@ -41,7 +42,7 @@ const ProductCatalogue = () => {
               </div>
             ))
           ) : (
-            <p>Loading.....</p>
+            <ProductCartBoxSkeleton />
           )}
         </div>
       </div>

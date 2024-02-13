@@ -160,6 +160,7 @@ button {
   justify-content: center;
   gap: 2rem;
   padding: 16px;
+  /* For WebKit-based browsers (Chrome, Safari) */
 }
 .product-container .product-card {
   width: 260px;
@@ -182,7 +183,6 @@ button {
   text-align: left;
   color: #524a4a;
 }
-
 .product-container.overflow {
   overflow-x: scroll;
   grid-template-columns: none;
@@ -190,18 +190,38 @@ button {
   justify-content: unset;
   scrollbar-width: thin;
 }
-
-/* For WebKit-based browsers (Chrome, Safari) */
 .product-container.overflow::-webkit-scrollbar {
   width: 12px;
 }
-
 .product-container.overflow::-webkit-scrollbar-track {
   border-radius: 22px;
 }
-
 .product-container.overflow::-webkit-scrollbar-thumb {
   border-radius: 22px;
+}
+
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 250px;
+  height: 370px;
+}
+.skeleton-card .skeleton-image {
+  width: 100%;
+  height: 256px;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+}
+.skeleton-card p {
+  width: 100%;
+  height: 18px;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+}
+.skeleton-card .skeleton-btn-container {
+  display: flex;
+  gap: 10px;
 }
 
 .cart-hover-container {
