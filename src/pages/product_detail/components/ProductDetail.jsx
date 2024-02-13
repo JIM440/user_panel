@@ -51,7 +51,7 @@ const ProductDetail = () => {
             <div
               className="big-image"
               onTouchStart={() => {
-                FuncVisible(3);
+                FuncVisible(visible !== 3 ? visible + 1 : 1);
               }}
             >
               <img
