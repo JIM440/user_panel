@@ -935,10 +935,21 @@ button {
 }
 #product-detail .container .product-detail-columns .img .big-image {
   width: 100%;
+  display: flex;
+  overflow-x: hidden;
 }
 #product-detail .container .product-detail-columns .img .big-image img {
   width: 100%;
+  visibility: hidden;
+  flex-shrink: 0;
   max-width: unset;
+  transform: translateX(0%);
+  transition: 0.4s;
+}
+#product-detail .container .product-detail-columns .img .big-image img.visible {
+  transition: 0.4s;
+  visibility: visible;
+  width: 100%;
 }
 #product-detail .container .product-detail-columns .img .small-images-container {
   display: flex;

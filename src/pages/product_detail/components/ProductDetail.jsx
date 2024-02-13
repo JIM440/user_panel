@@ -1,11 +1,19 @@
-import small from '../../../assets/images/small-img.svg';
-import bigImage from '../../../assets/images/big-image.svg';
+import bigImage1 from '../../../assets/images/big-image-1.png';
+import bigImage2 from '../../../assets/images/big-image-2.png';
+import bigImage3 from '../../../assets/images/big-image-3.png';
 import truck from '../../../assets/icons/detail/Free Shipping.svg';
 import moneyBack from '../../../assets/icons/detail/Money Box.svg';
 import support from '../../../assets/icons/detail/24 Hours Day Support.svg';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const ProductDetail = () => {
+  const [visible, setVisible] = useState(1);
+
+  const FuncVisible = (p) => {
+    setVisible(p);
+  };
+
   return (
     <section id="product-detail">
       <div className="container">
@@ -14,19 +22,56 @@ const ProductDetail = () => {
           <div className="img">
             {/* small images */}
             <div className="small-images-container">
-              <button className="small-img active">
-                <img src={small} alt="" />
+              <button
+                onClick={() => {
+                  FuncVisible(1);
+                }}
+                className="small-img active"
+              >
+                <img src={bigImage1} alt="" />
               </button>
-              <button className="small-img">
-                <img src={small} alt="" />
+              <button
+                onClick={() => {
+                  FuncVisible(2);
+                }}
+                className="small-img"
+              >
+                <img src={bigImage2} alt="" />
               </button>
-              <button className="small-img">
-                <img src={small} alt="" />
+              <button
+                onClick={() => {
+                  FuncVisible(3);
+                }}
+                className="small-img"
+              >
+                <img src={bigImage3} alt="" />
               </button>
             </div>
             {/* big image */}
-            <div className="big-image">
-              <img src={bigImage} alt="" />
+            <div
+              className="big-image"
+              onTouchStart={() => {
+                FuncVisible(3);
+              }}
+            >
+              <img
+                className={visible === 1 ? 'visible' : ''}
+                src={bigImage1}
+                alt="watch"
+                style={{ transform: `translateX(${-100 * (visible - 1)}%)` }}
+              />
+              <img
+                className={visible === 2 ? 'visible' : ''}
+                src={bigImage2}
+                alt="watch"
+                style={{ transform: `translateX(${-100 * (visible - 1)}%)` }}
+              />
+              <img
+                className={visible === 3 ? 'visible' : ''}
+                src={bigImage3}
+                alt="watch"
+                style={{ transform: `translateX(${-100 * (visible - 1)}%)` }}
+              />
             </div>
           </div>
           {/* text */}
