@@ -692,7 +692,6 @@ button {
 #workplace .container {
   background-color: #c2e1ff;
   padding-inline: 0px;
-  margin-inline: 5%;
   border-radius: 22px;
 }
 #workplace .container .even-columns {
@@ -1156,8 +1155,8 @@ button {
   text-align: left;
   cursor: pointer;
 }
-.add-review-container form .close-review i {
-  font-size: 24px;
+.add-review-container form .close-review svg {
+  font-size: 18px;
 }
 .add-review-container form .user-details {
   align-self: flex-start;
@@ -1181,7 +1180,7 @@ button {
   gap: 6px;
   cursor: pointer;
 }
-.add-review-container form .stars i {
+.add-review-container form .stars svg {
   font-size: 24px;
   font-weight: normal;
 }

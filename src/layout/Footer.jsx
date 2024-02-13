@@ -72,7 +72,10 @@ const Footer = () => {
               </li>
               <li>
                 <i className="bx bxs-phone"></i>
-                <p>+ 1 435 267 911 213<br /> +1 626 383 923 391</p>
+                <p>
+                  + 1 435 267 911 213
+                  <br /> +1 626 383 923 391
+                </p>
               </li>
               <li>
                 <i className="bx bx-current-location"></i>
@@ -86,8 +89,9 @@ const Footer = () => {
           <span>&copy; 2023 DevLab All Rights Reserved</span>
 
           <span>
-            <Link to="/">Terms Of Service </Link> |<Link to="/"> Privacy Policy </Link>{' '}
-            |<Link to="/"> Sales Terms</Link>
+            <Link to="/">Terms Of Service </Link> |
+            <Link to="/"> Privacy Policy </Link> |
+            <Link to="/"> Sales Terms</Link>
           </span>
         </div>
       </div>
