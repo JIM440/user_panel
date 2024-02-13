@@ -16,15 +16,6 @@
         flex-direction: column-reverse;
         align-items: center;
         gap: 1rem;
-        background-color: $bg-light;
-        border-radius: 8px;
-        padding: 1.4rem 0.5rem;
-
-        @include breakpointDynamic(900px){
-          &{
-            padding-inline: 1rem;
-          }
-        }
 
         .big-image {
           width: 100%;
@@ -47,7 +38,7 @@
             border-radius: 100%;
             padding: 3px;
 
-            &.active{
+            &.active {
               background-color: $primary-color;
             }
 
@@ -58,12 +49,12 @@
               height: 100%;
             }
 
-            @include breakpointDynamic(900px){
-              &{
+            @include breakpointDynamic(900px) {
+              & {
                 width: 60px;
                 height: 60px;
 
-                img{
+                img {
                   display: inline-block;
                 }
               }
@@ -161,6 +152,19 @@
               width: 60px;
             }
           }
+        }
+      }
+
+      @include breakpointDynamic(900px) {
+        .img {
+          padding-inline: 1rem;
+          background-color: $bg-light;
+          border-radius: 8px;
+          padding: 1.4rem 0.5rem;
+        }
+
+        button.active {
+          background-color: unset !important;
         }
       }
     }

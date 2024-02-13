@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ProductCartBoxSkeleton from '../../../commons/skeletons/ProductCartBoxSkeleton';
+import ProductCategorySkeleton from '../../../commons/skeletons/ProductCategorySkeleton';
 
 const ProductCatalogue = () => {
   const [products, setProducts] = useState([]);
@@ -42,7 +42,7 @@ const ProductCatalogue = () => {
               </div>
             ))
           ) : (
-            <ProductCartBoxSkeleton />
+            <ProductCategorySkeleton />
           )}
         </div>
       </div>

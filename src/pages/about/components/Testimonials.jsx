@@ -1,6 +1,8 @@
 import anisha from '../../../assets/images/about/anisha lee.svg';
 import cheng from '../../../assets/images/about/cheng wei.svg';
 import xhang from '../../../assets/images/about/xhang mei.svg';
+import TestimonialSkeleton from '../../../commons/skeletons/TestimonialSkeleton';
+
 const Testimonials = () => {
   const testimonials = [
     {
@@ -28,13 +30,17 @@ const Testimonials = () => {
       <div className="container">
         <h2>What Our Customers Are Saying</h2>
         <div className="testimonial-container">
-          {testimonials.map((testimonial, index) => (
-            <div className="testimonial-box" key={index}>
-              <img src={testimonial.image} alt="" />
-              <h3 className="name">{testimonial.name}</h3>
-              <p className="content">{testimonial.content}</p>
-            </div>
-          ))}
+          {testimonials ? (
+            testimonials.map((testimonial, index) => (
+              <div className="testimonial-box" key={index}>
+                <img src={testimonial.image} alt="" />
+                <h3 className="name">{testimonial.name}</h3>
+                <p className="content">{testimonial.content}</p>
+              </div>
+            ))
+          ) : (
+            <TestimonialSkeleton />
+          )}
         </div>
       </div>
     </section>
