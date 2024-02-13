@@ -14,6 +14,25 @@ const ProductDetail = () => {
     setVisible(p);
   };
 
+  const swipeFunction = (event) => {
+    const startX = event.touches[0].clientX;
+
+    const handleTouchEnd = (event) => {
+      const endX = event.changedTouches[0].clientX;
+      const deltaX = endX - startX;
+
+      if (deltaX > 0) {
+        // Swiped right
+        FuncVisible(visible === 3 ? 1 : visible + 1);
+      } else if (deltaX < 0) {
+        // Swiped left
+        FuncVisible(visible === 1 ? 3 : visible - 1);
+      }
+    };
+
+    document.addEventListener('touchend', handleTouchEnd, { once: true });
+  };
+
   return (
     <section id="product-detail">
       <div className="container">
@@ -51,7 +70,7 @@ const ProductDetail = () => {
             <div
               className="big-image"
               onTouchStart={() => {
-                FuncVisible(visible !== 3 ? visible + 1 : 1);
+                swipeFunction(visible !== 3 ? visible + 1 : 1);
               }}
             >
               <img
