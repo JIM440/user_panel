@@ -1,5 +1,21 @@
-import product from '../../assets/images/products/ipad.jpg';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 const Cart = () => {
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const storage = JSON.parse(localStorage.getItem('cartItem')) || [];
+    setCartItems(storage);
+  }, []);
+
+  const handleRemove = (id) => {
+    const updatedCartItems = cartItems.filter((item) => item.id !== id);
+
+    setCartItems(updatedCartItems);
+
+    localStorage.setItem('cartItem', JSON.stringify(updatedCartItems));
+  };
+
   return (
     <>
       <section id="cart-section">
@@ -7,147 +23,71 @@ const Cart = () => {
           <div className="cart-container">
             <h2>Shopping Cart</h2>
             {/* cart items */}
-            <div className="cart-items">
-              <div className="cart-item-header">
-                <h3>Product</h3>
-                <h3 className="show-desktop">Unit Price</h3>
-                <h3 className="show-desktop">Quantity</h3>
-                <h3>Sub Total</h3>
-                <h3 className="show-desktop">x</h3>
-              </div>
-              <div className="cart-item-box">
-                <div className="item-details">
-                  <div className="item-image">
-                    <img src={product} alt="" />
-                  </div>
-                  <div className="item-attributes">
-                    <p>iPad v8</p>
-                    <p>color: black</p>
-                    <p>other details</p>
-                    <div className="show-mobile">
-                      <div className="qty">
-                        <button>-</button>
-                        <input type="text" name="quantity" id="" value="1" />
-                        <button>+</button>
+            {cartItems.length !== 0 ? (
+              <div className="cart-items">
+                <div className="cart-item-header">
+                  <h3>Product</h3>
+                  <h3 className="show-desktop">Unit Price</h3>
+                  <h3 className="show-desktop">Quantity</h3>
+                  <h3>Sub Total</h3>
+                  <h3 className="show-desktop">x</h3>
+                </div>
+                {cartItems.map((item) => (
+                  <div className="cart-item-box">
+                    <div className="item-details">
+                      <div className="item-image">
+                        <img src={item.image} alt="" />
                       </div>
-                      <button className="remove">Remove</button>
-                    </div>
-                  </div>
-                </div>
-                <span className="unit-price show-desktop">$159.90</span>
-                <div className="qty show-desktop">
-                  <button>-</button>
-                  <input type="text" name="quantity" value="1" id="" />
-                  <button>+</button>
-                </div>
-                <span className="total">
-                  <b>$167.90</b>
-                </span>
-
-                <button className="remove show-desktop">
-                  <i className="bx bx-x"></i>
-                </button>
-              </div>
-              <div className="cart-item-box">
-                <div className="item-details">
-                  <div className="item-image">
-                    <img src={product} alt="" />
-                  </div>
-                  <div className="item-attributes">
-                    <p>iPad v8</p>
-                    <p>color: black</p>
-                    <p>other details</p>
-                    <div className="show-mobile">
-                      <div className="qty">
-                        <button>-</button>
-                        <input type="text" name="quantity" id="" value="1" />
-                        <button>+</button>
+                      <div className="item-attributes">
+                        <p>{item.name}</p>
+                        <p>color: black</p>
+                        <p>{item.quantity}</p>
+                        <div className="show-mobile">
+                          <div className="qty">
+                            <button>-</button>
+                            <input
+                              type="text"
+                              name="quantity"
+                              id=""
+                              value="1"
+                            />
+                            <button>+</button>
+                          </div>
+                          <button
+                            className="remove"
+                            onClick={() => {
+                              handleRemove(item.id);
+                            }}
+                          >
+                            Remove
+                          </button>
+                        </div>
                       </div>
-                      <button className="remove">Remove</button>
                     </div>
-                  </div>
-                </div>
-                <span className="unit-price show-desktop">$159.90</span>
-                <div className="qty show-desktop">
-                  <button>-</button>
-                  <input type="text" name="quantity" value="1" id="" />
-                  <button>+</button>
-                </div>
-                <span className="total">
-                  <b>$167.90</b>
-                </span>
-
-                <button className="remove show-desktop">
-                  <i className="bx bx-x"></i>
-                </button>
-              </div>
-              <div className="cart-item-box">
-                <div className="item-details">
-                  <div className="item-image">
-                    <img src={product} alt="" />
-                  </div>
-                  <div className="item-attributes">
-                    <p>iPad v8</p>
-                    <p>color: black</p>
-                    <p>other details</p>
-                    <div className="show-mobile">
-                      <div className="qty">
-                        <button>-</button>
-                        <input type="text" name="quantity" id="" value="1" />
-                        <button>+</button>
-                      </div>
-                      <button className="remove">Remove</button>
+                    <span className="unit-price show-desktop">$159.90</span>
+                    <div className="qty show-desktop">
+                      <button>-</button>
+                      <input type="text" name="quantity" value="1" id="" />
+                      <button>+</button>
                     </div>
-                  </div>
-                </div>
-                <span className="unit-price show-desktop">$159.90</span>
-                <div className="qty show-desktop">
-                  <button>-</button>
-                  <input type="text" name="quantity" value="1" id="" />
-                  <button>+</button>
-                </div>
-                <span className="total">
-                  <b>$167.90</b>
-                </span>
+                    <span className="total">
+                      <b>$167.90</b>
+                    </span>
 
-                <button className="remove show-desktop">
-                  <i className="bx bx-x"></i>
-                </button>
-              </div>
-              <div className="cart-item-box">
-                <div className="item-details">
-                  <div className="item-image">
-                    <img src={product} alt="" />
+                    <button
+                      className="remove show-desktop"
+                      onClick={() => {
+                        handleRemove(item.id);
+                      }}
+                    >
+                      <i className="bx bx-x"></i>
+                    </button>
                   </div>
-                  <div className="item-attributes">
-                    <p>iPad v8</p>
-                    <p>color: black</p>
-                    <p>other details</p>
-                    <div className="show-mobile">
-                      <div className="qty">
-                        <button>-</button>
-                        <input type="text" name="quantity" id="" value="1" />
-                        <button>+</button>
-                      </div>
-                      <button className="remove">Remove</button>
-                    </div>
-                  </div>
-                </div>
-                <span className="unit-price show-desktop">$159.90</span>
-                <div className="qty show-desktop">
-                  <button>-</button>
-                  <input type="text" name="quantity" value="1" id="" />
-                  <button>+</button>
-                </div>
-                <span className="total">
-                  <b>$167.90</b>
-                </span>
-
-                <button className="remove show-desktop">
-                  <i className="bx bx-x"></i>
-                </button>
+                ))}
               </div>
-            </div>
+            ) : (
+              <h1 className="container">Cart is empty</h1>
+            )}
             {/* coupon */}
             <div className="coupon">
               <form action="">
@@ -183,7 +123,9 @@ const Cart = () => {
                 </span>
               </div>
             </div>
-            <button className="checkout btn">Proceed To Checkout</button>
+            <Link to="/" className="checkout btn">
+              Proceed To Checkout
+            </Link>
           </div>
         </div>
       </section>

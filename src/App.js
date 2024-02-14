@@ -21,6 +21,7 @@ import General from './pages/contact/components/General';
 
 // layout
 import RootLayout from './layout/RootLayout';
+import Products from './pages/cart/components/Products';
 
 // creating various routers
 
@@ -42,6 +43,9 @@ const router = createBrowserRouter(
       {/* login and register */}
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
+      {/* products */}
+      <Route path="products" element={<Products />} />
+      {/* notfound */}
       <Route path="*" element={<NotFound />} />
     </Route>
   )
