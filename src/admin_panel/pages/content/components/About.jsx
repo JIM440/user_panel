@@ -73,7 +73,7 @@ const AboutContent = () => {
                     toggleActiveIndex(index);
                   }}
                 >
-                  <i className="bx bx-three-dots"></i>
+                  <i className="bx bx-dots-vertical-rounded"></i>
                 </button>
                 <div className={`${index === activeIndex ? 'active' : ''}`}>
                   <Link
