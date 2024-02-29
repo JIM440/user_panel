@@ -1,0 +1,28 @@
+.admin-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 16px;
+  height: 60px;
+  border-bottom: 1px solid $admin-border-color;
+
+  .nav-user-icons {
+    img {
+      width: 24px;
+      height: 24px;
+    }
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    .language {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      span {
+        font-size: 16px;
+      }
+    }
+  }
+}

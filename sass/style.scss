@@ -11,20 +11,27 @@
 @import 'components/buttons';
 @import 'components/cards';
 
-// imporo utilities
+// import utilities
 @import 'utilities/container';
 @import 'utilities/header';
 @import 'utilities/link';
 @import 'utilities/required';
 
 //import layout
-@import 'layouts/navbar';
-@import 'layouts/footer';
+// user
+@import 'user_panel/layouts/navbar';
+@import 'user_panel/layouts/footer';
+// admin
+@import 'admin_panel/layouts/navbar';
+@import 'admin_panel/layouts/sidebar';
+@import 'admin_panel/layouts/rootLayout';
 
 //import pages
-@import 'pages/about';
-@import 'pages/category';
-@import 'pages/detail';
-@import 'pages/cart';
-@import 'pages/contact';
-@import 'pages/notFound';
+// user
+@import 'user_panel/pages/about';
+@import 'user_panel/pages/category';
+@import 'user_panel/pages/detail';
+@import 'user_panel/pages/cart';
+@import 'user_panel/pages/contact';
+@import 'user_panel/pages/notFound';
+// admin

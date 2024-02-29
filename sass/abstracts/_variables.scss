@@ -4,6 +4,7 @@ $text-muted: #877b7b;
 $bg-grey: #f3f3f3;
 $white: white;
 $black: black;
+$admin-border-color: lighten($text-muted, 20%);
 
 $box-shadow: 0 4px 8px rgba($black, 0.3);
 $btn-border-radius: 8px;
