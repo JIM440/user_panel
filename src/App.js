@@ -28,6 +28,8 @@ import Dashboard from './admin_panel/pages/dashboard/index';
 // content
 import ContentManagement from './admin_panel/pages/content/index';
 import AboutContent from './admin_panel/pages/content/components/About';
+import EditTestimonial from './admin_panel/pages/content/components/EditTestimonial';
+import AddTestimonial from './admin_panel/pages/content/components/AddTestimonial';
 import HomeContent from './admin_panel/pages/content/components/Home';
 // customers
 import Customers from './admin_panel/pages/customers/index';
@@ -97,7 +99,10 @@ const router = createBrowserRouter(
         {/* content */}
         <Route path="content" element={<ContentManagement />}>
           <Route path="home" element={<HomeContent />} />
+          {/* about */}
           <Route path="about" element={<AboutContent />} />
+          <Route path="about/add" element={<AddTestimonial />} />
+          <Route path="about/edit" element={<EditTestimonial />} />
         </Route>
 
         {/* reviews */}

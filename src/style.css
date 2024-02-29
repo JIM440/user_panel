@@ -651,28 +651,74 @@ button {
 .admin-nav .nav-user-icons {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 .admin-nav .nav-user-icons img {
+  max-width: 26px;
   width: 24px;
   height: 24px;
+}
+@media (min-width: 656px) {
+  .admin-nav .nav-user-icons {
+    gap: 24px;
+  }
 }
 .admin-nav .nav-user-icons .language {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 .admin-nav .nav-user-icons .language span {
   font-size: 16px;
 }
+.admin-nav .nav-user-icons .clicked.menu-button span:first-child {
+  translate: 0px 7px;
+  transform: rotate(45deg);
+  transition: 0.6s;
+}
+.admin-nav .nav-user-icons .clicked.menu-button span:nth-child(2) {
+  opacity: 0;
+  transition: 0.6s;
+}
+.admin-nav .nav-user-icons .clicked.menu-button span:last-child {
+  translate: 0px -7px;
+  transform: rotate(-45deg);
+  transition: 0.6s;
+}
+.admin-nav .nav-user-icons .menu-button {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  gap: 5px;
+  cursor: pointer;
+}
+.admin-nav .nav-user-icons .menu-button span {
+  width: 25px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: black;
+  display: block;
+  transition: 0.6s;
+}
 
+@media (min-width: 900px) {
+  .menu-button {
+    display: none;
+  }
+}
 .sidebar {
+  display: flex;
+  position: absolute;
+  top: 60px;
+  left: -200%;
+  width: 100%;
   background-color: white;
   border-right: 1px solid #b8b0b0;
   height: calc(100vh - 60px);
   width: 250px;
   overflow-y: scroll;
   scrollbar-width: none;
+  transition: 0.4s;
   /* For WebKit-based browsers (Chrome, Safari) */
 }
 .sidebar::-webkit-scrollbar {
@@ -737,9 +783,21 @@ button {
   display: flex;
 }
 
+.sidebar.active {
+  left: 0px;
+  z-index: 4;
+  transition: 0.6s;
+}
+
+@media (min-width: 900px) {
+  .sidebar {
+    position: static;
+  }
+}
 .admin-root-container {
+  height: calc(100vh - 60px);
   display: grid;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 1fr;
 }
 .admin-root-container header {
   display: flex;
@@ -754,7 +812,18 @@ button {
 .admin-root-container header button {
   font-size: 16px;
 }
+.admin-root-container .admin-content-container {
+  overflow-y: scroll;
+}
+.admin-root-container .admin-content-container .container {
+  padding: 16px;
+}
 
+@media (min-width: 900px) {
+  .admin-root-container {
+    grid-template-columns: 250px 1fr;
+  }
+}
 #header-about img {
   min-height: 300px;
   object-fit: cover;
@@ -1581,4 +1650,164 @@ button {
 }
 .faqs-section .faqs-container .faqs .answer.active {
   display: block;
+}
+
+.admin-testimonial-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  justify-content: start;
+  align-items: start;
+}
+@media (min-width: 650px) {
+  .admin-testimonial-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1200px) {
+  .admin-testimonial-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+.admin-testimonial-container .testimonial-box {
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+  background-color: #f3f3f3;
+  padding: 20px;
+  border-radius: 8px;
+}
+.admin-testimonial-container .testimonial-box .testimonial-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.admin-testimonial-container .testimonial-box .testimonial-details > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.admin-testimonial-container .testimonial-box .testimonial-details > div .img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: white;
+}
+.admin-testimonial-container .testimonial-box .testimonial-details > div .img img {
+  width: 100%;
+  object-fit: cover;
+}
+.admin-testimonial-container .testimonial-box .testimonial-details > div .date {
+  font-size: 14px;
+  color: #877b7b;
+}
+.admin-testimonial-container .testimonial-box .testimonial-details .content {
+  font-size: 14px;
+}
+.admin-testimonial-container .testimonial-box .buttons {
+  position: relative;
+}
+.admin-testimonial-container .testimonial-box .buttons .manage-icon {
+  background-color: black;
+  width: 2px;
+  height: 32px;
+}
+.admin-testimonial-container .testimonial-box .buttons div {
+  display: none;
+  position: absolute;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  top: 20px;
+  right: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.admin-testimonial-container .testimonial-box .buttons div.active {
+  display: block;
+}
+
+.confirm-delete {
+  padding: 10px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2117647059);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.confirm-delete > div {
+  width: 400px;
+  max-width: 600px;
+  background-color: white;
+  padding: 1.2rem;
+  border-radius: 8px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.4rem;
+}
+.confirm-delete > div p {
+  text-align: center;
+}
+.confirm-delete > div .btn-container {
+  justify-content: center;
+  gap: 2rem;
+}
+.confirm-delete > div .btn-container .danger {
+  background-color: red;
+  color: white;
+}
+
+.confirm-delete.active {
+  display: flex;
+}
+
+#testimonial-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.6rem;
+}
+#testimonial-form fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+}
+#testimonial-form fieldset input,
+#testimonial-form fieldset textarea {
+  width: 100%;
+  margin-top: 10px;
+}
+#testimonial-form fieldset .img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: #f3f3f3;
+}
+#testimonial-form fieldset .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 100%;
+}
+#testimonial-form fieldset div, #testimonial-form fieldset > label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#testimonial-form fieldset div {
+  align-items: unset;
+  gap: 1rem;
+}
+#testimonial-form fieldset div #content {
+  height: 100px;
+}
+#testimonial-form > button {
+  margin-top: 100px;
+  align-self: center;
 }

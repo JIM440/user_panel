@@ -1,14 +1,18 @@
-import React from 'react';
+import { useState } from 'react';
 import Navbar from '../commons/Navbar';
 import Sidebar from '../commons/Sidebar';
 import { Outlet } from 'react-router-dom';
 
 const AdminRootLayout = () => {
+  const [displaySidebar, setDisplaySidebar] = useState(false);
+  const toggleDisplay = () => {
+    setDisplaySidebar(!displaySidebar);
+  };
   return (
     <>
-      <Navbar />
+      <Navbar displaySidebar={displaySidebar} toggleDisplay={toggleDisplay} />
       <div className="admin-root-container">
-        <Sidebar />
+        <Sidebar displaySidebar={displaySidebar} />
         <div className="admin-content-container">
           <Outlet />
         </div>

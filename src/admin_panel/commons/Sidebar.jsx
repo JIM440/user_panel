@@ -10,7 +10,7 @@ import promotions from '../assets/icons/Discount.svg';
 import shoppingBag from '../assets/icons/Shopping Bag Full.svg';
 import dropdown from '../assets/icons/Expand Arrow.svg';
 import { useState } from 'react';
-const Sidebar = () => {
+const Sidebar = ({ displaySidebar }) => {
   const [active, setActive] = useState(null);
   const [displayDropdown, setDisplayDropdown] = useState(true);
 
@@ -25,7 +25,7 @@ const Sidebar = () => {
     setActive(index);
   };
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${displaySidebar === true ? 'active' : ''}`}>
       <ul className="sidebar-menu">
         {/* dashboard */}
         <li>

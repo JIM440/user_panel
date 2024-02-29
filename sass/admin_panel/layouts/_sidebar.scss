@@ -1,10 +1,16 @@
 .sidebar {
+  display: flex;
+  position: absolute;
+  top: 60px;
+  left: -200%;
+  width: 100%;
   background-color: $white;
   border-right: 1px solid $admin-border-color;
   height: calc(100vh - 60px);
   width: 250px;
   overflow-y: scroll;
   scrollbar-width: none;
+  transition: 0.4s;
   /* For WebKit-based browsers (Chrome, Safari) */
   &::-webkit-scrollbar {
     width: 0px;
@@ -73,5 +79,15 @@
         display: flex;
       }
     }
+  }
+}
+.sidebar.active {
+  left: 0px;
+  z-index: 4;
+  transition: 0.6s;
+}
+@include breakpointDynamic(900px) {
+  .sidebar {
+    position: static;
   }
 }
