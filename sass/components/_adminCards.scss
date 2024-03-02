@@ -1,0 +1,51 @@
+.search-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  .search-container {
+    display: flex;
+    border: 1px solid $admin-border-color;
+    border-radius: 8px;
+    padding-left: 10px;
+    width: 100%;
+    max-width: 500px;
+
+    img {
+      max-width: 22px;
+    }
+    input {
+      border: none;
+      width: 100%;
+    }
+    button {
+      border-left: 1px solid $admin-border-color;
+      padding: 4px 8px;
+    }
+  }
+
+  .filters-container {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+
+    select {
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 8px;
+      background-color: transparent;
+      border: 1px solid $admin-border-color;
+      font-size: 14px;
+    }
+
+    @include breakpointDynamic(650px) {
+      & {
+        width: fit-content;
+      }
+    }
+  }
+}
