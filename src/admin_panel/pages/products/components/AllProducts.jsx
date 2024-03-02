@@ -1,11 +1,12 @@
-import React from 'react';
-
+import HeaderBtn from '../../../commons/HeaderBtn';
 const AllProducts = () => {
   return (
     <>
-      <header>
-        <h2>All Products</h2>
-      </header>
+      <HeaderBtn
+        text="All Products"
+        url="/admin/product/add"
+        urlText="Add Product"
+      />
     </>
   );
 };

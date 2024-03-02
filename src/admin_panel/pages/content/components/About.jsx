@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import HeaderBtn from '../../../commons/HeaderBtn';
 const AboutContent = () => {
   const [deleteId, setDeleteId] = useState(null);
   const [display, setDisplay] = useState(false);
@@ -44,12 +45,11 @@ const AboutContent = () => {
 
   return (
     <>
-      <header>
-        <h2>Content Management - About</h2>
-        <Link to="add" className="btn">
-          Add Testimonial
-        </Link>
-      </header>
+      <HeaderBtn
+        text="Content Management - About"
+        url="add"
+        urlText="Add Testimonial"
+      />
       <div className="container">
         <div className="admin-testimonial-container">
           {testimonials.map((testimonial, index) => (

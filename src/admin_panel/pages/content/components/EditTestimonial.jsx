@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import TextInputValue from '../../../commons/TextInputValue';
+import TextAreaValue from '../../../commons/TextAreaValue';
+import Header from '../../../commons/Header';
 
 const EditTestimonial = () => {
   const [previewImage, setPreviewImage] = useState('');
@@ -18,10 +21,13 @@ const EditTestimonial = () => {
 
   return (
     <>
-      <header>Edit Testimonial</header>
+      {/* header */}
+      <Header text="Edit Testimonial" />
       <div className="container">
+        {/* form */}
         <form action="" id="testimonial-form">
           <fieldset>
+            {/* image */}
             <label htmlFor="image">
               <div className="img">
                 {previewImage && <img src={previewImage} alt="author" />}
@@ -41,14 +47,13 @@ const EditTestimonial = () => {
               />
             </label>
             <div>
-              <label htmlFor="name">
-                <span>Author's Name:</span>
-                <input type="text" id="name" placeholder="Author Name" />
-              </label>
-              <label htmlFor="content">
-                <span>Content:</span>
-                <textarea id="content" placeholder="content"></textarea>
-              </label>
+              {/* text input */}
+              <TextInputValue
+                label="Author's Name"
+                name="name"
+                placeholder="Author Name"
+              />
+              <TextAreaValue label="Content" placeholder="content" />
             </div>
           </fieldset>
           <button className="btn" type="submit">

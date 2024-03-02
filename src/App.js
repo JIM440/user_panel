@@ -31,6 +31,8 @@ import AboutContent from './admin_panel/pages/content/components/About';
 import EditTestimonial from './admin_panel/pages/content/components/EditTestimonial';
 import AddTestimonial from './admin_panel/pages/content/components/AddTestimonial';
 import HomeContent from './admin_panel/pages/content/components/Home';
+import AddHeaderSlide from './admin_panel/pages/content/components/AddHeaderSlide';
+import EditHeaderSlide from './admin_panel/pages/content/components/EditHeaderSlide';
 // customers
 import Customers from './admin_panel/pages/customers/index';
 import AllCustomers from './admin_panel/pages/customers/components/AllCustomers';
@@ -98,7 +100,10 @@ const router = createBrowserRouter(
 
         {/* content */}
         <Route path="content" element={<ContentManagement />}>
+          {/* home */}
           <Route path="home" element={<HomeContent />} />
+          <Route path="home/add" element={<AddHeaderSlide />} />
+          <Route path="home/edit" element={<EditHeaderSlide />} />
           {/* about */}
           <Route path="about" element={<AboutContent />} />
           <Route path="about/add" element={<AddTestimonial />} />

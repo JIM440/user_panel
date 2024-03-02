@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import TextInputValue from '../../../commons/TextInputValue';
+import TextAreaValue from '../../../commons/TextAreaValue';
+import Header from '../../../commons/Header';
 
 const AddTestimonial = () => {
   const [previewImage, setPreviewImage] = useState('');
@@ -18,7 +21,7 @@ const AddTestimonial = () => {
 
   return (
     <>
-      <header>Edit Testimonial</header>
+      <Header text="Add Testimonial" />
       <div className="container">
         <form action="" id="testimonial-form">
           <fieldset>
@@ -26,13 +29,7 @@ const AddTestimonial = () => {
               <div className="img">
                 {previewImage && <img src={previewImage} alt="author" />}
               </div>
-              <span
-                style={{
-                  marginTop: '10px',
-                }}
-              >
-                Author's Image
-              </span>
+              <span>Author's Image</span>
               <input
                 type="file"
                 id="image"
@@ -41,18 +38,16 @@ const AddTestimonial = () => {
               />
             </label>
             <div>
-              <label htmlFor="name">
-                <span>Author's Name:</span>
-                <input type="text" id="name" placeholder="Author Name" />
-              </label>
-              <label htmlFor="content">
-                <span>Content:</span>
-                <textarea id="content" placeholder="content"></textarea>
-              </label>
+              <TextInputValue
+                label="Author's Name"
+                name="name"
+                placeholder="Author Name"
+              />
+              <TextAreaValue label="Content" placeholder="content" />
             </div>
           </fieldset>
           <button className="btn" type="submit">
-            Submit Update
+            Add Testimonial
           </button>
         </form>
       </div>
