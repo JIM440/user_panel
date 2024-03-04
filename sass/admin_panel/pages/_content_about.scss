@@ -122,6 +122,8 @@
 div:has(.delete) {
   a {
     text-decoration: none !important;
+    color: $primary-color;
+    font-size: 14px;
   }
 
   .delete {

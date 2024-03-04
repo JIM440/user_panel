@@ -1838,6 +1838,8 @@ button {
 
 div:has(.delete) a {
   text-decoration: none !important;
+  color: #2997ff;
+  font-size: 14px;
 }
 div:has(.delete) .delete {
   font-size: 14px;

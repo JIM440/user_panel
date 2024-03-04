@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderBtn from '../../../commons/HeaderBtn';
+// images
+import dots from '../../../assets/icons/horizontal-dots.png';
 const AboutContent = () => {
   const [deleteId, setDeleteId] = useState(null);
   const [display, setDisplay] = useState(false);
@@ -70,11 +72,14 @@ const AboutContent = () => {
               <div className="buttons">
                 <button
                   className="manage-icon"
+                  style={{
+                    width: '20px',
+                  }}
                   onClick={() => {
                     toggleActiveIndex(index);
                   }}
                 >
-                  <i className="bx bx-dots-vertical-rounded"></i>
+                  <img src={dots} alt="" width="18px" />
                 </button>
                 <div className={`${index === activeIndex ? 'active' : ''}`}>
                   <Link
