@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCategorySkeleton from '../../../../user_panel/commons/skeletons/ProductCategorySkeleton';
+import dots from '../../../assets/icons/horizontal-dots.png';
 
 const ProductContainer = () => {
   const [products, setProducts] = useState([]);
@@ -15,6 +16,29 @@ const ProductContainer = () => {
         console.error('Error fetching products:', error);
       });
   }, []);
+
+  // const products = [
+  //   {
+  //     id: 1,
+  //     image: 'image',
+  //     title: 'Apple Watch',
+  //   },
+  //   {
+  //     id: 2,
+  //     image: 'image',
+  //     title: 'Apple iPad',
+  //   },
+  //   {
+  //     id: 3,
+  //     image: 'image',
+  //     title: 'Apple MacBook',
+  //   },
+  //   {
+  //     id: 4,
+  //     image: 'image',
+  //     title: 'iPhone 15 ProMax',
+  //   },
+  // ];
 
   return (
     <>
@@ -51,9 +75,15 @@ const ProductContainer = () => {
                   <span>View</span>
                   <i className="bx bx-chevron-right"></i>
                 </Link>
-                <button>
-                  <i className="bx bx-dots-horizontal-rounded"></i>
-                </button>
+                <div className="buttons grey-bg">
+                  <button className="manage-icon">
+                    <img src={dots} alt="" width="20px" height="20px" />{' '}
+                  </button>
+                  <div>
+                    <Link to="edit">Edit</Link>
+                    <button className="delete">Delete</button>
+                  </div>
+                </div>
               </div>
             </div>
           ))

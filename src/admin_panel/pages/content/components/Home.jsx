@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderBtn from '../../../commons/HeaderBtn';
+// images
+import dots from '../../../assets/icons/horizontal-dots.png';
 
 const HomeContent = () => {
   const [deleteId, setDeleteId] = useState(null);
@@ -46,6 +48,7 @@ const HomeContent = () => {
         text="Content Management - Home"
         url="add"
         urlText="Add Header Slide"
+        className="btw"
       />
       {/* header slides */}
       <div className="container">
@@ -66,7 +69,7 @@ const HomeContent = () => {
                       toggleActiveIndex(index);
                     }}
                   >
-                    <i className="bx bx-dots-vertical-rounded"></i>
+                    <img src={dots} alt="dots icon" />
                   </button>
                   <div className={`${index === activeIndex ? 'active' : ''}`}>
                     <Link

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCategorySkeleton from '../../../../user_panel/commons/skeletons/ProductCategorySkeleton';
-import Header from '../../../commons/Header';
+import HeaderBtn from '../../../commons/HeaderBtn';
 // images
 import search from '../../../assets/icons/Search.svg';
-import filter from '../../../assets/icons/Control Panel.svg';
+import dots from '../../../assets/icons/horizontal-dots.png';
 
 const ProductCategories = () => {
   const [products, setProducts] = useState([]);
@@ -20,9 +20,36 @@ const ProductCategories = () => {
       });
   }, []);
 
+  // const products = [
+  //   {
+  //     id: 1,
+  //     image: 'image',
+  //     title: 'Apple Watch',
+  //   },
+  //   {
+  //     id: 2,
+  //     image: 'image',
+  //     title: 'Apple iPad',
+  //   },
+  //   {
+  //     id: 3,
+  //     image: 'image',
+  //     title: 'Apple MacBook',
+  //   },
+  //   {
+  //     id: 4,
+  //     image: 'image',
+  //     title: 'iPhone 15 ProMax',
+  //   },
+  // ];
+
   return (
     <>
-      <Header text="Product Categories" />
+      <HeaderBtn
+        text="Product Categories"
+        url="/admin/category/add"
+        urlText="Add Category"
+      />
       <div className="container">
         <div className="search-filters">
           <div className="search-container">
@@ -33,14 +60,6 @@ const ProductCategories = () => {
             </button>
           </div>
           <div className="filters-container">
-            <select name="" id="">
-              <option value="">All Categories</option>
-              <option value="">Watch</option>
-              <option value="">iPhone</option>
-              <option value="">iPad</option>
-              <option value="">AirPods</option>
-              <option value="">MacBooks</option>
-            </select>
             <select name="" id="">
               <option value="last added">Last Added</option>
               <option value="">Newest First</option>
@@ -55,7 +74,6 @@ const ProductCategories = () => {
                 className="product-card"
                 key={product.id}
                 style={{
-                  alignItems: 'start',
                   height: 'fit-content',
                 }}
               >
@@ -63,6 +81,8 @@ const ProductCategories = () => {
                   className="product-image"
                   style={{
                     alignSelf: 'center',
+                    backgroundColor: 'rgba(65, 105, 225, 0.53)',
+                    borderRadius: '22px',
                   }}
                 >
                   <img src={product.image} alt={product.title} />
@@ -73,9 +93,15 @@ const ProductCategories = () => {
                     <span>View</span>
                     <i className="bx bx-chevron-right"></i>
                   </Link>
-                  <button>
-                    <i className="bx bx-dots-horizontal-rounded"></i>
-                  </button>
+                  <div className="buttons grey-bg">
+                    <button className="manage-icon">
+                      <img src={dots} alt="" width="20px" height="20px" />{' '}
+                    </button>
+                    <div>
+                      <Link to="edit">Edit</Link>
+                      <button className="delete">Delete</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))

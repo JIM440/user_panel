@@ -118,6 +118,17 @@
     }
   }
 }
+
+div:has(.delete) {
+  a {
+    text-decoration: none !important;
+  }
+
+  .delete {
+    font-size: 14px;
+    color: red;
+  }
+}
 // add testimonial
 // edit testimonial
 #testimonial-form {

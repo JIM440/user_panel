@@ -49,6 +49,7 @@ const AboutContent = () => {
         text="Content Management - About"
         url="add"
         urlText="Add Testimonial"
+        className="btw"
       />
       <div className="container">
         <div className="admin-testimonial-container">

@@ -9,6 +9,7 @@
     display: grid;
     grid-template-columns: 180px 1fr;
     gap: 1.2rem;
+    min-height: 150px;
 
     @include breakpointDynamic(700px) {
       & {
@@ -35,13 +36,36 @@
       }
 
       .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
         right: 10px;
+        bottom: 0px;
+        border-radius: 100px;
+        padding: 4px 6px;
+        background-color: $bg-grey;
+
+        .manage-icon {
+          width: 18px;
+        }
       }
     }
   }
 }
 
+.buttons.grey-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  padding: 4px 6px;
+  background-color: $bg-grey;
+
+  .manage-icon {
+    width: 18px;
+  }
+}
 // add header slide
 .add-header-slider-form {
   display: flex;
