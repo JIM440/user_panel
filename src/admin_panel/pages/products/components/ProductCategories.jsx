@@ -47,7 +47,7 @@ const ProductCategories = () => {
     <>
       <HeaderBtn
         text="Product Categories"
-        url="/admin/category/add"
+        url="/admin/product/category/add"
         urlText="Add Category"
       />
       <div className="container">

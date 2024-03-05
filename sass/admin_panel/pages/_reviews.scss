@@ -1,0 +1,75 @@
+.table-container {
+  overflow-x: scroll;
+  padding-block: 20px;
+  table {
+    border-collapse: collapse;
+    // border: 1px solid $admin-border-color;
+    // border-top: none;
+    border-radius: 8px;
+  }
+  tr {
+    margin-block: 6px;
+  }
+  th {
+    text-align: left;
+    background-color: $bg-light;
+  }
+  tr:first-of-type {
+    th:first-of-type {
+      border-top-left-radius: 8px;
+    }
+    th:last-of-type {
+      border-top-right-radius: 8px;
+    }
+  }
+  td,
+  th {
+    padding: 4px 10px;
+  }
+  td *,
+  td,
+  th {
+    font-size: 14px;
+  }
+}
+
+.table-container.review-table {
+  .user-details {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    img {
+      border-radius: 100%;
+      width: 60px;
+      height: 60px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+  .actions {
+    width: 40px;
+    min-width: 30px;
+  }
+  .text {
+    width: 480px;
+    min-width: 460px;
+  }
+  .date {
+    max-width: 60px;
+    min-width: 55px;
+  }
+  .rating {
+    max-width: 150px;
+    min-width: 140px;
+  }
+  .product-name {
+    max-width: 180px;
+    min-width: 170px;
+  }
+  .reviewer-name {
+    max-width: 180px;
+    min-width: 175px;
+  }
+}

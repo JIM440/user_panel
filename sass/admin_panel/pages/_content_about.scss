@@ -100,6 +100,7 @@
 }
 .buttons {
   position: relative;
+  width: fit-content;
   div {
     display: none;
     position: absolute;
@@ -117,12 +118,10 @@
       display: block;
     }
   }
-}
 
-div:has(.delete) {
   a {
     text-decoration: none !important;
-    color: $primary-color;
+    color: $black;
     font-size: 14px;
   }
 

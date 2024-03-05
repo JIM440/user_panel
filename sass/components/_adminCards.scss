@@ -30,6 +30,7 @@
     display: flex;
     width: 100%;
     gap: 10px;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 
@@ -46,6 +47,44 @@
       & {
         width: fit-content;
       }
+    }
+  }
+}
+
+// form input even columns admin panel
+.form-even-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.4rem;
+
+  @include breakpointDynamic(650px) {
+    & {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+.product-images {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @include breakpointDynamic(650px) {
+    grid-template-columns: 1fr 1fr;
+    grid-column: span 2 / 3;
+  }
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .img {
+      width: 100%;
+      max-width: 200px;
+      background-color: $text-muted;
+      border-radius: 8px;
+      min-height: 200px;
     }
   }
 }

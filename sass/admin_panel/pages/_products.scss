@@ -1,0 +1,14 @@
+// add/edit category
+.add-category-product {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  h3 {
+    margin-bottom: 1.2rem;
+  }
+  button[type='submit'] {
+    align-self: center;
+    width: 200px;
+  }
+}
+// products

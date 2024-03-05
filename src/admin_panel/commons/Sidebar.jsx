@@ -68,7 +68,7 @@ const Sidebar = ({ displaySidebar }) => {
             }`}
           >
             <NavLink to="product/all">All Products</NavLink>
-            <NavLink to="product/categories">Product Category</NavLink>
+            <NavLink to="product/category">Product Category</NavLink>
             <NavLink to="product/add">Add Product</NavLink>
           </div>
         </li>
