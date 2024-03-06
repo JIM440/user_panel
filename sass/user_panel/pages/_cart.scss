@@ -74,15 +74,15 @@
             flex-direction: column;
             gap: 6px;
 
-            .remove{
-                text-decoration: underline;
-                color: rgb(122, 17, 17);
-                margin-top: 6px;
+            .remove {
+              text-decoration: underline;
+              color: rgb(122, 17, 17);
+              margin-top: 6px;
             }
           }
         }
-        .remove > i.bx-x{
-            font-size: 24px;
+        .remove > i.bx-x {
+          font-size: 24px;
         }
 
         .qty {
@@ -93,17 +93,17 @@
           height: fit-content;
           padding: 0px;
 
-          button{
+          button {
             display: inline-block;
             border: none;
             padding-inline: 4px;
             background-color: darken($bg-grey, 20%);
           }
-          button:first-of-type{
+          button:first-of-type {
             border-top-left-radius: 8px;
             border-bottom-left-radius: 8px;
           }
-          button:last-of-type{
+          button:last-of-type {
             border-top-right-radius: 8px;
             border-bottom-right-radius: 8px;
           }
@@ -149,34 +149,35 @@
         }
       }
     }
-    .order-summary {
-      background-color: $bg-light;
-      border-radius: 22px;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      align-self: start;
-
-      .summary {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        padding-top: 1rem;
-
-        & > div {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-      }
-    }
 
     @include breakpointDynamic(1000px) {
       & {
         grid-template-columns: 2.5fr 1.5fr;
       }
+    }
+  }
+}
+
+.order-summary {
+  background-color: $bg-light;
+  border-radius: 22px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: start;
+
+  .summary {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 1rem;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
   }
 }

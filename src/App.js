@@ -49,6 +49,8 @@ import RegisterAdmin from './admin_panel/pages/register/index';
 // admin layouts
 import AdminRootLayout from './admin_panel/layout/RootLayout';
 import Reviews from './admin_panel/pages/reviews';
+import Orders from './admin_panel/pages/orders';
+import OrderDetails from './admin_panel/pages/orders/components/OrderDetails';
 
 // creating various routers
 
@@ -92,7 +94,8 @@ const router = createBrowserRouter(
           <Route path="category/edit" element={<EditCategory />} />
         </Route>
         {/* orders */}
-        <Route path="orders" element={<h1>Orders</h1>} />
+        <Route path="orders" element={<Orders />} />
+        <Route path="orders/details" element={<OrderDetails />} />
 
         {/* customers */}
         <Route path="customers" element={<Customers />}>

@@ -1,0 +1,30 @@
+.orders-table {
+  td,
+  th {
+    min-width: 150px;
+    padding-block: 10px;
+  }
+  th.date {
+    min-width: 180px;
+  }
+}
+
+.order-details-table {
+  span {
+    display: block;
+    margin-bottom: 8px;
+  }
+  .items,
+  .shipping {
+    min-width: 200px;
+  }
+  li {
+    list-style: disc;
+    margin: 5px 0px 5px 10px;
+  }
+}
+
+.order-details-summary {
+  margin-top: 2rem;
+  max-width: 700px;
+}

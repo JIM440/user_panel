@@ -42,43 +42,134 @@ const Reviews = () => {
         </div>
         <div className="table-container review-table">
           <table>
-            <tr>
-              <th className="reviewer-name">Reviewer Name</th>
-              <th className="product-name">Product Name</th>
-              <th className="rating">Rating</th>
-              <th className="date">Date</th>
-              <th className="text">Text</th>
-              <th className="actions">Actions</th>
-            </tr>
-            <tr>
-              <td>
-                <div className="user-details">
-                  <img src="" alt="" width="70px" height="70px" />
-                  <p className="name">Jeremy Lynch</p>
-                </div>
-              </td>
-              <td>Apple Watch Series 9</td>
-              <td>
-                <img src={star} alt="star" width="20px" />
-                <img src={star} alt="star" width="20px" />
-                <img src={star} alt="star" width="20px" />
-                <img src={star} alt="star" width="20px" />
-                <img src={star} alt="star" width="20px" />
-              </td>
-              <td>12-12-2024</td>
-              <td>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Aperiam odit aliquam facere sequi tempora? Voluptatum provident
-                id et sint impedit?
-              </td>
-              <td>
-                <div className="buttons grey-bg">
-                  <button className="manage-icon">
-                    <img src={dots} alt="" width="20px" />
-                  </button>
-                </div>
-              </td>
-            </tr>
+            <thead>
+              <tr>
+                <th className="reviewer-name">Reviewer Name</th>
+                <th className="product-name">Product Name</th>
+                <th className="rating">Rating</th>
+                <th className="date">Date</th>
+                <th className="text">Text</th>
+                <th className="actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div className="user-details">
+                    <img src="" alt="" width="70px" height="70px" />
+                    <p className="name">Jeremy Lynch</p>
+                  </div>
+                </td>
+                <td>Apple Watch Series 9</td>
+                <td>
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                </td>
+                <td>12-12-2024</td>
+                <td>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Aperiam odit aliquam facere sequi tempora? Voluptatum
+                  provident id et sint impedit?
+                </td>
+                <td>
+                  <div className="buttons grey-bg">
+                    <button className="manage-icon">
+                      <img src={dots} alt="" width="20px" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div className="user-details">
+                    <img src="" alt="" width="70px" height="70px" />
+                    <p className="name">Jeremy Lynch</p>
+                  </div>
+                </td>
+                <td>Apple Watch Series 9</td>
+                <td>
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                </td>
+                <td>12-12-2024</td>
+                <td>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Aperiam odit aliquam facere sequi tempora? Voluptatum
+                  provident id et sint impedit?
+                </td>
+                <td>
+                  <div className="buttons grey-bg">
+                    <button className="manage-icon">
+                      <img src={dots} alt="" width="20px" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div className="user-details">
+                    <img src="" alt="" width="70px" height="70px" />
+                    <p className="name">Jeremy Lynch</p>
+                  </div>
+                </td>
+                <td>Apple Watch Series 9</td>
+                <td>
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                </td>
+                <td>12-12-2024</td>
+                <td>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Aperiam odit aliquam facere sequi tempora? Voluptatum
+                  provident id et sint impedit?
+                </td>
+                <td>
+                  <div className="buttons grey-bg">
+                    <button className="manage-icon">
+                      <img src={dots} alt="" width="20px" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div className="user-details">
+                    <img src="" alt="" width="70px" height="70px" />
+                    <p className="name">Jeremy Lynch</p>
+                  </div>
+                </td>
+                <td>Apple Watch Series 9</td>
+                <td>
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                  <img src={star} alt="star" width="20px" />
+                </td>
+                <td>12-12-2024</td>
+                <td>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Aperiam odit aliquam facere sequi tempora? Voluptatum
+                  provident id et sint impedit?
+                </td>
+                <td>
+                  <div className="buttons grey-bg">
+                    <button className="manage-icon">
+                      <img src={dots} alt="" width="20px" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>

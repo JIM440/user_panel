@@ -1,38 +1,3 @@
-.table-container {
-  overflow-x: scroll;
-  padding-block: 20px;
-  table {
-    border-collapse: collapse;
-    // border: 1px solid $admin-border-color;
-    // border-top: none;
-    border-radius: 8px;
-  }
-  tr {
-    margin-block: 6px;
-  }
-  th {
-    text-align: left;
-    background-color: $bg-light;
-  }
-  tr:first-of-type {
-    th:first-of-type {
-      border-top-left-radius: 8px;
-    }
-    th:last-of-type {
-      border-top-right-radius: 8px;
-    }
-  }
-  td,
-  th {
-    padding: 4px 10px;
-  }
-  td *,
-  td,
-  th {
-    font-size: 14px;
-  }
-}
-
 .table-container.review-table {
   .user-details {
     display: flex;
@@ -49,27 +14,21 @@
     }
   }
   .actions {
-    width: 40px;
-    min-width: 30px;
+    min-width: 40px;
   }
   .text {
-    width: 480px;
-    min-width: 460px;
+    min-width: 480px;
   }
   .date {
-    max-width: 60px;
-    min-width: 55px;
+    min-width: 100px;
   }
   .rating {
-    max-width: 150px;
     min-width: 140px;
   }
   .product-name {
-    max-width: 180px;
     min-width: 170px;
   }
   .reviewer-name {
-    max-width: 180px;
     min-width: 175px;
   }
 }

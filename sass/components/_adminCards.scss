@@ -88,3 +88,53 @@
     }
   }
 }
+
+.table-container {
+  overflow-x: scroll;
+  scrollbar-width: thin;
+  padding-block: 20px;
+  table {
+    border-collapse: collapse;
+    // border: 1px solid $admin-border-color;
+    // border-top: none;
+    border-radius: 8px;
+  }
+  tr {
+    margin-block: 6px;
+  }
+  th {
+    text-align: left;
+    background-color: $bg-light;
+  }
+  thead {
+    tr:first-of-type {
+      th:first-of-type {
+        border-top-left-radius: 8px;
+      }
+      th:last-of-type {
+        border-top-right-radius: 8px;
+      }
+    }
+  }
+  td,
+  th {
+    padding: 4px 10px;
+  }
+  td *,
+  td,
+  th {
+    font-size: 14px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 22px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 22px;
+  }
+}
