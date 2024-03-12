@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import Header from '../../commons/Header';
 // images
 import search from '../../assets/icons/Search.svg';
-import dots from '../../assets/icons/horizontal-dots.png';
-import star from '../../assets/icons/Star.svg';
+import OrderbyDate from '../../commons/OrderbyDate';
+import Search from '../../commons/Search';
 
 const Orders = () => {
   return (
@@ -12,23 +12,14 @@ const Orders = () => {
       <Header text="Orders" />
       <div className="container">
         <div className="search-filters">
-          <div className="search-container">
-            <img src={search} alt="" />
-            <input type="search" placeholder="Search" />
-            <button>
-              <img src={search} alt="" />
-            </button>
-          </div>
+          <Search />
           <div className="filters-container">
             <select name="" id="">
               <option value="last added">Order Status</option>
               <option value="">Pending</option>
               <option value="">Delivered</option>
             </select>
-            <select name="" id="">
-              <option value="">Last Added</option>
-              <option value="">Newest First</option>
-            </select>
+            <OrderbyDate />
           </div>
         </div>
         <div className="table-container orders-table">

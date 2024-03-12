@@ -86,12 +86,12 @@ const router = createBrowserRouter(
       <Route path="/admin" element={<AdminRootLayout />}>
         <Route index element={<Dashboard />} />
         {/* products */}
-        <Route path="product" element={<Products />}>
+        <Route path="products" element={<Products />}>
           <Route path="all" element={<AllProducts />}></Route>
-          <Route path="category" element={<ProductCategories />}></Route>
+          <Route path="categories" element={<ProductCategories />}></Route>
           <Route path="add" element={<AddProduct />}></Route>
-          <Route path="category/add" element={<AddCategory />} />
-          <Route path="category/edit" element={<EditCategory />} />
+          <Route path="categories/add" element={<AddCategory />} />
+          <Route path="categories/edit" element={<EditCategory />} />
         </Route>
         {/* orders */}
         <Route path="orders" element={<Orders />} />

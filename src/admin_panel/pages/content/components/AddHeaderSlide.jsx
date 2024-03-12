@@ -28,9 +28,16 @@ const AddHeaderSlide = () => {
             <div>
               <label htmlFor="image">
                 <div className="img">
-                  {previewImage && <img src={previewImage} alt="author" />}
+                  {previewImage && (
+                    <img
+                      src={previewImage}
+                      alt="author"
+                      width="200px"
+                      height="200px"
+                    />
+                  )}
                 </div>
-                <span>Author's Image</span>
+                <span>Slider Image</span>
                 <input
                   type="file"
                   id="image"

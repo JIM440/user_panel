@@ -23,25 +23,25 @@ const AboutContent = () => {
 
   const testimonials = [
     {
-      name: 'Sarah Johnson',
-      imageUrl: 'sarah.jpg',
-      content:
-        'I absolutely love my new phone from this website! The features are amazing, and the customer service was top-notch.',
-      date: '2024-02-29',
+      id: 1,
+      author: 'John Doe',
+      text: 'Great products and excellent customer service. I highly recommend iStore!',
+      date: '2022-09-15',
+      image: 'https://source.unsplash.com/featured/?person',
     },
     {
-      name: 'John Smith',
-      imageUrl: 'john.jpg',
-      content:
-        "I'm impressed with the quality of the phone I purchased here. The delivery was quick, and the phone exceeded my expectations.",
-      date: '2024-02-28',
+      id: 2,
+      author: 'Jane Smith',
+      text: 'I love shopping at iStore. The quality of the products is top-notch!',
+      date: '2022-09-18',
+      image: 'https://source.unsplash.com/featured/?portrait',
     },
     {
-      name: 'Emily Wong',
-      imageUrl: 'emily.jpg',
-      content:
-        "This website offers a great selection of phones at competitive prices. I found the perfect phone for my needs, and I couldn't be happier.",
-      date: '2024-02-27',
+      id: 3,
+      author: 'Alice Johnson',
+      text: 'Amazing experience with iStore. Will definitely be a returning customer!',
+      date: '2022-09-20',
+      image: 'https://source.unsplash.com/featured/?nature',
     },
   ];
 
@@ -60,14 +60,14 @@ const AboutContent = () => {
               <div className="testimonial-details">
                 <div>
                   <div className="img">
-                    <img src="" alt="" />
+                    <img src={testimonial.image} alt="" />
                   </div>
                   <div>
                     <p className="name">{testimonial.name}</p>
                     <span className="date">{testimonial.date}</span>
                   </div>
                 </div>
-                <p className="content">{testimonial.content}</p>
+                <p className="content">{testimonial.text}</p>
               </div>
               <div className="buttons">
                 <button

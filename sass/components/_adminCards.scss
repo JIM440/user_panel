@@ -138,3 +138,13 @@
     border-radius: 22px;
   }
 }
+.product-container-admin {
+  gap: 3rem;
+
+  .product-not-found {
+    margin-top: 1rem;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+  }
+}

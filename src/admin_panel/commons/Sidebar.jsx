@@ -67,9 +67,9 @@ const Sidebar = ({ displaySidebar }) => {
               active === 2 && displayDropdown === true ? 'active' : ''
             }`}
           >
-            <NavLink to="product/all">All Products</NavLink>
-            <NavLink to="product/category">Product Category</NavLink>
-            <NavLink to="product/add">Add Product</NavLink>
+            <NavLink to="products/all">All Products</NavLink>
+            <NavLink to="products/categories">Product Categories</NavLink>
+            <NavLink to="products/add">Add Product</NavLink>
           </div>
         </li>
         {/* Orders */}

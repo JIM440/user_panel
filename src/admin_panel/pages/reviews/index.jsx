@@ -1,23 +1,64 @@
 import React from 'react';
 import Header from '../../commons/Header';
 // images
-import search from '../../assets/icons/Search.svg';
 import dots from '../../assets/icons/horizontal-dots.png';
 import star from '../../assets/icons/Star.svg';
+import OrderbyDate from '../../commons/OrderbyDate';
+import Search from '../../commons/Search';
 
 const Reviews = () => {
+  const reviews = [
+    {
+      reviewer_name: 'John Doe',
+      reviewer_image: 'https://source.unsplash.com/100x100/?person1',
+      product_name: 'iPhone 12 Pro',
+      rating: 5,
+      date: '2021-10-16',
+      review_text:
+        'Absolutely love the iPhone 12 Pro! The camera quality is amazing and the performance is top-notch.',
+    },
+    {
+      reviewer_name: 'Jane Smith',
+      reviewer_image: 'https://source.unsplash.com/100x100/?person2',
+      product_name: 'Apple Watch Series 6',
+      rating: 4,
+      date: '2021-10-17',
+      review_text:
+        'The Apple Watch Series 6 is a great smartwatch with useful health features. The battery life could be better though.',
+    },
+    {
+      reviewer_name: 'Alice Johnson',
+      reviewer_image: 'https://source.unsplash.com/100x100/?person3',
+      product_name: 'MacBook Air',
+      rating: 5,
+      date: '2021-10-18',
+      review_text:
+        "The MacBook Air is so lightweight and the retina display is stunning. It's perfect for my work!",
+    },
+    {
+      reviewer_name: 'Bob Brown',
+      reviewer_image: 'https://source.unsplash.com/100x100/?person4',
+      product_name: 'iPad Pro',
+      rating: 4,
+      date: '2021-10-19',
+      review_text:
+        "The iPad Pro is fast and the display is beautiful. It's great for both work and entertainment.",
+    },
+  ];
+
+  const StarRating = (rating) => {
+    const starImage = <img src={star} alt="Star" width="20px" />;
+    const stars = Array.from({ length: rating }, (_, index) => starImage);
+
+    return <>{stars}</>;
+  };
+
   return (
     <>
       <Header text="Reviews" />
       <div className="container">
         <div className="search-filters">
-          <div className="search-container">
-            <img src={search} alt="" />
-            <input type="search" placeholder="Search" />
-            <button>
-              <img src={search} alt="" />
-            </button>
-          </div>
+          <Search />
           <div className="filters-container">
             <select name="" id="">
               <option value="last added">All Categories</option>
@@ -27,17 +68,14 @@ const Reviews = () => {
               <option value="">MacBook</option>
             </select>
             <select name="" id="">
+              <option value="">Star Rating</option>
               <option value="last added">5 Stars</option>
               <option value="last added">4 Stars</option>
               <option value="last added">3 Stars</option>
               <option value="last added">2 Stars</option>
               <option value="last added">1 Stars</option>
             </select>
-            <select name="" id="">
-              <option value="last added">Last Added</option>
-              <option value="">Newest First</option>
-              <option value="">Oldest First</option>
-            </select>
+            <OrderbyDate />
           </div>
         </div>
         <div className="table-container review-table">
@@ -53,122 +91,36 @@ const Reviews = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <div className="user-details">
-                    <img src="" alt="" width="70px" height="70px" />
-                    <p className="name">Jeremy Lynch</p>
-                  </div>
-                </td>
-                <td>Apple Watch Series 9</td>
-                <td>
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                </td>
-                <td>12-12-2024</td>
-                <td>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Aperiam odit aliquam facere sequi tempora? Voluptatum
-                  provident id et sint impedit?
-                </td>
-                <td>
-                  <div className="buttons grey-bg">
-                    <button className="manage-icon">
-                      <img src={dots} alt="" width="20px" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="user-details">
-                    <img src="" alt="" width="70px" height="70px" />
-                    <p className="name">Jeremy Lynch</p>
-                  </div>
-                </td>
-                <td>Apple Watch Series 9</td>
-                <td>
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                </td>
-                <td>12-12-2024</td>
-                <td>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Aperiam odit aliquam facere sequi tempora? Voluptatum
-                  provident id et sint impedit?
-                </td>
-                <td>
-                  <div className="buttons grey-bg">
-                    <button className="manage-icon">
-                      <img src={dots} alt="" width="20px" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="user-details">
-                    <img src="" alt="" width="70px" height="70px" />
-                    <p className="name">Jeremy Lynch</p>
-                  </div>
-                </td>
-                <td>Apple Watch Series 9</td>
-                <td>
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                </td>
-                <td>12-12-2024</td>
-                <td>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Aperiam odit aliquam facere sequi tempora? Voluptatum
-                  provident id et sint impedit?
-                </td>
-                <td>
-                  <div className="buttons grey-bg">
-                    <button className="manage-icon">
-                      <img src={dots} alt="" width="20px" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="user-details">
-                    <img src="" alt="" width="70px" height="70px" />
-                    <p className="name">Jeremy Lynch</p>
-                  </div>
-                </td>
-                <td>Apple Watch Series 9</td>
-                <td>
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                  <img src={star} alt="star" width="20px" />
-                </td>
-                <td>12-12-2024</td>
-                <td>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Aperiam odit aliquam facere sequi tempora? Voluptatum
-                  provident id et sint impedit?
-                </td>
-                <td>
-                  <div className="buttons grey-bg">
-                    <button className="manage-icon">
-                      <img src={dots} alt="" width="20px" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
+              {reviews ? (
+                reviews.map((review) => (
+                  <tr>
+                    <td>
+                      <div className="user-details">
+                        <img
+                          src={review.reviewer_image}
+                          alt=""
+                          width="70px"
+                          height="70px"
+                        />
+                        <p className="name">{review.reviewer_name}</p>
+                      </div>
+                    </td>
+                    <td>{review.product_name}</td>
+                    <td>{StarRating(review.rating)}</td>
+                    <td>{review.date}</td>
+                    <td>{review.review_text}</td>
+                    <td>
+                      <div className="buttons grey-bg">
+                        <button className="manage-icon">
+                          <img src={dots} alt="" width="20px" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <p>Date is Loading</p>
+              )}
             </tbody>
           </table>
         </div>
