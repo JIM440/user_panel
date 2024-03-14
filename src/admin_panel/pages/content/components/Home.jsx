@@ -27,19 +27,25 @@ const HomeContent = () => {
       name: 'Apple Watch Series 9',
       url: 'url to apple watch',
       description: 'The Next Level Adventure',
-      image: 'the image url here',
+      position: '1',
+      image:
+        'https://www.apple.com/v/watch/bk/images/overview/series-9/tile_s9_avail__c104b8nuoec2_large.jpg',
     },
     {
       name: 'iPad Pro',
       url: 'url to iPad Pro',
       description: 'Change your life with just a click😂',
-      image: 'the image url here',
+      position: '2',
+      image:
+        'https://www.apple.com/v/ipad/home/ci/images/overview/hero/ipad_pro_hero__bh3eq6sqfjw2_large.jpg',
     },
     {
       name: 'MacBook Pro',
       url: 'url to macbook',
       description: 'Macbook na book',
-      image: 'the image url here',
+      position: '3',
+      image:
+        'https://www.apple.com/newsroom/images/2023/10/apple-unveils-new-macbook-pro-featuring-m3-chips/article/Apple-MacBook-Pro-2up-231030_Full-Bleed-Image.jpg.large.jpg',
     },
   ];
   return (
@@ -56,11 +62,12 @@ const HomeContent = () => {
           {headerSlides.map((slide, index) => (
             <div className="admin-header-box" key={index}>
               <div className="img">
-                <img src="" alt="" />
+                <img src={slide.image} alt="" />
               </div>
               <div className="content">
                 <h3>{slide.name}</h3>
                 <p>{slide.description}</p>
+                <p>Position: {slide.position}</p>
                 <Link to="">{slide.url}</Link>
                 <div className="buttons">
                   <button

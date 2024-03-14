@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TextInputValue = ({ label, name, placeholder, value }) => {
+const TextInputValue = ({ label, name, placeholder, value, change }) => {
   return (
     <label className="input-component" htmlFor={name}>
       <span>{label}:</span>
@@ -10,6 +10,7 @@ const TextInputValue = ({ label, name, placeholder, value }) => {
         placeholder={placeholder}
         value={value}
         required
+        onChange={change}
       />
     </label>
   );

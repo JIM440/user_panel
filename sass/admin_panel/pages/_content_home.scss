@@ -17,8 +17,14 @@
       }
     }
     .img {
-      background-color: $text-muted;
+      background-color: lighten($text-muted, 40%);
       border-radius: 8px;
+
+      img {
+        border-radius: 8px;
+        object-fit: cover;
+        height: 100%;
+      }
     }
     .content {
       position: relative;

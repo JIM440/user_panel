@@ -2023,8 +2023,13 @@ button {
   }
 }
 .admin-header-container .admin-header-box .img {
-  background-color: #877b7b;
+  background-color: #e8e6e6;
   border-radius: 8px;
+}
+.admin-header-container .admin-header-box .img img {
+  border-radius: 8px;
+  object-fit: cover;
+  height: 100%;
 }
 .admin-header-container .admin-header-box .content {
   position: relative;

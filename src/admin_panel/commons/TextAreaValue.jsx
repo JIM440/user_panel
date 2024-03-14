@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TextAreaValue = ({ label, name, placeholder, value }) => {
+const TextAreaValue = ({ label, name, placeholder, value, change }) => {
   return (
     <label className="textArea-component" htmlFor={name}>
       <span>{label}:</span>
@@ -9,6 +9,7 @@ const TextAreaValue = ({ label, name, placeholder, value }) => {
         placeholder={placeholder}
         value={value}
         required
+        onChange={change}
       ></textarea>
     </label>
   );

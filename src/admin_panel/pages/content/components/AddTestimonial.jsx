@@ -2,9 +2,13 @@ import { useState } from 'react';
 import TextInputValue from '../../../commons/TextInputValue';
 import TextAreaValue from '../../../commons/TextAreaValue';
 import Header from '../../../commons/Header';
+import PerformFetchPost from '../../../utils/PerformFetchPost';
 
 const AddTestimonial = () => {
   const [previewImage, setPreviewImage] = useState('');
+
+  const [authorName, setAuthorName] = useState('');
+  const [content, setContent] = useState('');
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -19,11 +23,27 @@ const AddTestimonial = () => {
     }
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const apiUrl = '';
+
+    const data = {
+      author_name: authorName,
+      testimonial_content: content,
+      image: previewImage,
+    };
+
+    alert(`You added the testimonial content as ${data.author_name}`);
+
+    PerformFetchPost(apiUrl, data);
+  };
+
   return (
     <>
       <Header text="Add Testimonial" />
       <div className="container">
-        <form action="" id="testimonial-form">
+        <form action="" id="testimonial-form" onSubmit={handleSubmit}>
           <fieldset>
             <label htmlFor="image">
               <div className="img">
@@ -34,6 +54,7 @@ const AddTestimonial = () => {
                 type="file"
                 id="image"
                 accept="image/*"
+                required
                 onChange={handleImageChange}
               />
             </label>
@@ -42,8 +63,15 @@ const AddTestimonial = () => {
                 label="Author's Name"
                 name="name"
                 placeholder="Author Name"
+                change={(e) => setAuthorName(e.target.value)}
               />
-              <TextAreaValue label="Content" placeholder="content" />
+              <TextAreaValue
+                label="Content"
+                placeholder="content"
+                change={(e) => {
+                  setContent(e.target.value);
+                }}
+              />
             </div>
           </fieldset>
           <button className="btn" type="submit">

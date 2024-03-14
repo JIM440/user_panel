@@ -1,11 +1,9 @@
 import HeaderBtn from '../../../commons/HeaderBtn';
-import search from '../../../assets/icons/Search.svg';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCategorySkeleton from '../../../../user_panel/commons/skeletons/ProductCategorySkeleton';
 import dots from '../../../assets/icons/horizontal-dots.png';
-import OrderbyDate from '../../../commons/OrderbyDate';
-import Search from '../../../commons/Search';
+import search from '../../../assets/icons/Search.svg';
 
 const AllProducts = () => {
   const products = [
@@ -19,7 +17,7 @@ const AllProducts = () => {
       category: 'iPhones',
       image:
         'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/refurb-iphone-12-pro-blue-2020?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1635202834000',
-      date_added: '2021-10-12',
+      date_added: new Date('2021-10-12'),
     },
     {
       id: 2,
@@ -31,7 +29,7 @@ const AllProducts = () => {
       category: 'Mac Books',
       image:
         'https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP854/mbp14-silver2.png',
-      date_added: '2021-10-13',
+      date_added: new Date('2021-10-13'),
     },
     {
       id: 3,
@@ -43,7 +41,7 @@ const AllProducts = () => {
       category: 'iPad',
       image:
         'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/refurb-ipad-air-wifi-green-2021?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1644268592092',
-      date_added: '2021-10-14',
+      date_added: new Date('2021-10-14'),
     },
     {
       id: 4,
@@ -55,7 +53,7 @@ const AllProducts = () => {
       category: 'wearables',
       image:
         'https://i5.walmartimages.com/asr/3580b718-154d-427d-898c-05b3e46332ba.779952d7e83af1cd4883757c516eb7b5.png',
-      date_added: '2021-10-15',
+      date_added: new Date('2021-10-15'),
     },
     {
       id: 5,
@@ -67,7 +65,7 @@ const AllProducts = () => {
       category: 'Air Pods',
       image:
         'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-spacegray-202011_FV1_FMT_WHH?wid=940&hei=800&fmt=jpeg&qlt=90&.v=1604776025000',
-      date_added: '2021-10-16',
+      date_added: new Date('2021-10-16'),
     },
     {
       id: 6,
@@ -79,7 +77,7 @@ const AllProducts = () => {
       category: 'Displays',
       image:
         'https://www.phoneplacekenya.com/wp-content/uploads/2021/07/24-inch-Blue-iMac-a.jpg',
-      date_added: '2021-10-17',
+      date_added: new Date('2021-10-17'),
     },
     {
       id: 7,
@@ -90,7 +88,7 @@ const AllProducts = () => {
       category: 'iPhones',
       image:
         'https://img.kasa.cz/k-foto/ilustrace/800/6/2/5/product_2473526.jpg',
-      date_added: '2021-10-18',
+      date_added: new Date('2021-10-18'),
     },
     {
       id: 8,
@@ -102,7 +100,7 @@ const AllProducts = () => {
       category: 'Mac Books',
       image:
         'https://www.wearesync.co.uk/wp-content/uploads/2022/06/macbook-air-m2-space-grey-1.jpg',
-      date_added: '2021-10-19',
+      date_added: new Date('2021-10-19'),
     },
     {
       id: 10,
@@ -114,7 +112,7 @@ const AllProducts = () => {
       category: 'iPhones',
       image:
         'https://www.apple.com/newsroom/images/product/iphone/geo/Apple_iPhone-13-Pro_iPhone-13-Pro-Max_GEO_09142021_inline.jpg.large.jpg',
-      date_added: '2021-10-22',
+      date_added: new Date('2021-10-22'),
     },
     {
       id: 12,
@@ -126,7 +124,7 @@ const AllProducts = () => {
       category: 'iPad',
       image:
         'https://i5.walmartimages.com/asr/d8519e04-8477-44ef-9dff-75820422ef78.bcbc075396ef4de38fdd82b6285ef534.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF',
-      date_added: '2021-10-24',
+      date_added: new Date('2021-10-24'),
     },
     {
       id: 14,
@@ -138,18 +136,60 @@ const AllProducts = () => {
       category: 'Air Pods',
       image:
         'https://images.macrumors.com/t/2oOomFnia-hmIfwvXVejKx3mNEE=/1600x/article-new/2019/10/airpods-pro-roundup.jpg',
-      date_added: '2021-10-26',
+      date_added: new Date('2021-10-26'),
     },
   ];
-  const [filteredProducts, setFilteredProducts] = useState(products);
-  const [searchText, setSearchText] = useState('');
+  const [displayedProducts, setDisplayedProducts] = useState(products);
+  const [categoryValue, setCategoryValue] = useState('');
+  const [orderByDateValue, setOrderByDateValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
 
-  const handleSearch = (e) => {
-    const text = e.target.value.toLowerCase();
-    setSearchText(text);
-    setFilteredProducts(
-      products.filter((product) => product.name.toLowerCase().includes(text))
-    );
+  const handleOnchange = (e) => {
+    if (e.target.name === 'category') {
+      setCategoryValue(e.target.value);
+      const prods = products;
+      const search = prods.filter((product) =>
+        product.name.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      const cat = search.filter((product) =>
+        product.name.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      console.log(cat);
+      const date = handleSorting(cat, orderByDateValue);
+      setDisplayedProducts(date);
+    } else if (e.target.name === 'order_by_date') {
+      setOrderByDateValue(e.target.value);
+      const prods = products;
+      const search = prods.filter((product) =>
+        product.name.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      const cat = search.filter((product) =>
+        product.name.toLowerCase().includes(categoryValue.toLowerCase())
+      );
+      const date = handleSorting(cat, e.target.value);
+      setDisplayedProducts(date);
+    } else if (e.target.name === 'search') {
+      setSearchValue(e.target.value);
+      const prods = products;
+      const search = prods.filter((product) =>
+        product.name.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      const cat = search.filter((product) =>
+        product.name.toLowerCase().includes(categoryValue.toLowerCase())
+      );
+      const date = handleSorting(cat, orderByDateValue);
+      setDisplayedProducts(date);
+    }
+  };
+
+  const handleSorting = (cat, orderByDateValue) => {
+    if (orderByDateValue === 'newest') {
+      return cat.sort((a, b) => (a.date_added < b.date_added ? 1 : -1));
+    } else if (orderByDateValue === 'oldest') {
+      return cat.sort((a, b) => (a.date_added > b.date_added ? 1 : -1));
+    } else {
+      return cat;
+    }
   };
 
   return (
@@ -162,30 +202,38 @@ const AllProducts = () => {
       <div className="container">
         {/* search and filter */}
         <div className="search-filters">
-          <Search handleSearch={handleSearch} />
+          <div className="search-container">
+            <img src={search} alt="search icon" />
+            <input
+              type="search"
+              placeholder="Search"
+              name="search"
+              onChange={handleOnchange}
+            />
+          </div>
           <div className="filters-container">
-            <select
-              name=""
-              id=""
-              onChange={(e) => {
-                console.log(e.target.value);
-              }}
-            >
-              <option value="all">All Categories</option>
+            {/* filter by category */}
+            <select name="category" id="" onChange={handleOnchange}>
+              <option value="">All Categories</option>
               <option value="watch">Watch</option>
               <option value="iphone">iPhone</option>
               <option value="ipad">iPad</option>
               <option value="airpod">AirPods</option>
               <option value="macbook">MacBooks</option>
             </select>
-            <OrderbyDate />
+            {/* order by date */}
+            <select name="order_by_date" id="" onChange={handleOnchange}>
+              <option value="">Order By</option>
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+            </select>
           </div>
         </div>
 
         <div className="product-container product-container-admin">
           {products ? (
-            filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
+            displayedProducts.length > 0 ? (
+              displayedProducts.map((product) => (
                 <div
                   className="product-card"
                   key={product.id}
@@ -203,7 +251,7 @@ const AllProducts = () => {
                     <img src={product.image} alt={product.title} />
                   </div>
                   <h3 className="name">{product.name}</h3>
-                  <p>{product.description}</p>
+                  <p style={{ textAlign: 'left' }}>{product.description}</p>
                   <p>{product.category}</p>
                   <p>
                     Cost Price: <span>{product.cost_price}</span>

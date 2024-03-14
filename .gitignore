@@ -4,15 +4,15 @@
 /node_modules
 /.pnp
 .pnp.js
+/sass
+/Routes.docx
+/todo.txt
 
 # testing
 /coverage
 
 # production
 /build
-/sass
-/todo.txt
-/Routes.docx
 
 # misc
 .DS_Store
