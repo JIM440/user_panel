@@ -10,6 +10,9 @@
 
 # production
 /build
+/sass
+/todo.txt
+/Routes.docx
 
 # misc
 .DS_Store
