@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Header from '../../../commons/Header';
 import TextInputValue from '../../../commons/TextInputValue';
-import PerformFetchPost from '../../../utils/PerformFetchPost';
+import PerformFetchPost from '../../../utils/Fetch/PerformFetchPost';
 
 const AddHeaderSlide = () => {
   const [previewImage, setPreviewImage] = useState('');

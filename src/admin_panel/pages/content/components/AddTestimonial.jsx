@@ -2,7 +2,7 @@ import { useState } from 'react';
 import TextInputValue from '../../../commons/TextInputValue';
 import TextAreaValue from '../../../commons/TextAreaValue';
 import Header from '../../../commons/Header';
-import PerformFetchPost from '../../../utils/PerformFetchPost';
+import PerformFetchPost from '../../../utils/Fetch/PerformFetchPost';
 
 const AddTestimonial = () => {
   const [previewImage, setPreviewImage] = useState('');

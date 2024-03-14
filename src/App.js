@@ -51,8 +51,6 @@ import AdminRootLayout from './admin_panel/layout/RootLayout';
 import Reviews from './admin_panel/pages/reviews';
 import Orders from './admin_panel/pages/orders';
 import OrderDetails from './admin_panel/pages/orders/components/OrderDetails';
-import Seearrch from './Seearrch';
-
 // creating various routers
 
 const router = createBrowserRouter(
@@ -130,7 +128,6 @@ const router = createBrowserRouter(
 
       {/* notfound */}
       <Route path="*" element={<NotFound />} />
-      <Route path="search" element={<Seearrch />} />
     </>
   )
 );

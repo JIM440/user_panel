@@ -1,7 +1,11 @@
 import HeaderBtn from '../../../commons/HeaderBtn';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+// fxns
+import handleSorting from '../../../utils/handlers/handleSort';
+// components
 import ProductCategorySkeleton from '../../../../user_panel/commons/skeletons/ProductCategorySkeleton';
+// images
 import dots from '../../../assets/icons/horizontal-dots.png';
 import search from '../../../assets/icons/Search.svg';
 
@@ -147,20 +151,17 @@ const AllProducts = () => {
   const handleOnchange = (e) => {
     if (e.target.name === 'category') {
       setCategoryValue(e.target.value);
-      const prods = products;
-      const search = prods.filter((product) =>
+      const search = products.filter((product) =>
         product.name.toLowerCase().includes(searchValue.toLowerCase())
       );
       const cat = search.filter((product) =>
         product.name.toLowerCase().includes(e.target.value.toLowerCase())
       );
-      console.log(cat);
       const date = handleSorting(cat, orderByDateValue);
       setDisplayedProducts(date);
     } else if (e.target.name === 'order_by_date') {
       setOrderByDateValue(e.target.value);
-      const prods = products;
-      const search = prods.filter((product) =>
+      const search = products.filter((product) =>
         product.name.toLowerCase().includes(searchValue.toLowerCase())
       );
       const cat = search.filter((product) =>
@@ -170,8 +171,7 @@ const AllProducts = () => {
       setDisplayedProducts(date);
     } else if (e.target.name === 'search') {
       setSearchValue(e.target.value);
-      const prods = products;
-      const search = prods.filter((product) =>
+      const search = products.filter((product) =>
         product.name.toLowerCase().includes(e.target.value.toLowerCase())
       );
       const cat = search.filter((product) =>
@@ -179,16 +179,6 @@ const AllProducts = () => {
       );
       const date = handleSorting(cat, orderByDateValue);
       setDisplayedProducts(date);
-    }
-  };
-
-  const handleSorting = (cat, orderByDateValue) => {
-    if (orderByDateValue === 'newest') {
-      return cat.sort((a, b) => (a.date_added < b.date_added ? 1 : -1));
-    } else if (orderByDateValue === 'oldest') {
-      return cat.sort((a, b) => (a.date_added > b.date_added ? 1 : -1));
-    } else {
-      return cat;
     }
   };
 
