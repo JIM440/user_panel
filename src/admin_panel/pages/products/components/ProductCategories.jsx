@@ -31,6 +31,11 @@ const ProductCategories = () => {
   const toggleActiveIndex = (index) => {
     index === activeIndex ? setActiveIndex(null) : setActiveIndex(index);
   };
+  const handleClickOutside = () => {
+    if (Number.isInteger(activeIndex)) {
+      setActiveIndex(null);
+    }
+  };
   // perform product deletetion
   const performDelete = () => {
     if (inputProductVal === productName) {
@@ -118,14 +123,14 @@ const ProductCategories = () => {
         url="/admin/products/categories/add"
         urlText="Add Category"
       />
-      <div className="container">
+      <div className="container" onClick={handleClickOutside}>
         {/* search and filter */}
         <div className="search-filters">
           <div className="search-container">
             <img src={search} alt="search icon" />
             <input
               type="search"
-              placeholder="Search"
+              placeholder="Search by category name"
               name="search"
               onChange={handleOnchange}
             />

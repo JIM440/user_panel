@@ -71,7 +71,7 @@ const Reviews = () => {
   // function to handle delete
   const performDelete = () => {
     alert('You deleted the review at index ' + deleteId);
-    // PerformFetchDelete(`api/review/delete/${deleteId}`)
+    PerformFetchDelete(`api/review/delete/${deleteId}`);
     setReviews(reviews.filter((review) => review.id !== deleteId));
     setDisplayedReviews(
       displayedReviews.filter((review) => review.id !== deleteId)
@@ -176,7 +176,7 @@ const Reviews = () => {
             <img src={search} alt="search icon" />
             <input
               type="search"
-              placeholder="Search"
+              placeholder="Search review by reviewer name or product name"
               name="search"
               onChange={handleOnchange}
             />

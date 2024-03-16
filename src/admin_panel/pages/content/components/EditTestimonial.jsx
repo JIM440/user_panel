@@ -3,10 +3,11 @@ import TextInputValue from '../../../commons/TextInputValue';
 import TextAreaValue from '../../../commons/TextAreaValue';
 import Header from '../../../commons/Header';
 import performFetchPut from '../../../utils/Fetch/PerformFetchPut';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const EditTestimonial = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const testimonials = [
     {
@@ -64,9 +65,9 @@ const EditTestimonial = () => {
     alert(`You added the testimonial content as ${data.author_name}`);
 
     performFetchPut(apiUrl, data);
-    setAuthorName('');
-    setContent('');
-    setPreviewImage('');
+    setTimeout(() => {
+      navigate('/admin/content/about');
+    }, 1000);
   };
   return (
     <>

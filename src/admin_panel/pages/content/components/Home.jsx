@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderBtn from '../../../commons/HeaderBtn';
 import performFetchDelete from '../../../utils/Fetch/PerformFetchDelete';
@@ -11,6 +11,12 @@ const HomeContent = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const toggleActiveIndex = (index) => {
     index === activeIndex ? setActiveIndex(null) : setActiveIndex(index);
+  };
+
+  const handleClickOutside = () => {
+    if (Number.isInteger(activeIndex)) {
+      setActiveIndex(null);
+    }
   };
   const performDelete = () => {
     alert('You deleted the header with id: ' + (deleteId + 1));
@@ -60,7 +66,7 @@ const HomeContent = () => {
         className="btw"
       />
       {/* header slides */}
-      <div className="container">
+      <div className="container" onClick={handleClickOutside}>
         <div className="admin-header-container">
           {headerSlides ? (
             headerSlides.length === 0 ? (

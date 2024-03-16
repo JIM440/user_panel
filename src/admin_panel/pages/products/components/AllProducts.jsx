@@ -21,6 +21,13 @@ const AllProducts = () => {
   const toggleActiveIndex = (index) => {
     index === activeIndex ? setActiveIndex(null) : setActiveIndex(index);
   };
+  // also toggle index if you click anywhere on screen
+
+  const handleClickOutside = () => {
+    if (Number.isInteger(activeIndex)) {
+      setActiveIndex(null);
+    }
+  };
   // perform product deletetion
   const performDelete = () => {
     if (inputProductVal === productName) {
@@ -221,14 +228,14 @@ const AllProducts = () => {
         url="/admin/product/add"
         urlText="Add Product"
       />
-      <div className="container">
+      <div className="container" onClick={handleClickOutside}>
         {/* search and filter */}
         <div className="search-filters">
           <div className="search-container">
             <img src={search} alt="search icon" />
             <input
               type="search"
-              placeholder="Search"
+              placeholder="Search by product name"
               name="search"
               onChange={handleOnchange}
             />

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import Header from '../../../commons/Header';
 import TextInputValue from '../../../commons/TextInputValue';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory, useNavigate } from 'react-router-dom';
 import PerformFetchPut from '../../../utils/Fetch/PerformFetchPut';
 
 const EditHeaderSlide = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const headerSlides = [
     {
       id: 1,
@@ -76,13 +77,9 @@ const EditHeaderSlide = () => {
     );
 
     PerformFetchPut(apiUrl, data);
-    setProductName('');
-    setProductName('');
-    setDescription('');
-    setCategory('');
-    setUrl('');
-    setPosition('');
-    setPreviewImage('');
+    setTimeout(() => {
+      navigate('/admin/content/home');
+    }, 1000);
   };
   return (
     <>
@@ -153,7 +150,8 @@ const EditHeaderSlide = () => {
                 placeholder="Position"
                 value={position}
                 change={(e) => {
-                  setUrl(e.target.value);
+                  const value = e.target.value;
+                  setPosition(value.replace(/\D/g, ''));
                 }}
               />
             </div>

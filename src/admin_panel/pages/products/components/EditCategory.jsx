@@ -3,17 +3,25 @@ import Header from '../../../commons/Header';
 import TextAreaValue from '../../../commons/TextAreaValue';
 import TextInputValue from '../../../commons/TextInputValue';
 import performFetchPut from '../../../utils/Fetch/PerformFetchPut';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import NotFound from '../../NotFound';
 
 const EditCategory = () => {
   const { id } = useParams();
-  const [products, setProducts] = useState([
+  const navigate = useNavigate();
+  const products = [
     {
       id: '1',
       name: 'iPhone',
       image:
         'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/refurb-iphone-12-pro-blue-2020?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1635202834000',
       date_added: new Date('2012-02-02'),
+      design: 'Sleek and modern design',
+      performance: 'High-performance processor',
+      integration: 'Seamless integration with other Apple devices',
+      overview: 'The latest iPhone model with advanced features',
+      heroTitle: 'iPhone 12 Pro',
+      heroDescription: 'Experience the power of innovation with iPhone 12 Pro.',
     },
     {
       id: '2',
@@ -21,42 +29,59 @@ const EditCategory = () => {
       image:
         'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/refurb-ipad-air-wifi-green-2021?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1644268592092',
       date_added: new Date('2012-01-02'),
+      design: 'Slim and lightweight design',
+      performance: 'Fast and responsive performance',
+      integration: 'Seamless compatibility with Apple Pencil and accessories',
+      overview: 'A versatile tablet for work and play',
+      heroTitle: 'iPad Air',
+      heroDescription:
+        'Discover the power of iPad Air for creativity and productivity.',
     },
     {
       id: '3',
       name: 'MacBook',
       image:
         'https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP854/mbp14-silver2.png',
-      date_added: new Date('2012-04-02'),
+      date_added: new Date('2012-01-02'),
+      design: 'Slim and lightweight design',
+      performance: 'Fast and responsive performance',
+      integration: 'Seamless compatibility with Apple Pencil and accessories',
+      overview: 'A versatile tablet for work and play',
+      heroTitle: 'MacBook',
+      heroDescription:
+        'Discover the power of MacBook for creativity and productivity.',
     },
-    {
-      id: '4',
-      name: 'Apple Watch',
-      image:
-        'https://i5.walmartimages.com/asr/3580b718-154d-427d-898c-05b3e46332ba.779952d7e83af1cd4883757c516eb7b5.png',
-      date_added: new Date('2012-06-02'),
-    },
-    {
-      id: '5',
-      name: 'AirPods',
-      image:
-        'https://images.macrumors.com/t/2oOomFnia-hmIfwvXVejKx3mNEE=/1600x/article-new/2019/10/airpods-pro-roundup.jpg',
-      date_added: new Date('2012-07-02'),
-    },
-  ]);
+    // Add similar properties for the remaining products
+  ];
   const category = products.find(
     (product) => product.name.toLowerCase() === id
   );
+  const idExists = category ? true : false;
+
+  // if category doesnt exist go to not found page
+  // if (!idExists) {
+  //   return <NotFound />
+  // }
 
   const [categoryName, setCategoryName] = useState(category.name);
-  const [categoryHeroTitle, setCategoryHeroTitle] = useState('');
-  const [categoryHeroDescription, setCategoryHeroDescription] = useState('');
-  const [categoryOverview, setCategoryOverview] = useState('');
-  const [categoryPerformance, setCategoryPerformance] = useState('');
-  const [categoryDesign, setCategoryDesign] = useState('');
-  const [categoryIntegration, setCategoryIntegration] = useState('');
-  const [previewImageFeatured, setPreviewImageFeatured] = useState('');
-  const [previewImageHero, setPreviewImageHero] = useState('');
+  const [categoryHeroTitle, setCategoryHeroTitle] = useState(
+    category.heroTitle
+  );
+  const [categoryHeroDescription, setCategoryHeroDescription] = useState(
+    category.heroDescription
+  );
+  const [categoryOverview, setCategoryOverview] = useState(category.overview);
+  const [categoryPerformance, setCategoryPerformance] = useState(
+    category.performance
+  );
+  const [categoryDesign, setCategoryDesign] = useState(category.design);
+  const [categoryIntegration, setCategoryIntegration] = useState(
+    category.integration
+  );
+  const [previewImageFeatured, setPreviewImageFeatured] = useState(
+    category.image
+  );
+  const [previewImageHero, setPreviewImageHero] = useState(category.image);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,6 +100,9 @@ const EditCategory = () => {
 
     performFetchPut(url, data);
     alert(`Category Edited: ${categoryName}`);
+    setTimeout(() => {
+      navigate('/admin/products/categories/');
+    }, 1000);
     // setCategoryName('');
     // setCategoryHeroTitle('');
     // setCategoryHeroDescription('');
@@ -110,6 +138,7 @@ const EditCategory = () => {
       reader.readAsDataURL(file);
     }
   };
+
   return (
     <>
       <Header text="Edit Category" />

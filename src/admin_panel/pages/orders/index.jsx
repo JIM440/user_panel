@@ -5,6 +5,7 @@ import handleSorting from '../../utils/handlers/handleSort';
 import Header from '../../commons/Header';
 // images
 import search from '../../assets/icons/Search.svg';
+import performFetchPut from '../../utils/Fetch/PerformFetchPut';
 
 const Orders = () => {
   const [orders, setOrders] = useState([
@@ -99,6 +100,7 @@ const Orders = () => {
   const [orderByDateValue, setOrderByDateValue] = useState('');
   const [orderStatus, setOrderStatus] = useState('');
   const [searchValue, setSearchValue] = useState('');
+  const [checked, setChecked] = useState(null);
 
   const handleOnchange = (e) => {
     if (e.target.name === 'order_by_date') {
@@ -133,6 +135,7 @@ const Orders = () => {
       setDisplayedOrders(date);
     }
   };
+
   return (
     <>
       <Header text="Orders" />
@@ -142,7 +145,7 @@ const Orders = () => {
             <img src={search} alt="search icon" />
             <input
               type="search"
-              placeholder="Search"
+              placeholder="Search by customer name, payment method or location"
               name="search"
               onChange={handleOnchange}
             />
@@ -193,7 +196,18 @@ const Orders = () => {
                       <td>{order.date_added.toLocaleDateString()}</td>
                       <td>{order.location}</td>
                       <td className="checkbox">
-                        <input type="checkbox" name="" id="" />
+                        <input
+                          checked={
+                            checked ||
+                            order.orderStatus.toLowerCase() === 'delivered'
+                          }
+                          type="checkbox"
+                          name=""
+                          id=""
+                          onChange={() => {
+                            setChecked(!checked);
+                          }}
+                        />
                         <span
                           className="pending"
                           style={{

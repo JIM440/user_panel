@@ -34,6 +34,11 @@ const AboutContent = () => {
   const toggleActiveIndex = (index) => {
     index === activeIndex ? setActiveIndex(null) : setActiveIndex(index);
   };
+  const handleClickOutside = () => {
+    if (Number.isInteger(activeIndex)) {
+      setActiveIndex(null);
+    }
+  };
   const performDelete = () => {
     alert('You deleted the testimonial with id:  ' + deleteId);
     performFetchDelete(`api/content/about/delete/${deleteId}`);
@@ -52,7 +57,7 @@ const AboutContent = () => {
         urlText="Add Testimonial"
         className="btw"
       />
-      <div className="container">
+      <div className="container" onClick={handleClickOutside}>
         <div className="admin-testimonial-container">
           {testimonials ? (
             testimonials.length === 0 ? (
