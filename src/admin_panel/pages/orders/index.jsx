@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // components
 import handleSorting from '../../utils/handlers/handleSort';
@@ -7,7 +7,7 @@ import Header from '../../commons/Header';
 import search from '../../assets/icons/Search.svg';
 
 const Orders = () => {
-  const orders = [
+  const [orders, setOrders] = useState([
     {
       orderNumber: 1,
       customerName: 'Alice',
@@ -88,8 +88,13 @@ const Orders = () => {
       orderStatus: 'delivered',
       paymentMethod: 'Cash',
     },
-  ];
-
+  ]);
+  // useEffect(() => {
+  //   fetch('api/order/fetchAll')
+  //   .then(res => res.json())
+  //   .then(data => {setOrders(data)})
+  //   .catch(err => console.log("Error fetching orders:", err))
+  // }, [])
   const [displayedOrders, setDisplayedOrders] = useState(orders);
   const [orderByDateValue, setOrderByDateValue] = useState('');
   const [orderStatus, setOrderStatus] = useState('');
@@ -173,37 +178,62 @@ const Orders = () => {
               </tr>
             </thead>
             <tbody>
-              {displayedOrders.length === 0 ? (
-                <h2 style={{ textAlign: 'center', width: '90vw' }}>
-                  No Order Found
-                </h2>
-              ) : (
-                displayedOrders.map((order) => (
-                  <tr key={order.orderNumber}>
-                    <td>{order.orderNumber}</td>
-                    <td>{order.customerName}</td>
-                    <td>{order.quantity}</td>
-                    <td>{order.totalPrice}</td>
-                    <td>{order.date_added.toLocaleDateString()}</td>
-                    <td>{order.location}</td>
-                    <td className="checkbox">
-                      <input type="checkbox" name="" id="" />{' '}
-                      <span className="pending">{order.orderStatus}</span>
-                    </td>
-                    <td>{order.paymentMethod}</td>
-                    <td>
-                      <Link className="link">
+              {displayedOrders ? (
+                displayedOrders.length === 0 ? (
+                  <h2 style={{ textAlign: 'center', width: '90vw' }}>
+                    No Order Found
+                  </h2>
+                ) : (
+                  displayedOrders.map((order) => (
+                    <tr key={order.orderNumber}>
+                      <td>{order.orderNumber}</td>
+                      <td>{order.customerName}</td>
+                      <td>{order.quantity}</td>
+                      <td>{order.totalPrice}</td>
+                      <td>{order.date_added.toLocaleDateString()}</td>
+                      <td>{order.location}</td>
+                      <td className="checkbox">
+                        <input type="checkbox" name="" id="" />
                         <span
+                          className="pending"
                           style={{
-                            fontSize: '14px',
+                            color: `${
+                              order.orderStatus === 'delivered'
+                                ? 'green'
+                                : 'red'
+                            }`,
+                            textTransform: 'capitalize',
+                            marginLeft: '10px',
                           }}
                         >
-                          View
+                          {order.orderStatus}
                         </span>
-                      </Link>
-                    </td>
-                  </tr>
-                ))
+                      </td>
+                      <td>{order.paymentMethod}</td>
+                      <td>
+                        <Link to={`${order.orderNumber}`} className="link">
+                          <span
+                            style={{
+                              fontSize: '14px',
+                            }}
+                          >
+                            View
+                          </span>
+                        </Link>
+                      </td>
+                    </tr>
+                  ))
+                )
+              ) : (
+                <td
+                  style={{
+                    width: '90vw',
+                    textAlign: 'center',
+                    fontSize: '28px',
+                  }}
+                >
+                  Loading...
+                </td>
               )}
             </tbody>
           </table>

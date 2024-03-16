@@ -109,8 +109,8 @@
     padding: 20px;
     background-color: $white;
     border-radius: 8px;
-    top: 20px;
-    right: 20px;
+    top: -20px;
+    right: 35px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     button {
       margin-top: 0.6rem;
@@ -125,6 +125,9 @@
     text-decoration: none !important;
     color: $black;
     font-size: 14px;
+  }
+  .blue {
+    color: $primary-color;
   }
 
   .delete {

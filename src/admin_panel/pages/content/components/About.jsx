@@ -3,25 +3,9 @@ import { Link } from 'react-router-dom';
 import HeaderBtn from '../../../commons/HeaderBtn';
 // images
 import dots from '../../../assets/icons/horizontal-dots.png';
+import performFetchDelete from '../../../utils/Fetch/PerformFetchDelete';
 const AboutContent = () => {
-  const [deleteId, setDeleteId] = useState(null);
-  const [display, setDisplay] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(null);
-  const toggleActiveIndex = (index) => {
-    index === activeIndex ? setActiveIndex(null) : setActiveIndex(index);
-  };
-  const performDelete = () => {
-    alert('You deleted the testimonial at index ' + deleteId);
-    setDisplay(false);
-  };
-  const closeDisplay = () => {
-    setDisplay(false);
-  };
-  const setEditId = (index) => {
-    localStorage.setItem('testimonialId', index);
-  };
-
-  const testimonials = [
+  const [testimonials, setTestimonials] = useState([
     {
       id: 1,
       author: 'John Doe',
@@ -43,7 +27,22 @@ const AboutContent = () => {
       date: '2022-09-20',
       image: 'https://source.unsplash.com/featured/?nature',
     },
-  ];
+  ]);
+  const [deleteId, setDeleteId] = useState(null);
+  const [display, setDisplay] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const toggleActiveIndex = (index) => {
+    index === activeIndex ? setActiveIndex(null) : setActiveIndex(index);
+  };
+  const performDelete = () => {
+    alert('You deleted the testimonial with id:  ' + deleteId);
+    performFetchDelete(`api/content/about/delete/${deleteId}`);
+    setTestimonials(testimonials.filter((slides) => slides.id !== deleteId));
+    closeDisplay();
+  };
+  const closeDisplay = () => {
+    setDisplay(false);
+  };
 
   return (
     <>
@@ -55,54 +54,59 @@ const AboutContent = () => {
       />
       <div className="container">
         <div className="admin-testimonial-container">
-          {testimonials.map((testimonial, index) => (
-            <div className="testimonial-box" key={index}>
-              <div className="testimonial-details">
-                <div>
-                  <div className="img">
-                    <img src={testimonial.image} alt="" />
+          {testimonials ? (
+            testimonials.length === 0 ? (
+              <p style={{ textAlign: 'center', width: '100%' }}>
+                No Testimonial Found!🚨🚨🚨
+              </p>
+            ) : (
+              testimonials.map((testimonial, index) => (
+                <div className="testimonial-box" key={index}>
+                  <div className="testimonial-details">
+                    <div>
+                      <div className="img">
+                        <img src={testimonial.image} alt="" />
+                      </div>
+                      <div>
+                        <p className="name">{testimonial.author}</p>
+                        <span className="date">{testimonial.date}</span>
+                      </div>
+                    </div>
+                    <p className="content">{testimonial.text}</p>
                   </div>
-                  <div>
-                    <p className="name">{testimonial.name}</p>
-                    <span className="date">{testimonial.date}</span>
+                  <div className="buttons">
+                    <button
+                      className="manage-icon"
+                      style={{
+                        width: '20px',
+                      }}
+                      onClick={() => {
+                        toggleActiveIndex(index);
+                      }}
+                    >
+                      <img src={dots} alt="" width="18px" />
+                    </button>
+                    <div className={`${index === activeIndex ? 'active' : ''}`}>
+                      <Link className="blue" to={`edit/${testimonial.id}`}>
+                        Edit
+                      </Link>
+                      <button
+                        className="delete"
+                        onClick={() => {
+                          setDeleteId(testimonial.id);
+                          setDisplay(true);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <p className="content">{testimonial.text}</p>
-              </div>
-              <div className="buttons">
-                <button
-                  className="manage-icon"
-                  style={{
-                    width: '20px',
-                  }}
-                  onClick={() => {
-                    toggleActiveIndex(index);
-                  }}
-                >
-                  <img src={dots} alt="" width="18px" />
-                </button>
-                <div className={`${index === activeIndex ? 'active' : ''}`}>
-                  <Link
-                    to="edit"
-                    onClick={() => {
-                      setEditId(index);
-                    }}
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    className="delete"
-                    onClick={() => {
-                      setDeleteId(index);
-                      setDisplay(true);
-                    }}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+              ))
+            )
+          ) : (
+            <p>Data is Loading...</p>
+          )}
         </div>
         <div className={`confirm-delete ${display === true ? 'active' : ''}`}>
           <div>

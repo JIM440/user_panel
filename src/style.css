@@ -1920,8 +1920,8 @@ button {
   padding: 20px;
   background-color: white;
   border-radius: 8px;
-  top: 20px;
-  right: 20px;
+  top: -20px;
+  right: 35px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 .buttons div button {
@@ -1934,6 +1934,9 @@ button {
   text-decoration: none !important;
   color: black;
   font-size: 14px;
+}
+.buttons .blue {
+  color: #2997ff;
 }
 .buttons .delete {
   font-size: 14px;

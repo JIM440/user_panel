@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../../commons/Header';
 // images
-import dots from '../../assets/icons/horizontal-dots.png';
+import trash from '../../assets/icons/Trash.svg';
 import star from '../../assets/icons/Star.svg';
 import search from '../../assets/icons/Search.svg';
+// functions
 import handleSorting from '../../utils/handlers/handleSort';
+import PerformFetchDelete from '../../utils/Fetch/PerformFetchDelete';
 
 const Reviews = () => {
-  const reviews = [
+  const [reviews, setReviews] = useState([
     {
+      id: 1,
       reviewer_name: 'John Doe',
       reviewer_image: 'https://source.unsplash.com/100x100/?person1',
       product_name: 'iPhone 12 Pro',
@@ -18,6 +21,7 @@ const Reviews = () => {
         'Absolutely love the iPhone 12 Pro! The camera quality is amazing and the performance is top-notch.',
     },
     {
+      id: 2,
       reviewer_name: 'Jane Smith',
       reviewer_image: 'https://source.unsplash.com/100x100/?person2',
       product_name: 'Apple Watch Series 6',
@@ -27,6 +31,7 @@ const Reviews = () => {
         'The Apple Watch Series 6 is a great smartwatch with useful health features. The battery life could be better though.',
     },
     {
+      id: 3,
       reviewer_name: 'Alice Johnson',
       reviewer_image: 'https://source.unsplash.com/100x100/?person3',
       product_name: 'MacBook Air',
@@ -36,6 +41,7 @@ const Reviews = () => {
         "The MacBook Air is so lightweight and the retina display is stunning. It's perfect for my work!",
     },
     {
+      id: 4,
       reviewer_name: 'Bob Brown',
       reviewer_image: 'https://source.unsplash.com/100x100/?person4',
       product_name: 'iPad Pro',
@@ -44,13 +50,40 @@ const Reviews = () => {
       review_text:
         "The iPad Pro is fast and the display is beautiful. It's great for both work and entertainment.",
     },
-  ];
+  ]);
+  // fetch all reviews
+  // useEffect(() => {
+  //   fetch('api/reviews/fetchAll')
+  //   .then(res => res.json())
+  //   .then(data => setReviews(data))
+  //   .catch(error => console.log("Error Fetching Reviews:", error))
+  // }, [])
+
   const [displayedReviews, setDisplayedReviews] = useState(reviews);
   const [categoryValue, setCategoryValue] = useState('');
   const [orderByDateValue, setOrderByDateValue] = useState('');
   const [ratingVal, setRatingVal] = useState('');
   const [searchValue, setSearchValue] = useState('');
 
+  const [deleteId, setDeleteId] = useState(null);
+  const [delDisplay, setDelDisplay] = useState(false);
+
+  // function to handle delete
+  const performDelete = () => {
+    alert('You deleted the review at index ' + deleteId);
+    // PerformFetchDelete(`api/review/delete/${deleteId}`)
+    setReviews(reviews.filter((review) => review.id !== deleteId));
+    setDisplayedReviews(
+      displayedReviews.filter((review) => review.id !== deleteId)
+    );
+    closeDelBoxDisplay();
+  };
+  // function to delete container
+  const closeDelBoxDisplay = () => {
+    setDelDisplay(false);
+  };
+
+  // handle changes by various filters
   const handleOnchange = (e) => {
     if (e.target.name === 'category') {
       setCategoryValue(e.target.value);
@@ -123,10 +156,9 @@ const Reviews = () => {
 
       const date = handleSorting(rating, orderByDateValue);
       setDisplayedReviews(date);
-      console.log(search, cat, rating, date);
     }
   };
-
+  // create star image for rating rating 1 creates 1 star
   const StarRating = (rating) => {
     const stars = Array.from({ length: rating }, (_, index) => (
       <img key={index} src={star} alt="Star" width="20px" />
@@ -189,42 +221,84 @@ const Reviews = () => {
               </tr>
             </thead>
             <tbody>
-              {displayedReviews.length === 0 ? (
-                <h2 style={{ textAlign: 'center', width: '90vw' }}>
-                  No Review Found
-                </h2>
-              ) : displayedReviews ? (
-                displayedReviews.map((review, index) => (
-                  <tr key={index}>
-                    <td>
-                      <div className="user-details">
-                        <img
-                          src={review.reviewer_image}
-                          alt=""
-                          width="70px"
-                          height="70px"
-                        />
-                        <p className="name">{review.reviewer_name}</p>
-                      </div>
-                    </td>
-                    <td>{review.product_name}</td>
-                    <td>{StarRating(review.rating)}</td>
-                    <td>{review.date_added.toLocaleDateString()}</td>
-                    <td>{review.review_text}</td>
-                    <td>
-                      <div className="buttons grey-bg">
-                        <button className="manage-icon">
-                          <img src={dots} alt="" width="20px" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))
+              {displayedReviews ? (
+                displayedReviews.length === 0 ? (
+                  <h2 style={{ textAlign: 'center', width: '90vw' }}>
+                    No Review Found
+                  </h2>
+                ) : (
+                  displayedReviews.map((review) => (
+                    <tr key={review.id}>
+                      <td>
+                        <div className="user-details">
+                          <img
+                            src={review.reviewer_image}
+                            alt=""
+                            width="70px"
+                            height="70px"
+                          />
+                          <p className="name">{review.reviewer_name}</p>
+                        </div>
+                      </td>
+                      <td>{review.product_name}</td>
+                      <td>{StarRating(review.rating)}</td>
+                      <td>{review.date_added.toLocaleDateString()}</td>
+                      <td>{review.review_text}</td>
+                      <td>
+                        <div className="buttons">
+                          <button
+                            className="delete"
+                            onClick={() => {
+                              setDeleteId(review.id);
+                              setDelDisplay(true);
+                            }}
+                          >
+                            <img src={trash} alt="" width="20px" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )
               ) : (
-                <p>Data is Loading...</p>
+                <td
+                  style={{
+                    width: '90vw',
+                    textAlign: 'center',
+                    fontSize: '28px',
+                  }}
+                >
+                  Loading...
+                </td>
               )}
             </tbody>
           </table>
+          {/* delete container */}
+          <div
+            className={`confirm-delete ${delDisplay === true ? 'active' : ''}`}
+          >
+            <div>
+              <p>Are you sure you want to delete this review?</p>
+              <div className="btn-container">
+                <button
+                  className="btn danger"
+                  onClick={() => {
+                    performDelete();
+                  }}
+                >
+                  Delete
+                </button>
+                <button
+                  className="btn"
+                  onClick={() => {
+                    closeDelBoxDisplay();
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

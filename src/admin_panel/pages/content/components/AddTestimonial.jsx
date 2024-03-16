@@ -26,7 +26,7 @@ const AddTestimonial = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const apiUrl = '';
+    const apiUrl = 'api/content/about/add';
 
     const data = {
       author_name: authorName,
@@ -37,6 +37,9 @@ const AddTestimonial = () => {
     alert(`You added the testimonial content as ${data.author_name}`);
 
     PerformFetchPost(apiUrl, data);
+    setAuthorName('');
+    setContent('');
+    setPreviewImage('');
   };
 
   return (
@@ -63,11 +66,13 @@ const AddTestimonial = () => {
                 label="Author's Name"
                 name="name"
                 placeholder="Author Name"
+                value={authorName}
                 change={(e) => setAuthorName(e.target.value)}
               />
               <TextAreaValue
                 label="Content"
                 placeholder="content"
+                value={content}
                 change={(e) => {
                   setContent(e.target.value);
                 }}

@@ -1,50 +1,139 @@
-import React from 'react';
+import { useState } from 'react';
 import Header from '../../../commons/Header';
 import TextAreaValue from '../../../commons/TextAreaValue';
 import TextInputValue from '../../../commons/TextInputValue';
+import performFetchPost from '../../../utils/Fetch/PerformFetchPost';
 
 const AddCategory = () => {
+  const [categoryName, setCategoryName] = useState('');
+  const [categoryHeroTitle, setCategoryHeroTitle] = useState('');
+  const [categoryHeroDescription, setCategoryHeroDescription] = useState('');
+  const [categoryOverview, setCategoryOverview] = useState('');
+  const [categoryPerformance, setCategoryPerformance] = useState('');
+  const [categoryDesign, setCategoryDesign] = useState('');
+  const [categoryIntegration, setCategoryIntegration] = useState('');
+  const [previewImageFeatured, setPreviewImageFeatured] = useState('');
+  const [previewImageHero, setPreviewImageHero] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      categoryName: categoryName,
+      categoryHeroTitle: categoryHeroTitle,
+      categoryHeroDescription: categoryHeroDescription,
+      categoryOverview: categoryOverview,
+      categoryPerformance: categoryPerformance,
+      categoryIntegration: categoryIntegration,
+      categoryDesign: categoryDesign,
+      featuredImage: previewImageFeatured,
+      heroImage: previewImageHero,
+    };
+    const url = 'api/product/category/add';
+
+    performFetchPost(url, data);
+    alert(`New Category Added: ${categoryName}`);
+    setCategoryName('');
+    setCategoryHeroTitle('');
+    setCategoryHeroDescription('');
+    setCategoryOverview('');
+    setCategoryPerformance('');
+    setCategoryDesign('');
+    setCategoryIntegration('');
+    setPreviewImageFeatured('');
+    setPreviewImageHero('');
+  };
+
+  const handleFeatureImageChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setPreviewImageFeatured(reader.result);
+    };
+
+    if (file && file.type.startsWith('image/')) {
+      reader.readAsDataURL(file);
+    }
+  };
+  const handleHeroImageChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setPreviewImageHero(reader.result);
+    };
+
+    if (file && file.type.startsWith('image/')) {
+      reader.readAsDataURL(file);
+    }
+  };
   return (
     <>
       <Header text="Add Category" />
       <div className="container">
-        <form action="" className="add-category-product">
+        <form
+          action=""
+          className="add-category-product"
+          onSubmit={handleSubmit}
+        >
           <fieldset>
             <h3>Category Info</h3>
             <div className="form-even-columns">
               <TextInputValue
                 label="Category Name"
                 placeholder="Category Name"
+                value={categoryName}
+                change={(e) => {
+                  setCategoryName(e.target.value);
+                }}
               />
               <TextInputValue
                 label="Category Hero Title"
                 placeholder="Category Hero Title"
+                value={categoryHeroTitle}
+                change={(e) => {
+                  setCategoryHeroTitle(e.target.value);
+                }}
               />
               <TextInputValue
                 label="Category Hero Description"
                 placeholder="Category Hero Description"
+                value={categoryHeroDescription}
+                change={(e) => {
+                  setCategoryHeroDescription(e.target.value);
+                }}
               />
               <div className="category-images product-images">
                 <label className="" htmlFor="category-featured-image">
                   <div className="img">
-                    <img src="" alt="" />
+                    {previewImageFeatured && (
+                      <img src={previewImageFeatured} alt="author" />
+                    )}
                   </div>
                   <span>Category Featured Image</span>
                   <input
                     type="file"
                     name="category-featured-image"
+                    accept="image/*"
                     id="category-featured-image"
+                    required
+                    onChange={handleFeatureImageChange}
                   />
                 </label>
                 <label htmlFor="category-hero-image">
                   <div className="img">
-                    <img src="" alt="" />
+                    {previewImageHero && (
+                      <img src={previewImageFeatured} alt="author" />
+                    )}
                   </div>
                   <span>Category Hero Image</span>
                   <input
                     type="file"
                     name="category-hero-image"
+                    accept="image/*"
                     id="category-hero-image"
+                    required
+                    onChange={handleHeroImageChange}
                   />
                 </label>
               </div>
@@ -53,10 +142,38 @@ const AddCategory = () => {
           <fieldset>
             <h3>Category Details</h3>
             <div className="form-even-columns">
-              <TextAreaValue label="Overview" placeholder="Overview" />
-              <TextAreaValue label="Performance" placeholder="Performance" />
-              <TextAreaValue label="Design" placeholder="Design" />
-              <TextAreaValue label="Integration" placeholder="Integration" />
+              <TextAreaValue
+                label="Overview"
+                placeholder="Overview"
+                value={categoryOverview}
+                change={(e) => {
+                  setCategoryOverview(e.target.value);
+                }}
+              />
+              <TextAreaValue
+                label="Performance"
+                placeholder="Performance"
+                value={categoryPerformance}
+                change={(e) => {
+                  setCategoryPerformance(e.target.value);
+                }}
+              />
+              <TextAreaValue
+                label="Design"
+                placeholder="Design"
+                value={categoryDesign}
+                change={(e) => {
+                  setCategoryDesign(e.target.value);
+                }}
+              />
+              <TextAreaValue
+                label="Integration"
+                placeholder="Integration"
+                value={categoryIntegration}
+                change={(e) => {
+                  setCategoryIntegration(e.target.value);
+                }}
+              />
             </div>
           </fieldset>
           <button type="submit" className="btn">

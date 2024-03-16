@@ -90,11 +90,11 @@ const router = createBrowserRouter(
           <Route path="categories" element={<ProductCategories />}></Route>
           <Route path="add" element={<AddProduct />}></Route>
           <Route path="categories/add" element={<AddCategory />} />
-          <Route path="categories/edit" element={<EditCategory />} />
+          <Route path="categories/edit/:id" element={<EditCategory />} />
         </Route>
         {/* orders */}
         <Route path="orders" element={<Orders />} />
-        <Route path="orders/details" element={<OrderDetails />} />
+        <Route path="orders/:id" element={<OrderDetails />} />
 
         {/* customers */}
         <Route path="customers" element={<Customers />}>
@@ -110,11 +110,11 @@ const router = createBrowserRouter(
           {/* home */}
           <Route path="home" element={<HomeContent />} />
           <Route path="home/add" element={<AddHeaderSlide />} />
-          <Route path="home/edit" element={<EditHeaderSlide />} />
+          <Route path="home/edit/:id" element={<EditHeaderSlide />} />
           {/* about */}
           <Route path="about" element={<AboutContent />} />
           <Route path="about/add" element={<AddTestimonial />} />
-          <Route path="about/edit" element={<EditTestimonial />} />
+          <Route path="about/edit/:id" element={<EditTestimonial />} />
         </Route>
 
         {/* reviews */}

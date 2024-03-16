@@ -12,7 +12,6 @@ const AddHeaderSlide = () => {
   const [category, setCategory] = useState('');
   const [url, setUrl] = useState('');
   const [position, setPosition] = useState('');
-
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -29,7 +28,7 @@ const AddHeaderSlide = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const apiUrl = '';
+    const apiUrl = 'api/content/home/add';
 
     const data = {
       product_name: productName,
@@ -46,6 +45,13 @@ const AddHeaderSlide = () => {
     );
 
     PerformFetchPost(apiUrl, data);
+    setProductName('');
+    setProductName('');
+    setDescription('');
+    setCategory('');
+    setUrl('');
+    setPosition('');
+    setPreviewImage('');
   };
 
   return (
@@ -94,7 +100,7 @@ const AddHeaderSlide = () => {
               />
               <TextInputValue
                 name="Description"
-                label="description"
+                label="Description"
                 placeholder="Description"
                 value={description}
                 change={(e) => {
