@@ -79,14 +79,14 @@ const ProductCategories = () => {
     },
     {
       id: '4',
-      name: 'Apple Watch',
+      name: 'Watch',
       image:
         'https://i5.walmartimages.com/asr/3580b718-154d-427d-898c-05b3e46332ba.779952d7e83af1cd4883757c516eb7b5.png',
       date_added: new Date('2012-06-02'),
     },
     {
       id: '5',
-      name: 'AirPods',
+      name: 'AirPod',
       image:
         'https://images.macrumors.com/t/2oOomFnia-hmIfwvXVejKx3mNEE=/1600x/article-new/2019/10/airpods-pro-roundup.jpg',
       date_added: new Date('2012-07-02'),
@@ -185,7 +185,9 @@ const ProductCategories = () => {
                       >
                         <Link
                           className="blue"
-                          to={`edit/${product.name.toLowerCase()}`}
+                          to={`edit/${product.name
+                            .toLowerCase()
+                            .replace(/\s/g, '')}`}
                         >
                           Edit
                         </Link>

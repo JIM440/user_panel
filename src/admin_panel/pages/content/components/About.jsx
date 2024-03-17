@@ -1,33 +1,43 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderBtn from '../../../commons/HeaderBtn';
 // images
 import dots from '../../../assets/icons/horizontal-dots.png';
 import performFetchDelete from '../../../utils/Fetch/PerformFetchDelete';
 const AboutContent = () => {
-  const [testimonials, setTestimonials] = useState([
-    {
-      id: 1,
-      author: 'John Doe',
-      text: 'Great products and excellent customer service. I highly recommend iStore!',
-      date: '2022-09-15',
-      image: 'https://source.unsplash.com/featured/?person',
-    },
-    {
-      id: 2,
-      author: 'Jane Smith',
-      text: 'I love shopping at iStore. The quality of the products is top-notch!',
-      date: '2022-09-18',
-      image: 'https://source.unsplash.com/featured/?portrait',
-    },
-    {
-      id: 3,
-      author: 'Alice Johnson',
-      text: 'Amazing experience with iStore. Will definitely be a returning customer!',
-      date: '2022-09-20',
-      image: 'https://source.unsplash.com/featured/?nature',
-    },
-  ]);
+  // const [testimonials, setTestimonials] = useState([
+  //   {
+  //     testimonial_id: 1,
+  //     author: 'John Doe',
+  //     text: 'Great products and excellent customer service. I highly recommend iStore!',
+  //     date: '2022-09-15',
+  //     image: 'https://source.unsplash.com/featured/?person',
+  //   },
+  //   {
+  //     testimonial_id: 2,
+  //     author: 'Jane Smith',
+  //     text: 'I love shopping at iStore. The quality of the products is top-notch!',
+  //     date: '2022-09-18',
+  //     image: 'https://source.unsplash.com/featured/?portrait',
+  //   },
+  //   {
+  //     testimonial_id: 3,
+  //     author: 'Alice Johnson',
+  //     text: 'Amazing experience with iStore. Will definitely be a returning customer!',
+  //     date: '2022-09-20',
+  //     image: 'https://source.unsplash.com/featured/?nature',
+  //   },
+  // ]);
+  const [testimonials, setTestimonials] = useState(null);
+  useEffect(() => {
+    fetch(
+      'https://appleproductsbackend.vercel.app/api/testimonial/fetchall'
+    ).then((res) =>
+      res.json().then((data) => {
+        setTestimonials(data);
+      })
+    );
+  }, []);
   const [deleteId, setDeleteId] = useState(null);
   const [display, setDisplay] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
@@ -92,13 +102,16 @@ const AboutContent = () => {
                       <img src={dots} alt="" width="18px" />
                     </button>
                     <div className={`${index === activeIndex ? 'active' : ''}`}>
-                      <Link className="blue" to={`edit/${testimonial.id}`}>
+                      <Link
+                        className="blue"
+                        to={`edit/${testimonial.testimonial_id}`}
+                      >
                         Edit
                       </Link>
                       <button
                         className="delete"
                         onClick={() => {
-                          setDeleteId(testimonial.id);
+                          setDeleteId(testimonial.testimonial_id);
                           setDisplay(true);
                         }}
                       >
@@ -110,7 +123,7 @@ const AboutContent = () => {
               ))
             )
           ) : (
-            <p>Data is Loading...</p>
+            <p>Loading Testimonials...</p>
           )}
         </div>
         <div className={`confirm-delete ${display === true ? 'active' : ''}`}>

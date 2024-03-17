@@ -10,7 +10,7 @@ import promotions from '../assets/icons/Discount.svg';
 import shoppingBag from '../assets/icons/Shopping Bag Full.svg';
 import dropdown from '../assets/icons/Expand Arrow.svg';
 import { useState } from 'react';
-const Sidebar = ({ displaySidebar }) => {
+const Sidebar = ({ displaySidebar, toggleSidebar }) => {
   const [active, setActive] = useState(null);
   const [displayDropdown, setDisplayDropdown] = useState(true);
 
@@ -33,6 +33,7 @@ const Sidebar = ({ displaySidebar }) => {
             to="/admin"
             className={active === 1 ? 'active' : ''}
             onClick={() => {
+              toggleSidebar();
               toggleActiveIndex(1);
             }}
           >
@@ -67,9 +68,30 @@ const Sidebar = ({ displaySidebar }) => {
               active === 2 && displayDropdown === true ? 'active' : ''
             }`}
           >
-            <NavLink to="products/all">All Products</NavLink>
-            <NavLink to="products/categories">Product Categories</NavLink>
-            <NavLink to="products/add">Add Product</NavLink>
+            <NavLink
+              to="products/all"
+              onClick={() => {
+                toggleSidebar();
+              }}
+            >
+              All Products
+            </NavLink>
+            <NavLink
+              to="products/categories"
+              onClick={() => {
+                toggleSidebar();
+              }}
+            >
+              Product Categories
+            </NavLink>
+            <NavLink
+              to="products/add"
+              onClick={() => {
+                toggleSidebar();
+              }}
+            >
+              Add Product
+            </NavLink>
           </div>
         </li>
         {/* Orders */}
@@ -78,6 +100,7 @@ const Sidebar = ({ displaySidebar }) => {
             to="orders"
             className={active === 3 ? 'active' : ''}
             onClick={() => {
+              toggleSidebar();
               toggleActiveIndex(3);
             }}
           >
@@ -112,8 +135,22 @@ const Sidebar = ({ displaySidebar }) => {
               active === 4 && displayDropdown === true ? 'active' : ''
             }`}
           >
-            <NavLink to="customers/all">All Customers</NavLink>
-            <NavLink to="customers/chat">Chat</NavLink>
+            <NavLink
+              to="customers/all"
+              onClick={() => {
+                toggleSidebar();
+              }}
+            >
+              All Customers
+            </NavLink>
+            <NavLink
+              to="customers/chat"
+              onClick={() => {
+                toggleSidebar();
+              }}
+            >
+              Chat
+            </NavLink>
           </div>
         </li>
         {/* Analytics */}
@@ -122,6 +159,7 @@ const Sidebar = ({ displaySidebar }) => {
             to="analytics"
             className={active === 5 ? 'active' : ''}
             onClick={() => {
+              toggleSidebar();
               toggleActiveIndex(5);
             }}
           >
@@ -156,8 +194,22 @@ const Sidebar = ({ displaySidebar }) => {
               active === 6 && displayDropdown === true ? 'active' : ''
             }`}
           >
-            <NavLink to="content/home">Home</NavLink>
-            <NavLink to="content/about">About Us</NavLink>
+            <NavLink
+              to="content/home"
+              onClick={() => {
+                toggleSidebar();
+              }}
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="content/about"
+              onClick={() => {
+                toggleSidebar();
+              }}
+            >
+              About Us
+            </NavLink>
           </div>
         </li>
         {/* Reviews */}
@@ -166,6 +218,7 @@ const Sidebar = ({ displaySidebar }) => {
             to="reviews"
             className={active === 7 ? 'active' : ''}
             onClick={() => {
+              toggleSidebar();
               toggleActiveIndex(7);
             }}
           >
@@ -181,6 +234,7 @@ const Sidebar = ({ displaySidebar }) => {
             to="promotions"
             className={active === 8 ? 'active' : ''}
             onClick={() => {
+              toggleSidebar();
               toggleActiveIndex(8);
             }}
           >
@@ -202,7 +256,7 @@ export default Sidebar;
 //   <button
 //     className={active === 2 ? 'active' : ''}
 //     onClick={() => {
-//       toggleActiveIndex(2);
+// toggleActiveIndex(2);
 //     }}
 //   >
 //     <div>

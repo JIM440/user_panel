@@ -53,6 +53,7 @@ import AdminRootLayout from './admin_panel/layout/RootLayout';
 import Reviews from './admin_panel/pages/reviews';
 import Orders from './admin_panel/pages/orders';
 import OrderDetails from './admin_panel/pages/orders/components/OrderDetails';
+import EditProduct from './admin_panel/pages/products/components/EditProduct';
 // creating various routers
 
 const router = createBrowserRouter(
@@ -91,6 +92,7 @@ const router = createBrowserRouter(
           <Route path="all" element={<AllProducts />}></Route>
           <Route path="categories" element={<ProductCategories />}></Route>
           <Route path="add" element={<AddProduct />}></Route>
+          <Route path="edit/:id" element={<EditProduct />}></Route>
           <Route path="categories/add" element={<AddCategory />} />
           <Route path="categories/edit/:id" element={<EditCategory />} />
         </Route>

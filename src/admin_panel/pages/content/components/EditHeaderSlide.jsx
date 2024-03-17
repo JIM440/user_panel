@@ -3,6 +3,7 @@ import Header from '../../../commons/Header';
 import TextInputValue from '../../../commons/TextInputValue';
 import { useParams, useHistory, useNavigate } from 'react-router-dom';
 import PerformFetchPut from '../../../utils/Fetch/PerformFetchPut';
+import NotFound from '../../NotFound';
 
 const EditHeaderSlide = () => {
   const { id } = useParams();
@@ -36,7 +37,8 @@ const EditHeaderSlide = () => {
         'https://www.apple.com/newsroom/images/2023/10/apple-unveils-new-macbook-pro-featuring-m3-chips/article/Apple-MacBook-Pro-2up-231030_Full-Bleed-Image.jpg.large.jpg',
     },
   ];
-  const editSlide = headerSlides.find((slide) => slide.id === parseInt(id));
+  const editSlide =
+    headerSlides.find((slide) => slide.id === parseInt(id)) || [];
   const [previewImage, setPreviewImage] = useState(editSlide.image);
   const [productName, setProductName] = useState(editSlide.name);
   const [image, setImage] = useState(null);
@@ -81,6 +83,11 @@ const EditHeaderSlide = () => {
       navigate('/admin/content/home');
     }, 1000);
   };
+
+  const idExists = editSlide.length !== 0 ? true : false;
+  if (!idExists) {
+    return <NotFound />;
+  }
   return (
     <>
       {/* header */}
@@ -98,7 +105,7 @@ const EditHeaderSlide = () => {
                 <div className="img">
                   {previewImage && <img src={previewImage} alt="author" />}
                 </div>
-                <span>Author's Image</span>
+                <span>Header Image</span>
                 <input
                   type="file"
                   id="image"

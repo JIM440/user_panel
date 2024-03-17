@@ -12,7 +12,10 @@ const AdminRootLayout = () => {
     <>
       <Navbar displaySidebar={displaySidebar} toggleDisplay={toggleDisplay} />
       <div className="admin-root-container">
-        <Sidebar displaySidebar={displaySidebar} />
+        <Sidebar
+          displaySidebar={displaySidebar}
+          toggleSidebar={toggleDisplay}
+        />
         <div className="admin-content-container">
           <Outlet />
         </div>

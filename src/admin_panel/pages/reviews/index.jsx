@@ -9,72 +9,51 @@ import handleSorting from '../../utils/handlers/handleSort';
 import PerformFetchDelete from '../../utils/Fetch/PerformFetchDelete';
 
 const Reviews = () => {
-  const [reviews, setReviews] = useState([
-    {
-      id: 1,
-      reviewer_name: 'John Doe',
-      reviewer_image: 'https://source.unsplash.com/100x100/?person1',
-      product_name: 'iPhone 12 Pro',
-      rating: 5,
-      date_added: new Date('2021-10-16'),
-      review_text:
-        'Absolutely love the iPhone 12 Pro! The camera quality is amazing and the performance is top-notch.',
-    },
-    {
-      id: 2,
-      reviewer_name: 'Jane Smith',
-      reviewer_image: 'https://source.unsplash.com/100x100/?person2',
-      product_name: 'Apple Watch Series 6',
-      rating: 4,
-      date_added: new Date('2021-10-17'),
-      review_text:
-        'The Apple Watch Series 6 is a great smartwatch with useful health features. The battery life could be better though.',
-    },
-    {
-      id: 3,
-      reviewer_name: 'Alice Johnson',
-      reviewer_image: 'https://source.unsplash.com/100x100/?person3',
-      product_name: 'MacBook Air',
-      rating: 5,
-      date_added: new Date('2021-10-18'),
-      review_text:
-        "The MacBook Air is so lightweight and the retina display is stunning. It's perfect for my work!",
-    },
-    {
-      id: 4,
-      reviewer_name: 'Bob Brown',
-      reviewer_image: 'https://source.unsplash.com/100x100/?person4',
-      product_name: 'iPad Pro',
-      rating: 3,
-      date_added: new Date('2021-10-19'),
-      review_text:
-        "The iPad Pro is fast and the display is beautiful. It's great for both work and entertainment.",
-    },
-  ]);
+  // const [reviews, setReviews] = useState([
+  //   {
+  //     review_id: 1,
+  //     user_id: 'John Doe',
+  //     reviewer_image: 'https://source.unsplash.com/100x100/?person1',
+  //     product_name: 'iPhone 12 Pro',
+  //     user_rating: 5,
+  //     date_added: new Date('2021-10-16'),
+  //     comment:
+  //       'Absolutely love the iPhone 12 Pro! The camera quality is amazing and the performance is top-notch.',
+  //     date_added: '',
+  //     updatedAt: '',
+  //   },
+  // ]);
+  const [reviews, setReviews] = useState([]);
   // fetch all reviews
-  // useEffect(() => {
-  //   fetch('api/reviews/fetchAll')
-  //   .then(res => res.json())
-  //   .then(data => setReviews(data))
-  //   .catch(error => console.log("Error Fetching Reviews:", error))
-  // }, [])
+  useEffect(() => {
+    fetch('https://appleproductsbackend.vercel.app/api/review/fetchall')
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data);
+        setDisplayedReviews(data);
+      })
+      .catch((error) => console.log('Error Fetching Reviews:', error));
+  }, []);
 
-  const [displayedReviews, setDisplayedReviews] = useState(reviews);
+  const [displayedReviews, setDisplayedReviews] = useState(null);
   const [categoryValue, setCategoryValue] = useState('');
   const [orderByDateValue, setOrderByDateValue] = useState('');
   const [ratingVal, setRatingVal] = useState('');
   const [searchValue, setSearchValue] = useState('');
 
-  const [deleteId, setDeleteId] = useState(null);
+  const [deletereview_id, setDeletereview_id] = useState(null);
   const [delDisplay, setDelDisplay] = useState(false);
 
   // function to handle delete
   const performDelete = () => {
-    alert('You deleted the review at index ' + deleteId);
-    PerformFetchDelete(`api/review/delete/${deleteId}`);
-    setReviews(reviews.filter((review) => review.id !== deleteId));
+    alert('You deleted the review with id ' + deletereview_id);
+    console.log(deletereview_id);
+    PerformFetchDelete(`api/review/delete/${deletereview_id}`);
+    setReviews(
+      reviews.filter((review) => review.review_id !== deletereview_id)
+    );
     setDisplayedReviews(
-      displayedReviews.filter((review) => review.id !== deleteId)
+      displayedReviews.filter((review) => review.review_id !== deletereview_id)
     );
     closeDelBoxDisplay();
   };
@@ -92,7 +71,7 @@ const Reviews = () => {
           review.product_name
             .toLowerCase()
             .includes(searchValue.toLowerCase()) ||
-          review.reviewer_name.toLowerCase().includes(searchValue.toLowerCase())
+          review.user_id.toLowerCase().includes(searchValue.toLowerCase())
       );
       const cat = search.filter((review) =>
         review.product_name.toLowerCase().includes(e.target.value.toLowerCase())
@@ -109,7 +88,7 @@ const Reviews = () => {
           review.product_name
             .toLowerCase()
             .includes(searchValue.toLowerCase()) ||
-          review.reviewer_name.toLowerCase().includes(searchValue.toLowerCase())
+          review.user_id.toLowerCase().includes(searchValue.toLowerCase())
       );
       const cat = search.filter((review) =>
         review.product_name.toLowerCase().includes(categoryValue.toLowerCase())
@@ -126,7 +105,7 @@ const Reviews = () => {
           review.product_name
             .toLowerCase()
             .includes(searchValue.toLowerCase()) ||
-          review.reviewer_name.toLowerCase().includes(searchValue.toLowerCase())
+          review.user_id.toLowerCase().includes(searchValue.toLowerCase())
       );
       const cat = search.filter((review) =>
         review.product_name.toLowerCase().includes(categoryValue.toLowerCase())
@@ -143,9 +122,7 @@ const Reviews = () => {
           review.product_name
             .toLowerCase()
             .includes(e.target.value.toLowerCase()) ||
-          review.reviewer_name
-            .toLowerCase()
-            .includes(e.target.value.toLowerCase())
+          review.user_id.toLowerCase().includes(e.target.value.toLowerCase())
       );
       const cat = search.filter((review) =>
         review.product_name.toLowerCase().includes(categoryValue.toLowerCase())
@@ -176,14 +153,14 @@ const Reviews = () => {
             <img src={search} alt="search icon" />
             <input
               type="search"
-              placeholder="Search review by reviewer name or product name"
+              placeholder="Search review by customer id or product name"
               name="search"
               onChange={handleOnchange}
             />
           </div>
           <div className="filters-container">
             {/* filter by category */}
-            <select name="category" id="" onChange={handleOnchange}>
+            <select name="category" review_id="" onChange={handleOnchange}>
               <option value="">All Categories</option>
               <option value="watch">Watch</option>
               <option value="iphone">iPhone</option>
@@ -192,7 +169,7 @@ const Reviews = () => {
               <option value="macbook">MacBooks</option>
             </select>
             {/* filter by rating */}
-            <select name="rating" id="" onChange={handleOnchange}>
+            <select name="rating" review_id="" onChange={handleOnchange}>
               <option value="">Rating</option>
               <option value="5">5 stars</option>
               <option value="4">4 stars</option>
@@ -201,7 +178,7 @@ const Reviews = () => {
               <option value="1">1 star</option>
             </select>
             {/* order by date */}
-            <select name="order_by_date" id="" onChange={handleOnchange}>
+            <select name="order_by_date" review_id="" onChange={handleOnchange}>
               <option value="">Order By</option>
               <option value="newest">Newest First</option>
               <option value="oldest">Oldest First</option>
@@ -223,37 +200,38 @@ const Reviews = () => {
             <tbody>
               {displayedReviews ? (
                 displayedReviews.length === 0 ? (
-                  <h2 style={{ textAlign: 'center', width: '90vw' }}>
+                  <h2 style={{ textAlign: 'center', wreview_idth: '90vw' }}>
                     No Review Found
                   </h2>
                 ) : (
                   displayedReviews.map((review) => (
-                    <tr key={review.id}>
+                    <tr key={review.review_id}>
                       <td>
                         <div className="user-details">
                           <img
                             src={review.reviewer_image}
                             alt=""
-                            width="70px"
+                            wreview_idth="70px"
                             height="70px"
                           />
-                          <p className="name">{review.reviewer_name}</p>
+                          <p className="name">{review.user_id}</p>
                         </div>
                       </td>
                       <td>{review.product_name}</td>
-                      <td>{StarRating(review.rating)}</td>
-                      <td>{review.date_added.toLocaleDateString()}</td>
-                      <td>{review.review_text}</td>
+                      <td>{StarRating(review.user_rating)}</td>
+                      <td>date added</td>
+                      {/* <td>{review.date_added.toLocaleDateString()}</td> */}
+                      <td>{review.comment}</td>
                       <td>
                         <div className="buttons">
                           <button
                             className="delete"
                             onClick={() => {
-                              setDeleteId(review.id);
+                              setDeletereview_id(review.review_id);
                               setDelDisplay(true);
                             }}
                           >
-                            <img src={trash} alt="" width="20px" />
+                            <img src={trash} alt="" wreview_idth="20px" />
                           </button>
                         </div>
                       </td>
@@ -263,7 +241,7 @@ const Reviews = () => {
               ) : (
                 <td
                   style={{
-                    width: '90vw',
+                    wreview_idth: '90vw',
                     textAlign: 'center',
                     fontSize: '28px',
                   }}

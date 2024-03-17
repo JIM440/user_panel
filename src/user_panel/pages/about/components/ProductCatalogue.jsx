@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCategorySkeleton from '../../../commons/skeletons/ProductCategorySkeleton';
+import ProductCatalogueSwiper from '../../../commons/ProductCatalogueSwiper';
 
 const ProductCatalogue = () => {
   const [products, setProducts] = useState([]);
@@ -25,7 +26,8 @@ const ProductCatalogue = () => {
           models to powerful MacBooks, iPads, and Apple Watches, our product
           range covers all your technology needs.
         </p>
-        <div className="product-container overflow">
+        <ProductCatalogueSwiper />
+        {/* <div className="product-container">
           {products.length > 0 ? (
             products.map((product) => (
               <div className="product-card" key={product.id}>
@@ -44,7 +46,7 @@ const ProductCatalogue = () => {
           ) : (
             <ProductCategorySkeleton />
           )}
-        </div>
+        </div> */}
       </div>
     </section>
   );

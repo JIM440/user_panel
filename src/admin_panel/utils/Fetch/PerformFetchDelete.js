@@ -1,6 +1,6 @@
 // Perform a DELETE request
 const performFetchDelete = (url) => {
-  return fetch(url, {
+  return fetch(`https://appleproductsbackend.vercel.app/${url}`, {
     method: 'DELETE',
   })
     .then((response) => response.json())

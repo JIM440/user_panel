@@ -1,34 +1,31 @@
 #hero-category {
+  background-color: #0d0d0d;
   .container {
     padding-bottom: 0px;
     .hero-columns {
-      background-color: $bg-light;
-      border-radius: 22px;
-      padding: 32px 0.8rem;
+      padding-block: 32px;
       gap: 2rem;
       align-items: center;
       display: grid;
       grid-template-columns: 1fr;
-
-      @include breakpointDynamic(500px){
-        &{
-          padding: 32px 1rem;
-        }
-      }
 
       .hero-text {
         display: flex;
         flex-direction: column;
         gap: 1rem;
 
-        h1{
+        h1 {
           font-size: 40px;
-      
-          @include breakpointDynamic(430px){
-            &{
+          color: $white;
+
+          @include breakpointDynamic(430px) {
+            & {
               font-size: 48px;
             }
           }
+        }
+        p {
+          color: $white;
         }
 
         .btn-container {

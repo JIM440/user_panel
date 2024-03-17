@@ -1,5 +1,5 @@
 const performFetchPost = (url, data) => {
-  return fetch(url, {
+  return fetch(`https://appleproductsbackend.vercel.app/${url}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

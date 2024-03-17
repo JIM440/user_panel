@@ -221,7 +221,37 @@
     gap: 10px;
   }
 }
+.skeleton-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  &.overflow {
+    overflow-x: scroll;
+    grid-template-columns: unset;
+    display: flex;
+    gap: 2rem;
+    justify-content: unset;
+    scrollbar-width: thin;
 
+    .product-card {
+      width: 260px;
+    }
+  }
+  /* For WebKit-based browsers (Chrome, Safari) */
+  &.overflow::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &.overflow::-webkit-scrollbar-track {
+    border-radius: 22px;
+  }
+
+  &.overflow::-webkit-scrollbar-thumb {
+    border-radius: 22px;
+  }
+}
 .skeleton-testimonial {
   min-width: 180px;
   max-width: 230px;

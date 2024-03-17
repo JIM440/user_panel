@@ -305,7 +305,12 @@ const AllProducts = () => {
                       <div
                         className={`${index === activeIndex ? 'active' : ''}`}
                       >
-                        <Link className="blue" to={`edit/${product.id}`}>
+                        <Link
+                          className="blue"
+                          to={`/admin/products/edit/${product.name
+                            .toLowerCase()
+                            .replace(/\s/g, '')}`}
+                        >
                           Edit
                         </Link>
                         <button

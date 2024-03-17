@@ -4,6 +4,7 @@ import TextAreaValue from '../../../commons/TextAreaValue';
 import Header from '../../../commons/Header';
 import performFetchPut from '../../../utils/Fetch/PerformFetchPut';
 import { useNavigate, useParams } from 'react-router-dom';
+import NotFound from '../../NotFound';
 
 const EditTestimonial = () => {
   const { id } = useParams();
@@ -32,9 +33,8 @@ const EditTestimonial = () => {
       image: 'https://source.unsplash.com/featured/?nature',
     },
   ];
-  const testimonial = testimonials.find(
-    (testimonial) => testimonial.id === parseInt(id)
-  );
+  const testimonial =
+    testimonials.find((testimonial) => testimonial.id === parseInt(id)) || [];
   const [previewImage, setPreviewImage] = useState(testimonial.image);
   const [authorName, setAuthorName] = useState(testimonial.author);
   const [content, setContent] = useState(testimonial.text);
@@ -69,6 +69,11 @@ const EditTestimonial = () => {
       navigate('/admin/content/about');
     }, 1000);
   };
+  const idExists = testimonial.length !== 0 ? true : false;
+
+  if (!idExists) {
+    return <NotFound />;
+  }
   return (
     <>
       {/* header */}

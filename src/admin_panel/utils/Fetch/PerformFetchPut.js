@@ -1,6 +1,6 @@
 // Perform a PUT request
 const performFetchPut = (url, data) => {
-  return fetch(url, {
+  return fetch(`https://appleproductsbackend.vercel.app/${url}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

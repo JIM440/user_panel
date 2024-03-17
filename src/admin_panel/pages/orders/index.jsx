@@ -8,97 +8,31 @@ import search from '../../assets/icons/Search.svg';
 import performFetchPut from '../../utils/Fetch/PerformFetchPut';
 
 const Orders = () => {
-  const [orders, setOrders] = useState([
-    {
-      orderNumber: 1,
-      customerName: 'Alice',
-      quantity: 3,
-      totalPrice: 50.0,
-      date_added: new Date('2022-01-15'),
-      location: 'New York',
-      orderStatus: 'pending',
-      paymentMethod: 'Credit Card',
-    },
-    {
-      orderNumber: 2,
-      customerName: 'Bob',
-      quantity: 1,
-      totalPrice: 20.0,
-      date_added: new Date('2022-01-16'),
-      location: 'Los Angeles',
-      orderStatus: 'delivered',
-      paymentMethod: 'PayPal',
-    },
-    {
-      orderNumber: 3,
-      customerName: 'Charlie',
-      quantity: 2,
-      totalPrice: 30.0,
-      date_added: new Date('2022-01-17'),
-      location: 'Chicago',
-      orderStatus: 'pending',
-      paymentMethod: 'Cash',
-    },
-    {
-      orderNumber: 4,
-      customerName: 'David',
-      quantity: 4,
-      totalPrice: 70.0,
-      date_added: new Date('2022-01-18'),
-      location: 'Miami',
-      orderStatus: 'delivered',
-      paymentMethod: 'Credit Card',
-    },
-    {
-      orderNumber: 5,
-      customerName: 'Eve',
-      quantity: 1,
-      totalPrice: 15.0,
-      date_added: new Date('2022-01-19'),
-      location: 'Seattle',
-      orderStatus: 'pending',
-      paymentMethod: 'PayPal',
-    },
-    {
-      orderNumber: 6,
-      customerName: 'Frank',
-      quantity: 2,
-      totalPrice: 25.0,
-      date_added: new Date('2022-01-20'),
-      location: 'Boston',
-      orderStatus: 'pending',
-      paymentMethod: 'Cash',
-    },
-    {
-      orderNumber: 7,
-      customerName: 'Grace',
-      quantity: 3,
-      totalPrice: 40.0,
-      date_added: new Date('2022-01-21'),
-      location: 'San Francisco',
-      orderStatus: 'delivered',
-      paymentMethod: 'Credit Card',
-    },
-    {
-      orderNumber: 8,
-      customerName: 'Henry',
-      quantity: 1,
-      totalPrice: 10.0,
-      date_added: new Date('2022-01-22'),
-      location: 'Dallas',
-      orderStatus: 'delivered',
-      paymentMethod: 'Cash',
-    },
-  ]);
-  // useEffect(() => {
-  //   fetch('api/order/fetchAll')
-  //   .then(res => res.json())
-  //   .then(data => {setOrders(data)})
-  //   .catch(err => console.log("Error fetching orders:", err))
-  // }, [])
-  const [displayedOrders, setDisplayedOrders] = useState(orders);
+  // const [orders, setOrders] = useState([
+  //   {
+  //     order_id: 1,
+  //     customerName: 'Alice',
+  //     quantity: 3,
+  //     total_Amount: 50.0,
+  //     date_added: new Date('2022-01-15'),
+  //     location: 'New York',
+  //     order_status: 'pending',
+  //     paymentMethod: 'Credit Card',
+  //   },
+  // ]);
+  useEffect(() => {
+    fetch('https://appleproductsbackend.vercel.app/api/order/fetchAll')
+      .then((res) => res.json())
+      .then((data) => {
+        setOrders(data);
+        setDisplayedOrders(data);
+      })
+      .catch((err) => console.log('Error fetching orders:', err));
+  }, []);
+  const [orders, setOrders] = useState([]);
+  const [displayedOrders, setDisplayedOrders] = useState(null);
   const [orderByDateValue, setOrderByDateValue] = useState('');
-  const [orderStatus, setOrderStatus] = useState('');
+  const [order_status, setorder_status] = useState('');
   const [searchValue, setSearchValue] = useState('');
   const [checked, setChecked] = useState(null);
 
@@ -109,7 +43,7 @@ const Orders = () => {
         order.customerName.toLowerCase().includes(searchValue.toLowerCase())
       );
       const status = search.filter((order) =>
-        order.orderStatus.toLowerCase().includes(orderStatus.toLowerCase())
+        order.order_status.toLowerCase().includes(order_status.toLowerCase())
       );
       const date = handleSorting(status, e.target.value);
       setDisplayedOrders(date);
@@ -119,17 +53,17 @@ const Orders = () => {
         order.customerName.toLowerCase().includes(e.target.value.toLowerCase())
       );
       const status = search.filter((order) =>
-        order.orderStatus.toLowerCase().includes(orderStatus.toLowerCase())
+        order.order_status.toLowerCase().includes(order_status.toLowerCase())
       );
       const date = handleSorting(status, orderByDateValue);
       setDisplayedOrders(date);
     } else if (e.target.name === 'order_status') {
-      setOrderStatus(e.target.value);
+      setorder_status(e.target.value);
       const search = orders.filter((order) =>
         order.customerName.toLowerCase().includes(searchValue.toLowerCase())
       );
       const status = search.filter((order) =>
-        order.orderStatus.toLowerCase().includes(e.target.value.toLowerCase())
+        order.order_status.toLowerCase().includes(e.target.value.toLowerCase())
       );
       const date = handleSorting(status, orderByDateValue);
       setDisplayedOrders(date);
@@ -188,18 +122,19 @@ const Orders = () => {
                   </h2>
                 ) : (
                   displayedOrders.map((order) => (
-                    <tr key={order.orderNumber}>
-                      <td>{order.orderNumber}</td>
-                      <td>{order.customerName}</td>
-                      <td>{order.quantity}</td>
-                      <td>{order.totalPrice}</td>
-                      <td>{order.date_added.toLocaleDateString()}</td>
+                    <tr key={order.order_id}>
+                      <td>{order.order_id}</td>
+                      <td>{order.delivery_info.delivery_person}</td>
+                      <td>{order.products.length}</td>
+                      <td>${order.total_Amount}</td>
+                      {/* <td>{order.date_added.toLocaleDateString()}</td> */}
+                      <td>{order.createdAt}</td>
                       <td>{order.location}</td>
                       <td className="checkbox">
                         <input
                           checked={
                             checked ||
-                            order.orderStatus.toLowerCase() === 'delivered'
+                            order.order_status.toLowerCase() === 'delivered'
                           }
                           type="checkbox"
                           name=""
@@ -212,7 +147,7 @@ const Orders = () => {
                           className="pending"
                           style={{
                             color: `${
-                              order.orderStatus === 'delivered'
+                              order.order_status.toLowerCase() === 'delivered'
                                 ? 'green'
                                 : 'red'
                             }`,
@@ -220,12 +155,12 @@ const Orders = () => {
                             marginLeft: '10px',
                           }}
                         >
-                          {order.orderStatus}
+                          {order.order_status}
                         </span>
                       </td>
                       <td>{order.paymentMethod}</td>
                       <td>
-                        <Link to={`${order.orderNumber}`} className="link">
+                        <Link to={`${order.order_id}`} className="link">
                           <span
                             style={{
                               fontSize: '14px',

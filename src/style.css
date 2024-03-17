@@ -338,6 +338,35 @@ button {
   gap: 10px;
 }
 
+.skeleton-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  /* For WebKit-based browsers (Chrome, Safari) */
+}
+.skeleton-container.overflow {
+  overflow-x: scroll;
+  grid-template-columns: unset;
+  display: flex;
+  gap: 2rem;
+  justify-content: unset;
+  scrollbar-width: thin;
+}
+.skeleton-container.overflow .product-card {
+  width: 260px;
+}
+.skeleton-container.overflow::-webkit-scrollbar {
+  width: 12px;
+}
+.skeleton-container.overflow::-webkit-scrollbar-track {
+  border-radius: 22px;
+}
+.skeleton-container.overflow::-webkit-scrollbar-thumb {
+  border-radius: 22px;
+}
+
 .skeleton-testimonial {
   min-width: 180px;
   max-width: 230px;
@@ -454,7 +483,7 @@ button {
 .product-images label .img {
   width: 100%;
   max-width: 200px;
-  background-color: #877b7b;
+  background-color: #f3f3f3;
   border-radius: 8px;
   min-height: 200px;
 }
@@ -1027,13 +1056,6 @@ button {
   }
 }
 
-#product-catalogue-about .container .product-container .product-card {
-  height: 370px;
-}
-#product-catalogue-about .container p {
-  text-align: center;
-}
-
 #workplace .container {
   background-color: #c2e1ff;
   padding-inline: 0px;
@@ -1198,22 +1220,18 @@ button {
   border-radius: 22px;
 }
 
+#hero-category {
+  background-color: #0d0d0d;
+}
 #hero-category .container {
   padding-bottom: 0px;
 }
 #hero-category .container .hero-columns {
-  background-color: #c2e1ff;
-  border-radius: 22px;
-  padding: 32px 0.8rem;
+  padding-block: 32px;
   gap: 2rem;
   align-items: center;
   display: grid;
   grid-template-columns: 1fr;
-}
-@media (min-width: 500px) {
-  #hero-category .container .hero-columns {
-    padding: 32px 1rem;
-  }
 }
 #hero-category .container .hero-columns .hero-text {
   display: flex;
@@ -1222,11 +1240,15 @@ button {
 }
 #hero-category .container .hero-columns .hero-text h1 {
   font-size: 40px;
+  color: white;
 }
 @media (min-width: 430px) {
   #hero-category .container .hero-columns .hero-text h1 {
     font-size: 48px;
   }
+}
+#hero-category .container .hero-columns .hero-text p {
+  color: white;
 }
 #hero-category .container .hero-columns .hero-text .btn-container {
   width: fit-content;
