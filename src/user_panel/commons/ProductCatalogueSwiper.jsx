@@ -26,7 +26,7 @@ const ProductCatalogue = () => {
       {products ? (
         <Swiper
           modules={[Navigation, Scrollbar, A11y]}
-          spaceBetween={50}
+          spaceBetween={32}
           slidesPerView="auto"
           navigation
           scrollbar={{ draggable: true }}

@@ -43,65 +43,23 @@ const ProductCatalogue = () => {
             className="product-container"
           >
             {categories.map((category, index) => (
-              <>
-                <SwiperSlide key={index} className="product-card">
-                  <div className="product-image">
-                    <img
-                      src={category.featuredImage}
-                      alt=""
-                      width="230px"
-                      height="256px"
-                    />
-                  </div>
-                  <h3 className="name">
-                    {category.categoryName + ' ' + index}
-                  </h3>
-                  <div className="btn-container">
-                    <Link to={`${category.categoryName}`} className="link">
-                      <span>Learn More</span>
-                      <i className="bx bx-chevron-right"></i>
-                    </Link>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide key={index} className="product-card">
-                  <div className="product-image">
-                    <img
-                      src={category.featuredImage}
-                      alt=""
-                      width="230px"
-                      height="256px"
-                    />
-                  </div>
-                  <h3 className="name">
-                    {category.categoryName + ' ' + index}
-                  </h3>
-                  <div className="btn-container">
-                    <Link to={`${category.categoryName}`} className="link">
-                      <span>Learn More</span>
-                      <i className="bx bx-chevron-right"></i>
-                    </Link>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide key={index} className="product-card">
-                  <div className="product-image">
-                    <img
-                      src={category.featuredImage}
-                      alt=""
-                      width="230px"
-                      height="256px"
-                    />
-                  </div>
-                  <h3 className="name">
-                    {category.categoryName + ' ' + index}
-                  </h3>
-                  <div className="btn-container">
-                    <Link to={`${category.categoryName}`} className="link">
-                      <span>Learn More</span>
-                      <i className="bx bx-chevron-right"></i>
-                    </Link>
-                  </div>
-                </SwiperSlide>
-              </>
+              <SwiperSlide key={index} className="product-card">
+                <div className="product-image">
+                  <img
+                    src={category.featuredImage}
+                    alt=""
+                    width="230px"
+                    height="256px"
+                  />
+                </div>
+                <h3 className="name">{category.categoryName + ' ' + index}</h3>
+                <div className="btn-container">
+                  <Link to={`${category.categoryName}`} className="link">
+                    <span>Learn More</span>
+                    <i className="bx bx-chevron-right"></i>
+                  </Link>
+                </div>
+              </SwiperSlide>
             ))}
           </Swiper>
         ) : (
