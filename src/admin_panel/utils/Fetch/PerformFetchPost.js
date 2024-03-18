@@ -1,4 +1,4 @@
-const performFetchPost = (url, data) => {
+const performFetchPost = (url, data, navigate) => {
   return fetch(`https://appleproductsbackend.vercel.app/${url}`, {
     method: 'POST',
     headers: {
@@ -10,6 +10,8 @@ const performFetchPost = (url, data) => {
     .then((responseData) => {
       console.log('Response:', responseData);
       // Handle the response data here
+      alert(`New Category Added: ${data.categoryName}`);
+      navigate();
     })
     .catch((error) => {
       console.error('Error:', error);

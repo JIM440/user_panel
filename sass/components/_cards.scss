@@ -33,9 +33,11 @@
   justify-content: center;
   gap: 2rem;
   padding: 16px;
+  margin-top: 2rem;
 
   .product-card {
     min-width: 250px;
+    max-width: 320px;
     height: 430px;
     display: flex;
     justify-content: space-between;
@@ -47,6 +49,9 @@
     .product-image {
       width: 100%;
       height: 256px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       img {
         max-width: 100%;
@@ -55,7 +60,6 @@
     }
 
     .description {
-      text-align: left;
       color: darken($text-muted, 20%);
     }
   }
@@ -229,9 +233,8 @@
   margin-top: 2rem;
   &.overflow {
     overflow-x: scroll;
-    grid-template-columns: unset;
     display: flex;
-    gap: 2rem;
+    grid-template-columns: unset;
     justify-content: unset;
     scrollbar-width: thin;
 

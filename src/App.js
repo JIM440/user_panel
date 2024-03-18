@@ -66,9 +66,9 @@ const router = createBrowserRouter(
       ============================== */}
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
-        <Route path="category" element={<Category />} />
-        <Route path="detail" element={<Detail />} />
-        <Route path="overview" element={<Overview />} />
+        <Route path=":name" element={<Category />} />
+        <Route path="buy/:name" element={<Detail />} />
+        <Route path="overview/:name" element={<Overview />} />
         <Route path="cart" element={<Cart />} />
         {/* contact */}
         <Route path="contact" element={<Contact />}>

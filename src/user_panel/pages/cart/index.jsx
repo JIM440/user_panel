@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [itemQty, setItemQty] = useState(1);
 
   useEffect(() => {
     const storage = JSON.parse(localStorage.getItem('cartItem')) || [];
@@ -44,14 +45,29 @@ const Cart = () => {
                         <p>{item.quantity}</p>
                         <div className="show-mobile">
                           <div className="qty">
-                            <button>-</button>
+                            <button
+                              onChange={(e) => {
+                                setItemQty(e.target.value--);
+                              }}
+                            >
+                              -
+                            </button>
                             <input
                               type="text"
                               name="quantity"
                               id=""
-                              value="1"
+                              value={itemQty}
+                              onChange={(e) => {
+                                setItemQty(e.target.value);
+                              }}
                             />
-                            <button>+</button>
+                            <button
+                              onChange={(e) => {
+                                setItemQty(e.target.value++);
+                              }}
+                            >
+                              +
+                            </button>
                           </div>
                           <button
                             className="remove"

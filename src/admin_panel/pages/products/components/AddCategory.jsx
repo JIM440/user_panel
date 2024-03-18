@@ -3,24 +3,27 @@ import Header from '../../../commons/Header';
 import TextAreaValue from '../../../commons/TextAreaValue';
 import TextInputValue from '../../../commons/TextInputValue';
 import performFetchPost from '../../../utils/Fetch/PerformFetchPost';
+import { useNavigate } from 'react-router-dom';
 
 const AddCategory = () => {
+  const navigate = useNavigate();
   const [categoryName, setCategoryName] = useState('');
   const [categoryHeroTitle, setCategoryHeroTitle] = useState('');
   const [categoryHeroDescription, setCategoryHeroDescription] = useState('');
+  const [featuredProductName, setFeaturedProductName] = useState('');
   const [categoryOverview, setCategoryOverview] = useState('');
   const [categoryPerformance, setCategoryPerformance] = useState('');
   const [categoryDesign, setCategoryDesign] = useState('');
   const [categoryIntegration, setCategoryIntegration] = useState('');
   const [previewImageFeatured, setPreviewImageFeatured] = useState('');
   const [previewImageHero, setPreviewImageHero] = useState('');
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
       categoryName: categoryName,
       categoryHeroTitle: categoryHeroTitle,
       categoryHeroDescription: categoryHeroDescription,
+      featuredProductName: featuredProductName,
       categoryOverview: categoryOverview,
       categoryPerformance: categoryPerformance,
       categoryIntegration: categoryIntegration,
@@ -28,19 +31,9 @@ const AddCategory = () => {
       featuredImage: previewImageFeatured,
       heroImage: previewImageHero,
     };
-    const url = 'api/product/category/add';
+    const url = 'v1/category';
 
-    performFetchPost(url, data);
-    alert(`New Category Added: ${categoryName}`);
-    setCategoryName('');
-    setCategoryHeroTitle('');
-    setCategoryHeroDescription('');
-    setCategoryOverview('');
-    setCategoryPerformance('');
-    setCategoryDesign('');
-    setCategoryIntegration('');
-    setPreviewImageFeatured('');
-    setPreviewImageHero('');
+    performFetchPost(url, data, navigate('/admin/products/categories'));
   };
 
   const handleFeatureImageChange = (event) => {
@@ -101,6 +94,14 @@ const AddCategory = () => {
                 value={categoryHeroDescription}
                 change={(e) => {
                   setCategoryHeroDescription(e.target.value);
+                }}
+              />
+              <TextInputValue
+                label="Category Featured Product Name"
+                placeholder="Category Featured Product Name"
+                value={featuredProductName}
+                change={(e) => {
+                  setFeaturedProductName(e.target.value);
                 }}
               />
               <div className="category-images product-images">

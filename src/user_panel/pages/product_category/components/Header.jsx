@@ -1,17 +1,14 @@
 import { Link } from 'react-router-dom';
 import bigMac from '../../../assets/images/category_hero.svg';
 
-const Header = () => {
+const Header = ({ category }) => {
   return (
     <header id="hero-category">
       <div className="container">
         <div className="hero-columns">
           <div className="hero-text">
-            <h1>Apple MacBook</h1>
-            <p>
-              Experience Next-Level Performance: Introducing the MacBook,
-              Redefining Speed and Effieciency.
-            </p>
+            <h1>{category.heroTitle}</h1>
+            <p>{category.heroDescription}</p>
             <div className="btn-container">
               <Link to="/" className="link">
                 <span>Learn More</span>
@@ -23,7 +20,7 @@ const Header = () => {
             </div>
           </div>
           <div className="hero-img">
-            <img src={bigMac} alt="" />
+            <img src={category.heroImage} alt="" width="668px" height="471px" />
           </div>
         </div>
       </div>

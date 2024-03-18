@@ -23,42 +23,39 @@ const ProductCatalogue = () => {
   }, []);
   return (
     <>
-      <Swiper
-        modules={[Navigation, Scrollbar, A11y]}
-        spaceBetween={50}
-        slidesPerView={3}
-        navigation
-        scrollbar={{ draggable: true }}
-      >
-        {products ? (
-          <div className="product-container">
-            {products.map((product, index) => (
-              <SwiperSlide key={index}>
-                <div className="product-card">
-                  <div className="product-image">
-                    <img src={watch} alt="" />
-                  </div>
-                  <h3 className="name">Smart Watches</h3>
-                  <p className="description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </p>
-                  <div className="btn-container">
-                    <Link to="/" className="link">
-                      <span>Learn More</span>
-                      <i class="bx bx-chevron-right"></i>
-                    </Link>
-                    <Link to="/" className="btn">
-                      Buy
-                    </Link>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </div>
-        ) : (
-          <ProductCategorySkeleton className={'overflow'} />
-        )}
-      </Swiper>
+      {products ? (
+        <Swiper
+          modules={[Navigation, Scrollbar, A11y]}
+          spaceBetween={50}
+          slidesPerView="auto"
+          navigation
+          scrollbar={{ draggable: true }}
+          className="product-container"
+        >
+          {products.map((product, index) => (
+            <SwiperSlide key={index} className="product-card">
+              <div className="product-image">
+                <img src={watch} alt="" />
+              </div>
+              <h3 className="name">Smart Watches</h3>
+              <p className="description">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+              <div className="btn-container">
+                <Link to="/" className="link">
+                  <span>Learn More</span>
+                  <i className="bx bx-chevron-right"></i>
+                </Link>
+                <Link to="/" className="btn">
+                  Buy
+                </Link>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      ) : (
+        <ProductCategorySkeleton className={'overflow'} />
+      )}
     </>
   );
 };

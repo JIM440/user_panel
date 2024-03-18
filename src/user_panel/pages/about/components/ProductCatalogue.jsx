@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCategorySkeleton from '../../../commons/skeletons/ProductCategorySkeleton';
-import ProductCatalogueSwiper from '../../../commons/ProductCatalogueSwiper';
+// swiper
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Scrollbar, A11y } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 const ProductCatalogue = () => {
-  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState(null);
 
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
+    fetch('https://appleproductsbackend.vercel.app/v1/category/')
       .then((response) => response.json())
       .then((data) => {
-        setProducts(data);
+        setCategories(data);
       })
       .catch((error) => {
         console.error('Error fetching products:', error);
@@ -26,27 +32,81 @@ const ProductCatalogue = () => {
           models to powerful MacBooks, iPads, and Apple Watches, our product
           range covers all your technology needs.
         </p>
-        <ProductCatalogueSwiper />
-        {/* <div className="product-container">
-          {products.length > 0 ? (
-            products.map((product) => (
-              <div className="product-card" key={product.id}>
-                <div className="product-image">
-                  <img src={product.image} alt={product.title} />
-                </div>
-                <h3 className="name">{product.title}</h3>
-                <div className="btn-container">
-                  <Link to="/detail" className="link">
-                    <span>Learn More</span>
-                    <i className="bx bx-chevron-right"></i>
-                  </Link>
-                </div>
-              </div>
-            ))
-          ) : (
-            <ProductCategorySkeleton />
-          )}
-        </div> */}
+
+        {categories ? (
+          <Swiper
+            modules={[Navigation, Scrollbar, A11y]}
+            spaceBetween={32}
+            slidesPerView="auto"
+            navigation
+            scrollbar={{ draggable: true }}
+            className="product-container"
+          >
+            {categories.map((category, index) => (
+              <>
+                <SwiperSlide key={index} className="product-card">
+                  <div className="product-image">
+                    <img
+                      src={category.featuredImage}
+                      alt=""
+                      width="230px"
+                      height="256px"
+                    />
+                  </div>
+                  <h3 className="name">
+                    {category.categoryName + ' ' + index}
+                  </h3>
+                  <div className="btn-container">
+                    <Link to={`${category.categoryName}`} className="link">
+                      <span>Learn More</span>
+                      <i className="bx bx-chevron-right"></i>
+                    </Link>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide key={index} className="product-card">
+                  <div className="product-image">
+                    <img
+                      src={category.featuredImage}
+                      alt=""
+                      width="230px"
+                      height="256px"
+                    />
+                  </div>
+                  <h3 className="name">
+                    {category.categoryName + ' ' + index}
+                  </h3>
+                  <div className="btn-container">
+                    <Link to={`${category.categoryName}`} className="link">
+                      <span>Learn More</span>
+                      <i className="bx bx-chevron-right"></i>
+                    </Link>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide key={index} className="product-card">
+                  <div className="product-image">
+                    <img
+                      src={category.featuredImage}
+                      alt=""
+                      width="230px"
+                      height="256px"
+                    />
+                  </div>
+                  <h3 className="name">
+                    {category.categoryName + ' ' + index}
+                  </h3>
+                  <div className="btn-container">
+                    <Link to={`${category.categoryName}`} className="link">
+                      <span>Learn More</span>
+                      <i className="bx bx-chevron-right"></i>
+                    </Link>
+                  </div>
+                </SwiperSlide>
+              </>
+            ))}
+          </Swiper>
+        ) : (
+          <ProductCategorySkeleton className={'overflow'} />
+        )}
       </div>
     </section>
   );

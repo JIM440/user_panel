@@ -11,16 +11,55 @@ import search from '../../../assets/icons/Search.svg';
 import dots from '../../../assets/icons/horizontal-dots.png';
 
 const ProductCategories = () => {
-  // useEffect(() => {
-  //   fetch('https://fakestoreapi.com/products')
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setProducts(data);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching products:', error);
-  //     });
-  // }, []);
+  const [products, setProducts] = useState(null);
+  // const [products, setProducts] = useState([
+  //   {
+  //     id: '1',
+  //     name: 'iPhone',
+  //     image:
+  //       'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/refurb-iphone-12-pro-blue-2020?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1635202834000',
+  //     date_added: new Date('2012-02-02'),
+  //   },
+  //   {
+  //     id: '2',
+  //     name: 'iPad',
+  //     image:
+  //       'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/refurb-ipad-air-wifi-green-2021?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1644268592092',
+  //     date_added: new Date('2012-01-02'),
+  //   },
+  //   {
+  //     id: '3',
+  //     name: 'MacBook',
+  //     image:
+  //       'https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP854/mbp14-silver2.png',
+  //     date_added: new Date('2012-04-02'),
+  //   },
+  //   {
+  //     id: '4',
+  //     name: 'Watch',
+  //     image:
+  //       'https://i5.walmartimages.com/asr/3580b718-154d-427d-898c-05b3e46332ba.779952d7e83af1cd4883757c516eb7b5.png',
+  //     date_added: new Date('2012-06-02'),
+  //   },
+  //   {
+  //     id: '5',
+  //     name: 'AirPod',
+  //     image:
+  //       'https://images.macrumors.com/t/2oOomFnia-hmIfwvXVejKx3mNEE=/1600x/article-new/2019/10/airpods-pro-roundup.jpg',
+  //     date_added: new Date('2012-07-02'),
+  //   },
+  // ]);
+  useEffect(() => {
+    fetch('https://appleproductsbackend.vercel.app/v1/category/')
+      .then((response) => response.json())
+      .then((data) => {
+        setProducts(data);
+        setDisplayedProducts(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching products:', error);
+      });
+  }, []);
   const [deleteId, setDeleteId] = useState(null);
   const [productName, setProductName] = useState('');
   // for the first display to confirm delete
@@ -41,7 +80,7 @@ const ProductCategories = () => {
     if (inputProductVal === productName) {
       setInputProductVal('');
       alert(`You deleted the category: ${productName}`);
-      performFetchDelete(`api/products/delete/${deleteId}`);
+      performFetchDelete(`v1/category/${deleteId}`);
       setProducts(products.filter((product) => product.id !== deleteId));
       setDisplayedProducts(
         displayedProducts.filter((product) => product.id !== deleteId)
@@ -55,43 +94,7 @@ const ProductCategories = () => {
     setDisplay(false);
     setInputDis(false);
   };
-  const [products, setProducts] = useState([
-    {
-      id: '1',
-      name: 'iPhone',
-      image:
-        'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/refurb-iphone-12-pro-blue-2020?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1635202834000',
-      date_added: new Date('2012-02-02'),
-    },
-    {
-      id: '2',
-      name: 'iPad',
-      image:
-        'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/refurb-ipad-air-wifi-green-2021?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1644268592092',
-      date_added: new Date('2012-01-02'),
-    },
-    {
-      id: '3',
-      name: 'MacBook',
-      image:
-        'https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP854/mbp14-silver2.png',
-      date_added: new Date('2012-04-02'),
-    },
-    {
-      id: '4',
-      name: 'Watch',
-      image:
-        'https://i5.walmartimages.com/asr/3580b718-154d-427d-898c-05b3e46332ba.779952d7e83af1cd4883757c516eb7b5.png',
-      date_added: new Date('2012-06-02'),
-    },
-    {
-      id: '5',
-      name: 'AirPod',
-      image:
-        'https://images.macrumors.com/t/2oOomFnia-hmIfwvXVejKx3mNEE=/1600x/article-new/2019/10/airpods-pro-roundup.jpg',
-      date_added: new Date('2012-07-02'),
-    },
-  ]);
+
   // used to store the value of the product to be deleted entered by user
   const [inputProductVal, setInputProductVal] = useState('');
   const [displayedProducts, setDisplayedProducts] = useState(products);
@@ -102,14 +105,16 @@ const ProductCategories = () => {
     if (e.target.name === 'order_by_date') {
       setOrderByDateValue(e.target.value);
       const search = products.filter((product) =>
-        product.name.toLowerCase().includes(searchValue.toLowerCase())
+        product.categoryName.toLowerCase().includes(searchValue.toLowerCase())
       );
       const date = handleSorting(search, e.target.value);
       setDisplayedProducts(date);
     } else if (e.target.name === 'search') {
       setSearchValue(e.target.value);
       const search = products.filter((product) =>
-        product.name.toLowerCase().includes(e.target.value.toLowerCase())
+        product.categoryName
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase())
       );
       const date = handleSorting(search, orderByDateValue);
       setDisplayedProducts(date);
@@ -163,9 +168,9 @@ const ProductCategories = () => {
                       borderRadius: '22px',
                     }}
                   >
-                    <img src={product.image} alt={product.name} />
+                    <img src={product.image} alt={product.categoryName} />
                   </div>
-                  <h3 className="name">{product.name}</h3>
+                  <h3 className="name">{product.categoryName}</h3>
                   <div className="btn-container admin">
                     <Link to="/overview" className="link">
                       <span>View</span>
@@ -185,7 +190,7 @@ const ProductCategories = () => {
                       >
                         <Link
                           className="blue"
-                          to={`edit/${product.name
+                          to={`edit/${product.categoryName
                             .toLowerCase()
                             .replace(/\s/g, '')}`}
                         >
@@ -195,7 +200,7 @@ const ProductCategories = () => {
                           className="delete"
                           onClick={() => {
                             setDeleteId(product.id);
-                            setProductName(product.name);
+                            setProductName(product.categoryName);
                             setDisplay(true);
                           }}
                         >
