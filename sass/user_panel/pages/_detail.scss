@@ -1,13 +1,20 @@
 #product-detail {
+  min-height: 540px;
   .container {
     .product-detail-columns {
       display: grid;
       gap: 2rem;
       grid-template-columns: 1fr;
       justify-content: center;
+
+      p,
+      span {
+        font-size: 16px;
+      }
       @include breakpointDynamic(900px) {
         & {
-          grid-template-columns: 1fr 1fr;
+          align-items: center;
+          grid-template-columns: 1.25fr 0.75fr;
         }
       }
 

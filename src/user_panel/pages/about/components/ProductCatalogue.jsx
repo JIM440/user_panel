@@ -58,7 +58,7 @@ const ProductCatalogue = () => {
                 <h3 className="name">{category.categoryName}</h3>
                 <div className="btn-container">
                   <Link
-                    to={`${category.categoryName
+                    to={`/${category.categoryName
                       .toLowerCase()
                       .replace(/\s/g, '')}`}
                     className="link"

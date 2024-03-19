@@ -90,7 +90,7 @@ const EditCategory = () => {
   //       'Discover the power of MacBook for creativity and productivity.',
   //   },
   // ];
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetch(`https://appleproductsbackend.vercel.app/v1/category/${id}`)
@@ -177,6 +177,9 @@ const EditCategory = () => {
   };
 
   // if category doesnt exist go to not found page
+  if (products.length === 0) {
+    return <div style={{ height: '100vh' }}></div>;
+  }
   if (!idExists) {
     return <NotFound />;
   } else {

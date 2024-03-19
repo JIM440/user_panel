@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import ProductDetailImage from './ProductDetailImage';
 
-const ProductDetail = () => {
+const ProductDetail = ({ product }) => {
   const [visible, setVisible] = useState(1);
 
   const FuncVisible = (p) => {
@@ -73,12 +73,8 @@ const ProductDetail = () => {
           {/* text */}
           <ProductDetailImage />
           <div className="text">
-            <h2>Apple Watch Series 9</h2>
-            <p>
-              Experience power and style with the MacBook Pro 2020. It features
-              Intel processors, a stunning Retina display, Touch Bar, improved
-              keyboard, ample storage, and long-lasting battery life.
-            </p>
+            <h2>{product.name}</h2>
+            <p>{product.description.long_description}</p>
             <div className="rating">
               <p>5 Stars</p>
               <a href="#reviews">5 reviews</a>

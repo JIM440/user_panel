@@ -7,6 +7,7 @@ import 'swiper/css/free-mode';
 import HeroComponent from './components/Hero';
 import PopularComponent from './components/PopularPoducts';
 import PopularCategory from './components/PopularCategory';
+import LawEnforcement from '../../commons/LawEnforcement';
 import './components/home.css';
 
 const HomeComponent = () => {
@@ -15,6 +16,7 @@ const HomeComponent = () => {
       <HeroComponent />
       <PopularComponent />
       <PopularCategory />
+      <LawEnforcement />
     </div>
   );
 };

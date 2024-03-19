@@ -25,11 +25,7 @@ const Category = () => {
   }, [name]);
 
   if (loading) {
-    return (
-      <div className="container">
-        <p>Loading category data...</p>
-      </div>
-    );
+    return <div className="container" style={{ height: '100vh' }}></div>;
   }
 
   if (!category) {

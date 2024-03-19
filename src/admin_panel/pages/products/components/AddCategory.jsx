@@ -28,8 +28,8 @@ const AddCategory = () => {
       categoryPerformance: categoryPerformance,
       categoryIntegration: categoryIntegration,
       categoryDesign: categoryDesign,
-      featuredImage: previewImageFeatured,
-      heroImage: previewImageHero,
+      // featuredImage: previewImageFeatured,
+      // heroImage: previewImageHero,
     };
     const url = 'v1/category';
 

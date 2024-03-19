@@ -17,7 +17,9 @@
   height: 100%;
   width: 90%;
 }
-
+.popular-heading {
+  text-align: center;
+}
 .main-hero-container .swiper-slide {
   border-radius: 20px;
   border: 1.5px solid #ffffff2d;

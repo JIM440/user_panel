@@ -14,6 +14,7 @@
 body {
   background-color: white;
   margin-inline: auto;
+  min-height: 100vh;
 }
 
 img {
@@ -1349,15 +1350,23 @@ button {
   }
 }
 
+#product-detail {
+  min-height: 540px;
+}
 #product-detail .container .product-detail-columns {
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr;
   justify-content: center;
 }
+#product-detail .container .product-detail-columns p,
+#product-detail .container .product-detail-columns span {
+  font-size: 16px;
+}
 @media (min-width: 900px) {
   #product-detail .container .product-detail-columns {
-    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    grid-template-columns: 1.25fr 0.75fr;
   }
 }
 #product-detail .container .product-detail-columns .swiper-button-prev,
