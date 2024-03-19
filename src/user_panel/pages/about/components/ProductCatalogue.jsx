@@ -54,7 +54,12 @@ const ProductCatalogue = () => {
                 </div>
                 <h3 className="name">{category.categoryName + ' ' + index}</h3>
                 <div className="btn-container">
-                  <Link to={`${category.categoryName}`} className="link">
+                  <Link
+                    to={`${category.categoryName
+                      .toLowerCase()
+                      .replace(/\s/g, '')}`}
+                    className="link"
+                  >
                     <span>Learn More</span>
                     <i className="bx bx-chevron-right"></i>
                   </Link>

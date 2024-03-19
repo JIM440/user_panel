@@ -1260,7 +1260,7 @@ button {
 }
 
 #hero-category {
-  background-color: #0d0d0d;
+  background-color: #000;
 }
 #hero-category .container {
   padding-bottom: 0px;
@@ -1332,67 +1332,66 @@ button {
     grid-template-columns: 1fr 1fr;
   }
 }
+#product-detail .container .product-detail-columns .swiper-button-prev,
+#product-detail .container .product-detail-columns .swiper-button-next {
+  background-color: rgba(210, 210, 215, 0.64);
+  box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  top: 50%;
+  position: absolute;
+}
+#product-detail .container .product-detail-columns .swiper-button-prev {
+  left: 10px;
+}
+#product-detail .container .product-detail-columns .swiper-button-next {
+  right: 10px;
+}
+#product-detail .container .product-detail-columns .swiper-button-prev:after,
+#product-detail .container .product-detail-columns .swiper-button-next:after {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.64);
+  margin-right: -0.2rem;
+}
+#product-detail .container .product-detail-columns .swiper-button-prev:after {
+  margin-left: -0.3rem;
+  margin-right: 0px;
+}
+#product-detail .container .product-detail-columns .swiper-pagination {
+  color: #1d1d1f;
+}
+#product-detail .container .product-detail-columns .swiper-pagination-bullet {
+  background-color: #1d1d1f;
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+}
+@media (min-width: 600px) {
+  #product-detail .container .product-detail-columns .swiper-pagination-bullet {
+    background-color: #1d1d1f;
+    width: 10px;
+    height: 10px;
+    margin-right: 4px;
+  }
+  #product-detail .container .product-detail-columns .swiper-button-prev,
+  #product-detail .container .product-detail-columns .swiper-button-next {
+    width: 52px;
+    height: 52px;
+  }
+  #product-detail .container .product-detail-columns .swiper-button-prev:after,
+  #product-detail .container .product-detail-columns .swiper-button-next:after {
+    font-size: 20px;
+  }
+}
 #product-detail .container .product-detail-columns .img {
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-}
-#product-detail .container .product-detail-columns .img .big-image {
-  width: 100%;
-  display: flex;
-  overflow-x: hidden;
-}
-#product-detail .container .product-detail-columns .img .big-image img {
-  width: 100%;
-  visibility: hidden;
-  flex-shrink: 0;
-  max-width: unset;
-  transform: translateX(0%);
-  transition: 0.4s;
-}
-#product-detail .container .product-detail-columns .img .big-image img.visible {
-  transition: 0.4s;
-  visibility: visible;
-  width: 100%;
-}
-#product-detail .container .product-detail-columns .img .small-images-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-#product-detail .container .product-detail-columns .img .small-images-container button {
-  width: 18px;
-  height: 18px;
-  border: 2px solid #2997ff;
-  border-radius: 100%;
-  padding: 3px;
-}
-#product-detail .container .product-detail-columns .img .small-images-container button.active {
-  background-color: #2997ff;
-}
-#product-detail .container .product-detail-columns .img .small-images-container button img {
-  object-fit: contain;
-  display: none;
-  border-radius: 100%;
-  height: 100%;
-}
-@media (min-width: 900px) {
-  #product-detail .container .product-detail-columns .img .small-images-container button {
-    width: 60px;
-    height: 60px;
-  }
-  #product-detail .container .product-detail-columns .img .small-images-container button img {
-    display: inline-block;
-  }
-}
-@media (min-width: 900px) {
-  #product-detail .container .product-detail-columns .img {
-    flex-direction: row;
-  }
-  #product-detail .container .product-detail-columns .img .small-images-container {
-    flex-direction: column;
-  }
+  background-color: #fafafc;
+  border-radius: 1rem;
+  padding: 1rem;
 }
 #product-detail .container .product-detail-columns .text {
   text-align: left;
@@ -1468,8 +1467,6 @@ button {
 }
 @media (min-width: 900px) {
   #product-detail .container .product-detail-columns .img {
-    padding-inline: 1rem;
-    background-color: #c2e1ff;
     border-radius: 8px;
     padding: 1.4rem 0.5rem;
   }

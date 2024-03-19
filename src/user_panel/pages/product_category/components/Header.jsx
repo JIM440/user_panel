@@ -10,17 +10,30 @@ const Header = ({ category }) => {
             <h1>{category.heroTitle}</h1>
             <p>{category.heroDescription}</p>
             <div className="btn-container">
-              <Link to="/" className="link">
+              <Link
+                to={`/overview/${category.featuredProductName
+                  .toLowerCase()
+                  .replace(/\s/g, '')}`}
+                className="link"
+              >
                 <span>Learn More</span>
                 <i className="bx bx-chevron-right"></i>
               </Link>
-              <Link to="/" className="btn">
+              <Link
+                to={`/buy/${category.featuredProductName
+                  .toLowerCase()
+                  .replace(/\s/g, '')}`}
+                className="btn"
+              >
                 Buy
               </Link>
             </div>
           </div>
           <div className="hero-img">
-            <img src={category.heroImage} alt="" width="668px" height="471px" />
+            <img
+              src="https://www.apple.com/v/ipad/home/ci/images/overview/hero/ipad_pro_hero__bh3eq6sqfjw2_large.jpg"
+              alt=""
+            />
           </div>
         </div>
       </div>
