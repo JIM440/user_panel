@@ -46,13 +46,16 @@ const ProductCatalogue = () => {
               <SwiperSlide key={index} className="product-card">
                 <div className="product-image">
                   <img
-                    src={category.featuredImage}
+                    src={
+                      'https://i5.walmartimages.com/seo/Used-Apple-MacBook-Pro-16-inch-Apple-M1-Pro-chip-with-10-core-CPU-and-16-core-GPU-16GB-RAM-1TB-SSD-Silver_21ee3404-b74f-4348-9bc6-0eed1d8021c6.37f01f5296c070418c602ecef04b3a81.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF' ||
+                      category.featuredImage
+                    }
                     alt=""
                     width="230px"
                     height="256px"
                   />
                 </div>
-                <h3 className="name">{category.categoryName + ' ' + index}</h3>
+                <h3 className="name">{category.categoryName}</h3>
                 <div className="btn-container">
                   <Link
                     to={`${category.categoryName

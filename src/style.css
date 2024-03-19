@@ -173,7 +173,7 @@ button {
 }
 .product-container .product-card {
   min-width: 250px;
-  max-width: 320px;
+  max-width: 300px;
   height: 430px;
   display: flex;
   justify-content: space-between;
@@ -195,6 +195,7 @@ button {
 }
 .product-container .product-card .description {
   color: #524a4a;
+  font-size: 16px;
 }
 .product-container.overflow {
   overflow-x: scroll;
@@ -407,18 +408,24 @@ button {
   border-radius: 8px;
 }
 
+.swiper-button-prev {
+  left: 0px;
+}
+
+.swiper-button-next {
+  right: 0px;
+}
+
 .swiper-button-prev,
 .swiper-button-next {
-  color: black;
-  font-weight: bold;
-  background-color: white;
-  border: 2px solid black;
-  box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.5);
+  background-color: rgba(210, 210, 215, 0.64);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  position: absolute;
+  width: 32px;
   top: var(--swiper-navigation-top-offset, 40%);
+  color: rgba(0, 0, 0, 0.64);
+  height: 32px;
+  top: 40%;
+  position: absolute;
 }
 
 .swiper-button-prev {
@@ -431,9 +438,28 @@ button {
 
 .swiper-button-prev:after,
 .swiper-button-next:after {
-  font-size: 18px;
+  font-size: 14px;
+  margin-right: -0.2rem;
 }
 
+.swiper-button-prev:after {
+  margin-left: -0.3rem;
+  margin-right: 0px;
+}
+
+@media (min-width: 600px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 42px;
+    height: 42px;
+  }
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.64);
+    font-weight: bold;
+  }
+}
 .search-filters {
   display: flex;
   justify-content: space-between;
@@ -1280,6 +1306,7 @@ button {
 #hero-category .container .hero-columns .hero-text h1 {
   font-size: 40px;
   color: white;
+  text-transform: capitalize;
 }
 @media (min-width: 430px) {
   #hero-category .container .hero-columns .hero-text h1 {
@@ -1288,6 +1315,7 @@ button {
 }
 #hero-category .container .hero-columns .hero-text p {
   color: white;
+  text-transform: capitalize;
 }
 #hero-category .container .hero-columns .hero-text .btn-container {
   width: fit-content;
@@ -1335,7 +1363,7 @@ button {
 #product-detail .container .product-detail-columns .swiper-button-prev,
 #product-detail .container .product-detail-columns .swiper-button-next {
   background-color: rgba(210, 210, 215, 0.64);
-  box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.5);
+  box-shadow: none;
   border: none;
   border-radius: 50%;
   width: 32px;

@@ -7,7 +7,7 @@ import {
 
 // user pages
 import About from './user_panel/pages/about/index';
-import Home from './user_panel/pages/home/index';
+import Home from './user_panel/pages/home/Home';
 import Cart from './user_panel/pages/cart/index';
 import Contact from './user_panel/pages/contact/index';
 import Category from './user_panel/pages/product_category/index';

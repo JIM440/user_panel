@@ -37,7 +37,7 @@
 
   .product-card {
     min-width: 250px;
-    max-width: 320px;
+    max-width: 300px;
     height: 430px;
     display: flex;
     justify-content: space-between;
@@ -61,6 +61,7 @@
 
     .description {
       color: darken($text-muted, 20%);
+      font-size: 16px;
     }
   }
 

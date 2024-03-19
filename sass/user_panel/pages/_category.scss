@@ -17,6 +17,7 @@
         h1 {
           font-size: 40px;
           color: $white;
+          text-transform: capitalize;
 
           @include breakpointDynamic(430px) {
             & {
@@ -26,6 +27,7 @@
         }
         p {
           color: $white;
+          text-transform: capitalize;
         }
 
         .btn-container {
