@@ -35,7 +35,10 @@ const ProductCatalogue = () => {
           {products.map((product, index) => (
             <SwiperSlide key={index} className="product-card">
               <div className="product-image">
-                <img src={watch} alt="" />
+                <img
+                  src="https://cdn-ipoint.waugi.com.ar/26496-large_default/iphone-15-pro-128gb.jpg"
+                  alt=""
+                />
               </div>
               <h3 className="name">Smart Watches</h3>
               <p className="description">

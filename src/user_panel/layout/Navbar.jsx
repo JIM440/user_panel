@@ -40,63 +40,65 @@ const Navbar = () => {
     <>
       <nav id="navbar" className={topVisible ? 'active' : ''}>
         <div className="container">
-          
-            {/* logo */}
+          {/* logo */}
           <Link to="/" className="logo">
             <img src={logo} alt="" />
             <span>iSTORE</span>
           </Link>
 
-{/* desktop nav start */}
+          {/* desktop nav start */}
           <div className="desktop-nav">
-          {/* links */}
-          <div className="nav-links">
-            <Link to="/">Home </Link>
+            {/* links */}
+            <div className="nav-links">
+              <Link to="/">Home </Link>
 
-            <div className="dropdown">
-              <button>
-                <p>Products</p>
-                <img src={down} alt="" />
-              </button>
-              <div className="drop-down-menu-container">
-                <div className="drop-down-menu">
-                  <Link to="/">Mac</Link>
-                  <Link to="/">iPad</Link>
-                  <Link to="/">iPhone</Link>
-                  <Link to="/">Watch</Link>
-                  <Link to="/">Vision</Link>
-                  <Link to="/">AirPods</Link>
-                  <Link to="/">TV & Home</Link>
+              <div className="dropdown">
+                <button>
+                  <p>Products</p>
+                  <img src={down} alt="" />
+                </button>
+                <div className="drop-down-menu-container">
+                  <div className="drop-down-menu">
+                    <Link to="/applemacbook">Mac</Link>
+                    <Link to="/applemacbook">iPad</Link>
+                    <Link to="/applemacbook">iPhone</Link>
+                    <Link to="/applemacbook">Watch</Link>
+                    <Link to="/applemacbook">Vision</Link>
+                    <Link to="/applemacbook">AirPods</Link>
+                    <Link to="/applemacbook">TV & Home</Link>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <Link to="/about">About Us </Link>
-            <Link to="/contact">Contact </Link>
-          </div>
+              <Link to="/about">About Us </Link>
+              <Link to="/contact">Contact </Link>
+            </div>
           </div>
           {/* desktop nav end */}
 
-{/* mobile nav */}
+          {/* mobile nav */}
           {/* icons */}
           <div className="right-aligned">
             <div className="icons-container">
-              <Link to="/cart" className='cart-icon'><img src={cart} alt="cart icon" /></Link>
-                    {/* cart hover */}
-      <CartHover />
-              <Link to="/"><img src={favorite} alt="heart icon" /></Link>
+              <Link to="/cart" className="cart-icon">
+                <img src={cart} alt="cart icon" />
+              </Link>
+              {/* cart hover */}
+              <CartHover />
+              <Link to="/">
+                <img src={favorite} alt="heart icon" />
+              </Link>
             </div>
             <Link to="/" className="profile">
               <img src="" alt="user profile" />
             </Link>
-            
-          <button className="menu-button">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          </div>
 
+            <button className="menu-button">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -106,8 +108,6 @@ const Navbar = () => {
       >
         <i className="bx bx-up-arrow-alt"></i>
       </button>
-
-
     </>
   );
 };
