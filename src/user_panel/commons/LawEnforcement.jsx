@@ -1,18 +1,42 @@
-import React from 'react'
+import React from 'react';
 
 const LawEnforcement = () => {
   return (
-    <div className='container'>
-      <h2>Law Enforcement</h2>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore, consequatur. Soluta rerum neque mollitia non nesciunt eum eius, vel itaque ullam ipsam quo aliquam. Quas nobis accusantium hic ullam laborum earum dolor omnis excepturi dolorem dolore, natus ratione, voluptates nam debitis! Debitis corrupti quidem adipisci ullam beatae dolor, ad suscipit nostrum delectus tempore. Veniam quibusdam reprehenderit commodi itaque, aperiam quae recusandae nobis ad consequuntur cum, voluptatum labore cupiditate dolores nemo laboriosam vel temporibus aliquam doloribus velit magnam alias eos. Fuga recusandae officiis fugit porro animi debitis id expedita omnis repellat laborum voluptas aliquam reiciendis quia adipisci libero dignissimos rerum, autem iste similique numquam nobis doloribus velit vitae.
-.
-.
-Nisi ipsa veritatis repudiandae voluptatibus, praesentium, fuga eveniet dolor nihil esse nulla eos? Id illo, ducimus harum enim rerum odio ipsa explicabo soluta vero exercitationem qui unde doloremque voluptatum dignissimos? Reprehenderit optio tempore similique ex, distinctio excepturi minima consequatur, consectetur quidem ipsam, iste commodi eveniet? Rem blanditiis sapiente labore quod ratione iusto, aliquam quos expedita illum hic voluptas deleniti est cum officia distinctio, quae corrupti minima in qui numquam voluptate soluta ex nesciunt. Placeat fuga repellat magni, aliquid quos vitae laborum ratione debitis deserunt ipsa in ducimus magnam blanditiis officiis molestias eaque amet.
-.
-.
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, natus architecto obcaecati doloremque esse cupiditate excepturi velit, porro voluptas quas amet hic ad sequi laboriosam aperiam deserunt ratione reiciendis nam odit! Officiis quidem dolore deleniti nihil tempora asperiores, in rerum dignissimos consectetur distinctio nemo nam autem nostrum animi vero! Accusamus, dolores aliquid, provident, impedit ab delectus cupiditate sed similique voluptates voluptas totam vel illum vero aut sint nihil atque corporis in? Odit blanditiis quo doloremque mollitia sequi vero obcaecati, voluptatem minus dolor quam rerum ipsum, dicta sint soluta magni adipisci quibusdam iure, illo animi numquam a doloribus nobis aut. Porro</p>
-    </div>
-  )
-}
+    <section id="law-enforcement">
+      <div className="container" style={{ backgroundColor: '#fafafc' }}>
+        <h2 style={{ fontSize: '18px' }}>Law Enforcement</h2>
+        <p style={{ fontSize: '14px' }}>
+          1. Trade-in values will vary based on the condition, year, and
+          configuration of your eligible trade-in device. Not all devices are
+          eligible for credit. You must be at least 18 years old to be eligible
+          to trade in for credit or for an Apple Gift Card. Trade-in value may
+          be applied toward qualifying new device purchase, or added to an Apple
+          Gift Card. Actual value awarded is based on receipt of a qualifying
+          device matching the description provided when estimate was made. Sales
+          tax may be assessed on full value of a new device purchase. In-store
+          trade-in requires presentation of a valid photo ID (local law may
+          require saving this information). Offer may not be available in all
+          stores, and may vary between in-store and online trade-in. Some stores
+          may have additional requirements. Apple or its trade-in partners
+          reserve the right to refuse or limit quantity of any trade-in
+          transaction for any reason. More details are available from Apple’s
+          trade-in partner for trade-in and recycling of eligible devices.
+          Restrictions and limitations may apply. Available in the U.S. on
+          apple.com, in the Apple Store app, and at Apple Stores. To access and
+          use all Apple Card features and products available only to Apple Card
+          users, you must add Apple Card to Wallet on an iPhone or iPad that
+          supports and has the latest version of iOS or iPadOS. Apple Card is
+          subject to credit approval, available only for qualifying applicants
+          in the United States, and issued by Goldman Sachs Bank USA, Salt Lake
+          City Branch. If you reside in the U.S. territories, please call
+          Goldman Sachs at 877-255-5923 with questions about Apple Card. Learn
+          more about how Apple Card applications are evaluated at
+          support.apple.com/kb/HT209218. A subscription is required for Apple
+          TV+.
+        </p>
+      </div>
+    </section>
+  );
+};
 
-export default LawEnforcement
+export default LawEnforcement;

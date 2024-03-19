@@ -8,10 +8,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import ProductCategorySkeleton from './skeletons/ProductCategorySkeleton';
 const ProductCatalogue = ({ data }) => {
-  const products = data;
   return (
     <>
-      {products ? (
+      {data ? (
         <Swiper
           modules={[Navigation, Scrollbar, A11y]}
           spaceBetween={32}
@@ -20,7 +19,7 @@ const ProductCatalogue = ({ data }) => {
           scrollbar={{ draggable: true }}
           className="product-container"
         >
-          {products.map((product, index) => (
+          {data.map((product, index) => (
             <SwiperSlide key={index} className="product-card">
               <div className="product-image">
                 <img

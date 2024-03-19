@@ -11,17 +11,14 @@ const Detail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { name } = useParams();
   useEffect(() => {
-    const api = `https://appleproductsbackend.vercel.app/v1/product/search/name/?name=${name.toLowerCase()}`;
+    // const api = `https://appleproductsbackend.vercel.app/v1/product/search/name/?name=${name.toLowerCase()}`;
+    const api = `https://appleproductsbackend.vercel.app/v1/product/search/name/?name=iphone15`;
     fetch(api)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('Data not found');
-        }
-        res.json();
-      })
+      .then((res) => res.json())
+
       .then((data) => {
-        setProduct(data);
         setIsLoading(false);
+        setProduct(data[0]);
       })
       .catch((err) => {
         console.log('Error:', err);

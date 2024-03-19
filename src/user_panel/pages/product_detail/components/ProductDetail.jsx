@@ -9,11 +9,11 @@ import { useState } from 'react';
 import ProductDetailImage from './ProductDetailImage';
 
 const ProductDetail = ({ product }) => {
-  const [visible, setVisible] = useState(1);
+  // const [visible, setVisible] = useState(1);
 
-  const FuncVisible = (p) => {
-    setVisible(p);
-  };
+  // const FuncVisible = (p) => {
+  //   setVisible(p);
+  // };
 
   return (
     <section id="product-detail">
