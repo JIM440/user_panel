@@ -18,12 +18,14 @@ const HomeContent = () => {
       setActiveIndex(null);
     }
   };
+
   const performDelete = () => {
     alert('You deleted the header with id: ' + (deleteId + 1));
     performFetchDelete(`api/content/home/delete/${deleteId}`);
     setHeaderSlides(headerSlides.filter((slides) => slides.id !== deleteId));
     closeDisplay();
   };
+
   const closeDisplay = () => {
     setDisplay(false);
   };

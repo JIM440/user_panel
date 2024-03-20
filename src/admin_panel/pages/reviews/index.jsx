@@ -47,7 +47,6 @@ const Reviews = () => {
   // function to handle delete
   const performDelete = () => {
     alert('You deleted the review with id ' + deletereview_id);
-    console.log(deletereview_id);
     PerformFetchDelete(`api/review/delete/${deletereview_id}`);
     setReviews(
       reviews.filter((review) => review.review_id !== deletereview_id)

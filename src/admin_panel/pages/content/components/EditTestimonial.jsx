@@ -54,11 +54,10 @@ const EditTestimonial = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const apiUrl = 'api/content/about/add';
-
+    const apiUrl = `api/testimonial/update/${id}`;
     const data = {
-      author_name: authorName,
-      testimonial_content: content,
+      user_name: authorName,
+      text: content,
       image: previewImage,
     };
 

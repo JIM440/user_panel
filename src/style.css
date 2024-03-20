@@ -1288,6 +1288,7 @@ button {
 
 #hero-category {
   background-color: #000;
+  min-height: 100vh;
 }
 #hero-category .container {
   padding-bottom: 0px;

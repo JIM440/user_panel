@@ -90,43 +90,51 @@ const EditCategory = () => {
   //       'Discover the power of MacBook for creativity and productivity.',
   //   },
   // ];
-  const [products, setProducts] = useState([]);
+  const [category, setCategory] = useState(null);
+  const [idExists, setIdExists] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [categoryName, setCategoryName] = useState('');
+  const [categoryHeroTitle, setCategoryHeroTitle] = useState('');
+  const [featuredProductName, setFeaturedProductName] = useState('');
+  const [categoryHeroDescription, setCategoryHeroDescription] = useState('');
+  const [categoryOverview, setCategoryOverview] = useState('');
+  const [categoryPerformance, setCategoryPerformance] = useState('');
+  const [categoryDesign, setCategoryDesign] = useState('');
+  const [categoryIntegration, setCategoryIntegration] = useState('');
+  const [previewImageFeatured, setPreviewImageFeatured] = useState('');
+  const [previewImageHero, setPreviewImageHero] = useState('');
 
   useEffect(() => {
-    fetch(`https://appleproductsbackend.vercel.app/v1/category/${id}`)
+    const api =
+      'https://appleproductsbackend.vercel.app/v1/category/65f94817b547b219d8b049c9';
+    // const api = `https://appleproductsbackend.vercel.app/v1/category/${id}/`
+    fetch(api)
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data);
+        if (data) {
+          setIdExists(true);
+          performInitialiase(data);
+          setCategory(data);
+        }
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log('error:', err);
       });
   }, [id]);
 
-  const category =
-    products.find(
-      (product) => product.name.toLowerCase().replace(/\s/g, '') === id
-    ) || [];
-  const idExists = category.length !== 0 ? true : false;
-
-  const [categoryName, setCategoryName] = useState(category.name);
-  console.log(categoryName);
-  const [categoryHeroTitle, setCategoryHeroTitle] = useState(
-    category.heroTitle
-  );
-  const [featuredProductName, setFeaturedProductName] = useState('');
-  const [categoryHeroDescription, setCategoryHeroDescription] = useState(
-    category.heroDescription
-  );
-  const [categoryOverview, setCategoryOverview] = useState(category.overview);
-  const [categoryPerformance, setCategoryPerformance] = useState(
-    category.performance
-  );
-  const [categoryDesign, setCategoryDesign] = useState(category.design);
-  const [categoryIntegration, setCategoryIntegration] = useState(
-    category.integration
-  );
-  const [previewImageFeatured, setPreviewImageFeatured] = useState(
-    category.featuredImage
-  );
-  const [previewImageHero, setPreviewImageHero] = useState(category.heroImage);
+  const performInitialiase = (data) => {
+    setCategoryName(data.categoryName);
+    setCategoryHeroTitle(data.heroTitle);
+    setFeaturedProductName(data.featuredProductName);
+    setCategoryHeroDescription(data.heroDescription);
+    setCategoryOverview(data.overview);
+    setCategoryPerformance(data.performance);
+    setCategoryDesign(data.design);
+    setCategoryIntegration(data.integration);
+    setPreviewImageFeatured(data.featuredImage);
+    setPreviewImageHero(data.heroImage);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -163,6 +171,7 @@ const EditCategory = () => {
       reader.readAsDataURL(file);
     }
   };
+
   const handleHeroImageChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -177,135 +186,134 @@ const EditCategory = () => {
   };
 
   // if category doesnt exist go to not found page
-  if (products.length === 0) {
+  if (isLoading) {
     return <div style={{ height: '100vh' }}></div>;
   }
   if (!idExists) {
     return <NotFound />;
-  } else {
-    return (
-      <>
-        <Header text="Edit Category" />
-        <div className="container">
-          <form
-            action=""
-            className="add-category-product"
-            onSubmit={handleSubmit}
-          >
-            <fieldset>
-              <h3>Category Info</h3>
-              <div className="form-even-columns">
-                <TextInputValue
-                  label="Category Name"
-                  placeholder="Category Name"
-                  value={categoryName}
-                  change={(e) => {
-                    setCategoryName(e.target.value);
-                  }}
-                />
-                <TextInputValue
-                  label="Category Hero Title"
-                  placeholder="Category Hero Title"
-                  value={categoryHeroTitle}
-                  change={(e) => {
-                    setCategoryHeroTitle(e.target.value);
-                  }}
-                />
-                <TextInputValue
-                  label="Category Hero Description"
-                  placeholder="Category Hero Description"
-                  value={categoryHeroDescription}
-                  change={(e) => {
-                    setCategoryHeroDescription(e.target.value);
-                  }}
-                />
-                <TextInputValue
-                  label="Category Featured Product Name"
-                  placeholder="Category Featured Product Name"
-                  value={featuredProductName}
-                  change={(e) => {
-                    setFeaturedProductName(e.target.value);
-                  }}
-                />
-                <div className="category-images product-images">
-                  <label className="" htmlFor="category-featured-image">
-                    <div className="img">
-                      {previewImageFeatured && (
-                        <img src={previewImageFeatured} alt="author" />
-                      )}
-                    </div>
-                    <span>Category Featured Image</span>
-                    <input
-                      type="file"
-                      name="category-featured-image"
-                      accept="image/*"
-                      id="category-featured-image"
-                      onChange={handleFeatureImageChange}
-                    />
-                  </label>
-                  <label htmlFor="category-hero-image">
-                    <div className="img">
-                      {previewImageHero && (
-                        <img src={previewImageHero} alt="author" />
-                      )}
-                    </div>
-                    <span>Category Hero Image</span>
-                    <input
-                      type="file"
-                      name="category-hero-image"
-                      accept="image/*"
-                      id="category-hero-image"
-                      onChange={handleHeroImageChange}
-                    />
-                  </label>
-                </div>
-              </div>
-            </fieldset>
-            <fieldset>
-              <h3>Category Details</h3>
-              <div className="form-even-columns">
-                <TextAreaValue
-                  label="Overview"
-                  placeholder="Overview"
-                  value={categoryOverview}
-                  change={(e) => {
-                    setCategoryOverview(e.target.value);
-                  }}
-                />
-                <TextAreaValue
-                  label="Performance"
-                  placeholder="Performance"
-                  value={categoryPerformance}
-                  change={(e) => {
-                    setCategoryPerformance(e.target.value);
-                  }}
-                />
-                <TextAreaValue
-                  label="Design"
-                  placeholder="Design"
-                  value={categoryDesign}
-                  change={(e) => {
-                    setCategoryDesign(e.target.value);
-                  }}
-                />
-                <TextAreaValue
-                  label="Integration"
-                  placeholder="Integration"
-                  value={categoryIntegration}
-                  change={(e) => {
-                    setCategoryIntegration(e.target.value);
-                  }}
-                />
-              </div>
-            </fieldset>
-            <button type="submit" className="btn">
-              Edit Category
-            </button>
-          </form>
-        </div>
-      </>
-    );
   }
+  return (
+    <>
+      <Header text="Edit Category" />
+      <div className="container">
+        <form
+          action=""
+          className="add-category-product"
+          onSubmit={handleSubmit}
+        >
+          <fieldset>
+            <h3>Category Info</h3>
+            <div className="form-even-columns">
+              <TextInputValue
+                label="Category Name"
+                placeholder="Category Name"
+                value={categoryName}
+                change={(e) => {
+                  setCategoryName(e.target.value);
+                }}
+              />
+              <TextInputValue
+                label="Category Hero Title"
+                placeholder="Category Hero Title"
+                value={categoryHeroTitle}
+                change={(e) => {
+                  setCategoryHeroTitle(e.target.value);
+                }}
+              />
+              <TextInputValue
+                label="Category Hero Description"
+                placeholder="Category Hero Description"
+                value={categoryHeroDescription}
+                change={(e) => {
+                  setCategoryHeroDescription(e.target.value);
+                }}
+              />
+              <TextInputValue
+                label="Category Featured Product Name"
+                placeholder="Category Featured Product Name"
+                value={featuredProductName}
+                change={(e) => {
+                  setFeaturedProductName(e.target.value);
+                }}
+              />
+              <div className="category-images product-images">
+                <label className="" htmlFor="category-featured-image">
+                  <div className="img">
+                    {previewImageFeatured && (
+                      <img src={previewImageFeatured} alt="author" />
+                    )}
+                  </div>
+                  <span>Category Featured Image</span>
+                  <input
+                    type="file"
+                    name="category-featured-image"
+                    accept="image/*"
+                    id="category-featured-image"
+                    onChange={handleFeatureImageChange}
+                  />
+                </label>
+                <label htmlFor="category-hero-image">
+                  <div className="img">
+                    {previewImageHero && (
+                      <img src={previewImageHero} alt="author" />
+                    )}
+                  </div>
+                  <span>Category Hero Image</span>
+                  <input
+                    type="file"
+                    name="category-hero-image"
+                    accept="image/*"
+                    id="category-hero-image"
+                    onChange={handleHeroImageChange}
+                  />
+                </label>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <h3>Category Details</h3>
+            <div className="form-even-columns">
+              <TextAreaValue
+                label="Overview"
+                placeholder="Overview"
+                value={categoryOverview}
+                change={(e) => {
+                  setCategoryOverview(e.target.value);
+                }}
+              />
+              <TextAreaValue
+                label="Performance"
+                placeholder="Performance"
+                value={categoryPerformance}
+                change={(e) => {
+                  setCategoryPerformance(e.target.value);
+                }}
+              />
+              <TextAreaValue
+                label="Design"
+                placeholder="Design"
+                value={categoryDesign}
+                change={(e) => {
+                  setCategoryDesign(e.target.value);
+                }}
+              />
+              <TextAreaValue
+                label="Integration"
+                placeholder="Integration"
+                value={categoryIntegration}
+                change={(e) => {
+                  setCategoryIntegration(e.target.value);
+                }}
+              />
+            </div>
+          </fieldset>
+          <button type="submit" className="btn">
+            Edit Category
+          </button>
+        </form>
+      </div>
+    </>
+  );
 };
 
 export default EditCategory;

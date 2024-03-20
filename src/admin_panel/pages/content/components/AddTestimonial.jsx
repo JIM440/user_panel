@@ -26,17 +26,16 @@ const AddTestimonial = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const apiUrl = 'api/content/about/add';
+    const apiUrl = 'api/testimonial/create';
 
     const data = {
-      author_name: authorName,
-      testimonial_content: content,
+      user_name: authorName,
+      text: content,
       image: previewImage,
     };
 
-    alert(`You added the testimonial content as ${data.author_name}`);
-
     PerformFetchPost(apiUrl, data);
+    alert(`You added the testimonial content as ${data.author_name}`);
     setAuthorName('');
     setContent('');
     setPreviewImage('');

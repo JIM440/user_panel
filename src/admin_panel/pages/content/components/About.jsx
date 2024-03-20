@@ -52,7 +52,11 @@ const AboutContent = () => {
   const performDelete = () => {
     alert('You deleted the testimonial with id:  ' + deleteId);
     performFetchDelete(`api/content/about/delete/${deleteId}`);
-    setTestimonials(testimonials.filter((slides) => slides.id !== deleteId));
+    setTestimonials(
+      testimonials.filter(
+        (testimonial) => testimonial.testimonial_id !== deleteId
+      )
+    );
     closeDisplay();
   };
   const closeDisplay = () => {

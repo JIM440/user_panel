@@ -172,7 +172,7 @@ const ProductCategories = () => {
                   </div>
                   <h3 className="name">{product.categoryName}</h3>
                   <div className="btn-container admin">
-                    <Link to="/overview" className="link">
+                    <Link to={`/${product.categoryName}`} className="link">
                       <span>View</span>
                       <i className="bx bx-chevron-right"></i>
                     </Link>
