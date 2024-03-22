@@ -71,7 +71,7 @@ const Orders = () => {
   };
 
   return (
-    <>
+    <div className="jim">
       <Header text="Orders" />
       <div className="container">
         <div className="search-filters">
@@ -188,7 +188,7 @@ const Orders = () => {
           </table>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

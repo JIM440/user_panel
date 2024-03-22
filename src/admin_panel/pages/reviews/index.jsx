@@ -144,7 +144,7 @@ const Reviews = () => {
   };
 
   return (
-    <>
+    <div className="jim">
       <Header text="Reviews" />
       <div className="container">
         <div className="search-filters">
@@ -278,7 +278,7 @@ const Reviews = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ import {
 
 // user pages
 import About from './user_panel/pages/about/index';
-import Home from './user_panel/pages/home/Home';
+import Home from './user_panel/pages/home/index';
 import Cart from './user_panel/pages/cart/index';
 import Contact from './user_panel/pages/contact/index';
 import Category from './user_panel/pages/product_category/index';
@@ -20,7 +20,6 @@ import OrderPage from './user_panel/pages/contact/components/OrderPage';
 import General from './user_panel/pages/contact/components/General';
 
 // user layouts
-import RootLayout from './user_panel/layout/RootLayout';
 import ProductsCart from './user_panel/pages/cart/components/Products';
 
 // admin pages
@@ -60,7 +59,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     // rootlayout
     <>
-      <Route path="/" element={<RootLayout />}>
+      <Route path="/">
         {/* ==============================
       ==========user Routes=============
       ============================== */}

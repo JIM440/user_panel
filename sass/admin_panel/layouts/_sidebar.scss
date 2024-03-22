@@ -17,6 +17,7 @@
   }
   // sidebar menu
   .sidebar-menu {
+    width: 100%;
     display: flex;
     flex-direction: column;
 
@@ -27,6 +28,8 @@
 
     li {
       border-bottom: 1px solid $admin-border-color;
+      display: block;
+      height: fit-content;
       & > a,
       & > button {
         display: flex;

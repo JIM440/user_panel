@@ -105,9 +105,8 @@ const EditCategory = () => {
   const [previewImageHero, setPreviewImageHero] = useState('');
 
   useEffect(() => {
-    const api =
-      'https://appleproductsbackend.vercel.app/v1/category/65f94817b547b219d8b049c9';
-    // const api = `https://appleproductsbackend.vercel.app/v1/category/${id}/`
+    // const api = 'https://appleproductsbackend.vercel.app/v1/category/65f94817b547b219d8b049c9';
+    const api = `https://appleproductsbackend.vercel.app/v1/category/${id}/`;
     fetch(api)
       .then((res) => res.json())
       .then((data) => {

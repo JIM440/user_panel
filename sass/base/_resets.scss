@@ -1,7 +1,5 @@
 //utility classes
 * {
-  padding: 0;
-  margin: 0;
   border: none;
   outline: none;
   list-style: none;
@@ -10,6 +8,19 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
   font-family: 'Outfit', sans-serif;
+}
+
+.jim,
+.jim * {
+  padding: 0;
+  margin: 0;
+  input,
+  textarea {
+    background-color: $white;
+    border-radius: 8px;
+    border: 1px solid $text-muted;
+    padding: 10px;
+  }
 }
 
 body {
@@ -41,12 +52,4 @@ hr {
 
 textarea {
   resize: none;
-}
-
-input,
-textarea {
-  background-color: $white;
-  border-radius: 8px;
-  border: 1px solid $text-muted;
-  padding: 10px;
 }

@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Contact from './components/Contact';
 import Header from './components/Header';
 import Impact from './components/Impact';
@@ -8,39 +9,45 @@ import ProductCatalogue from './components/ProductCatalogue';
 import Testimonials from './components/Testimonials';
 import Team from './components/Team';
 import Workplace from './components/Workplace';
+import RootLayout from '../../layout/RootLayout';
 
 const Cart = () => {
+  const [blurBackground, setBlurBackground] = useState(false);
   return (
     <>
-      {/* hero */}
-      <Header />
+      <div className="jim">
+        {/* hero */}
+        <Header />
 
-      {/* mission and vision */}
-      <Mission />
+        {/* mission and vision */}
+        <Mission />
 
-      {/* product catalogue */}
-      <ProductCatalogue />
+        {/* product catalogue */}
+        <ProductCatalogue />
 
-      {/* workplace */}
-      <Workplace />
+        {/* workplace */}
+        <Workplace />
 
-      {/* our team */}
-      <Team />
+        {/* our team */}
+        <Team />
 
-      {/* impact */}
-      <Impact />
+        {/* impact */}
+        <Impact />
 
-      {/* testimonials */}
-      <Testimonials />
+        {/* testimonials */}
+        <Testimonials />
 
-      {/* partners */}
-      <Partners />
+        {/* partners */}
+        <Partners />
 
-      {/* newsletter */}
-      <NewsLetter />
+        {/* newsletter */}
+        <NewsLetter />
 
-      {/* contact form */}
-      <Contact />
+        {/* contact form */}
+        <Contact />
+      </div>
+      {/* rootLayout*/}
+      <RootLayout heroHeight={0} setBlurBackground={setBlurBackground} />
     </>
   );
 };

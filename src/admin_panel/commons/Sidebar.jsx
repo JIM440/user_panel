@@ -25,7 +25,7 @@ const Sidebar = ({ displaySidebar, toggleSidebar }) => {
     setActive(index);
   };
   return (
-    <div className={`sidebar ${displaySidebar === true ? 'active' : ''}`}>
+    <div className={`jim sidebar ${displaySidebar === true ? 'active' : ''}`}>
       <ul className="sidebar-menu">
         {/* dashboard */}
         <li>

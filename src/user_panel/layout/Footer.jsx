@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import logo from '../assets/icons/apple_logo.svg';
 
-const Footer = () => {
+const Footer = ({ blurBackground }) => {
   return (
-    <footer id="footer">
-      <div className="container">
+    <footer className="jim" id="footer">
+      <div
+        className={blurBackground ? 'blur-background container' : 'container'}
+      >
         <nav>
           <div className="footer-column">
             <Link to="/" className="logo">

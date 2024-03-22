@@ -5,11 +5,14 @@ import Header from './components/Header';
 import Products from './components/Products';
 import { useParams } from 'react-router-dom';
 import NotFound from '../notFound';
+import RootLayout from '../../layout/RootLayout';
 
 const Category = () => {
   const { name } = useParams();
   const [category, setCategory] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const [blurBackground, setBlurBackground] = useState(false);
 
   useEffect(() => {
     fetch('https://appleproductsbackend.vercel.app/v1/category/')
@@ -34,10 +37,13 @@ const Category = () => {
 
   return (
     <>
-      <Header category={category} />
-      <Description category={category} />
-      <Products category={category} />
-      <LawEnforcement />
+      <div className="jim">
+        <Header category={category} />
+        <Description category={category} />
+        <Products category={category} />
+        <LawEnforcement />
+      </div>
+      <RootLayout heroHeight={0} setBlurBackground={setBlurBackground} />
     </>
   );
 };
