@@ -26,7 +26,7 @@ const EditTestimonial = () => {
       image: 'https://source.unsplash.com/featured/?portrait',
     },
     {
-      id: 3,
+      id: 4,
       author: 'Alice Johnson',
       text: 'Amazing experience with iStore. Will definitely be a returning customer!',
       date: '2022-09-20',

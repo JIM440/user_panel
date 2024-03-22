@@ -43,7 +43,11 @@ const Category = () => {
         <Products category={category} />
         <LawEnforcement />
       </div>
-      <RootLayout heroHeight={0} setBlurBackground={setBlurBackground} />
+      <RootLayout
+        heroHeight={0}
+        setBlurBackground={setBlurBackground}
+        blurBackground={blurBackground}
+      />
     </>
   );
 };

@@ -106,7 +106,7 @@ const EditCategory = () => {
 
   useEffect(() => {
     // const api = 'https://appleproductsbackend.vercel.app/v1/category/65f94817b547b219d8b049c9';
-    const api = `https://appleproductsbackend.vercel.app/v1/category/${id}/`;
+    const api = `https://appleproductsbackend.vercel.app/v1/category/byName/${id}/`;
     fetch(api)
       .then((res) => res.json())
       .then((data) => {
@@ -149,10 +149,10 @@ const EditCategory = () => {
       featuredImage: previewImageFeatured,
       heroImage: previewImageHero,
     };
-    const url = `api/product/category/edit/${id}`;
+    const url = `v1/category/${category.id}`;
 
     performFetchPut(url, data);
-    alert(`Category Edited: ${categoryName}`);
+    alert(`Category Edited: ${category.id}`);
     setTimeout(() => {
       navigate('/admin/products/categories/');
     }, 1000);

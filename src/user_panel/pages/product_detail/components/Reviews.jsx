@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AddReview from './AddReview';
 
 const Reviews = () => {
   const [openReview, setOpenReview] = useState(false);
+
+  useEffect(() => {
+    fetch('');
+  }, []);
 
   const toggleOpenReview = () => {
     setOpenReview(!openReview);
