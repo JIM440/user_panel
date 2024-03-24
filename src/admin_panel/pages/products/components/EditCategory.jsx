@@ -139,23 +139,22 @@ const EditCategory = () => {
     e.preventDefault();
     const data = {
       categoryName: categoryName,
-      categoryHeroTitle: categoryHeroTitle,
-      categoryHeroDescription: categoryHeroDescription,
+      heroTitle: categoryHeroTitle,
+      heroDescription: categoryHeroDescription,
       featuredProductName: featuredProductName,
-      categoryOverview: categoryOverview,
-      categoryPerformance: categoryPerformance,
-      categoryIntegration: categoryIntegration,
-      categoryDesign: categoryDesign,
-      featuredImage: previewImageFeatured,
-      heroImage: previewImageHero,
+      overview: categoryOverview,
+      performance: categoryPerformance,
+      integration: categoryIntegration,
+      design: categoryDesign,
+      // featuredImage: previewImageFeatured,
+      // heroImage: previewImageHero,
     };
     const url = `v1/category/${category.id}`;
-
-    performFetchPut(url, data);
     alert(`Category Edited: ${category.id}`);
-    setTimeout(() => {
-      navigate('/admin/products/categories/');
-    }, 1000);
+    performFetchPut(url, data);
+    // setTimeout(() => {
+    //   navigate('/admin/products/categories/');
+    // }, 1000);
   };
 
   const handleFeatureImageChange = (event) => {

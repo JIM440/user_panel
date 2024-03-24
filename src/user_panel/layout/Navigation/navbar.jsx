@@ -146,7 +146,7 @@ const Navbar = ({ heroHeight, setBlurBackground }) => {
         setFetchedData([
           {
             _id: 2,
-            name: 'Macbooks',
+            name: 'Macbook',
             url: require('../../assets/images/category_images/macbooks.png'),
             desc: 'Sleek and powerful for all your computing needs.',
           },
@@ -158,13 +158,13 @@ const Navbar = ({ heroHeight, setBlurBackground }) => {
           },
           {
             _id: 4,
-            name: 'iWatch',
+            name: 'Watch',
             url: require('../../assets/images/category_images/iwatch.png'),
             desc: 'Smartwatches that keep you connected and fit.',
           },
           {
             _id: 5,
-            name: 'AirPods',
+            name: 'AirPod',
             url: require('../../assets/images/category_images/airpods.png'),
             desc: 'Wireless earphones with seamless integration.',
           },
@@ -196,7 +196,7 @@ const Navbar = ({ heroHeight, setBlurBackground }) => {
           isSearchClicked || productHovered ? 'colored-nav' : ''
         }`}
       >
-        <div className="logo-container">
+        <Link to="/" className="logo-container">
           <svg
             className="svg logo"
             width="52"
@@ -220,7 +220,7 @@ const Navbar = ({ heroHeight, setBlurBackground }) => {
           </svg>
 
           <span>iSTORE</span>
-        </div>
+        </Link>
         <ul className="nav-options">
           <li className="nav-link">
             <Link to="/">Home </Link>
@@ -403,7 +403,7 @@ const Navbar = ({ heroHeight, setBlurBackground }) => {
                 {fetchedData.map((category) => (
                   <li className="drop__down__sub">
                     <Link
-                      to={`/${'AppleMacbook'.toLowerCase().replace(/\s/g, '')}`}
+                      to={`/${category.name.toLowerCase().replace(/\s/g, '')}`}
                       className="drop__down__header__sub"
                     >
                       {category.name}

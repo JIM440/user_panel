@@ -21,19 +21,20 @@ const AddCategory = () => {
     e.preventDefault();
     const data = {
       categoryName: categoryName,
-      categoryHeroTitle: categoryHeroTitle,
-      categoryHeroDescription: categoryHeroDescription,
+      heroTitle: categoryHeroTitle,
+      heroDescription: categoryHeroDescription,
       featuredProductName: featuredProductName,
-      categoryOverview: categoryOverview,
-      categoryPerformance: categoryPerformance,
-      categoryIntegration: categoryIntegration,
-      categoryDesign: categoryDesign,
+      overview: categoryOverview,
+      performance: categoryPerformance,
+      integration: categoryIntegration,
+      design: categoryDesign,
       // featuredImage: previewImageFeatured,
       // heroImage: previewImageHero,
     };
     const url = 'v1/category';
 
-    performFetchPost(url, data, navigate('/admin/products/categories'));
+    performFetchPost(url, data);
+    navigate('/admin/products/categories');
   };
 
   const handleFeatureImageChange = (event) => {

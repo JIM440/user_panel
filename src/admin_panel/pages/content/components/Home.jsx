@@ -6,6 +6,49 @@ import performFetchDelete from '../../../utils/Fetch/PerformFetchDelete';
 import dots from '../../../assets/icons/horizontal-dots.png';
 
 const HomeContent = () => {
+  // const [headerSlides, setHeaderSlides] = useState([
+  //   {
+  //     id: 1,
+  //     name: 'Apple Watch Series 9',
+  //     url: 'url to apple watch',
+  //     description: 'The Next Level Adventure',
+  //     position: '1',
+  //     image:
+  //       'https://www.apple.com/v/watch/bk/images/overview/series-9/tile_s9_avail__c104b8nuoec2_large.jpg',
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'iPad Pro',
+  //     url: 'url to iPad Pro',
+  //     description: 'Change your life with just a click😂',
+  //     position: '2',
+  //     image:
+  //       'https://www.apple.com/v/ipad/home/ci/images/overview/hero/ipad_pro_hero__bh3eq6sqfjw2_large.jpg',
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'MacBook Pro',
+  //     url: 'url to macbook',
+  //     description: 'Macbook na book',
+  //     position: '3',
+  //     image:
+  //       'https://www.apple.com/newsroom/images/2023/10/apple-unveils-new-macbook-pro-featuring-m3-chips/article/Apple-MacBook-Pro-2up-231030_Full-Bleed-Image.jpg.large.jpg',
+  //   },
+  // ]);
+
+  const [headerSlides, setHeaderSlides] = useState(null);
+
+  useEffect(() => {
+    const api = 'https://appleproductsbackend.vercel.app/v1/hero';
+
+    fetch(api)
+      .then((res) => res.json())
+      .then((data) => {
+        setHeaderSlides(data);
+      })
+      .catch((err) => console.log('Error', err));
+  }, []);
+
   const [deleteId, setDeleteId] = useState(null);
   const [display, setDisplay] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
@@ -20,8 +63,8 @@ const HomeContent = () => {
   };
 
   const performDelete = () => {
-    alert('You deleted the header with id: ' + (deleteId + 1));
-    performFetchDelete(`api/content/home/delete/${deleteId}`);
+    performFetchDelete(`v1/hero/${deleteId}`);
+    alert('You deleted the header with id: ' + deleteId);
     setHeaderSlides(headerSlides.filter((slides) => slides.id !== deleteId));
     closeDisplay();
   };
@@ -30,35 +73,6 @@ const HomeContent = () => {
     setDisplay(false);
   };
 
-  const [headerSlides, setHeaderSlides] = useState([
-    {
-      id: 1,
-      name: 'Apple Watch Series 9',
-      url: 'url to apple watch',
-      description: 'The Next Level Adventure',
-      position: '1',
-      image:
-        'https://www.apple.com/v/watch/bk/images/overview/series-9/tile_s9_avail__c104b8nuoec2_large.jpg',
-    },
-    {
-      id: 2,
-      name: 'iPad Pro',
-      url: 'url to iPad Pro',
-      description: 'Change your life with just a click😂',
-      position: '2',
-      image:
-        'https://www.apple.com/v/ipad/home/ci/images/overview/hero/ipad_pro_hero__bh3eq6sqfjw2_large.jpg',
-    },
-    {
-      id: 3,
-      name: 'MacBook Pro',
-      url: 'url to macbook',
-      description: 'Macbook na book',
-      position: '3',
-      image:
-        'https://www.apple.com/newsroom/images/2023/10/apple-unveils-new-macbook-pro-featuring-m3-chips/article/Apple-MacBook-Pro-2up-231030_Full-Bleed-Image.jpg.large.jpg',
-    },
-  ]);
   return (
     <>
       <HeaderBtn
@@ -82,10 +96,12 @@ const HomeContent = () => {
                     <img src={slide.image} alt="" />
                   </div>
                   <div className="content">
-                    <h3>{slide.name}</h3>
+                    <h3>{slide.product_name}</h3>
+                    <p>{slide.category_name}</p>
                     <p>{slide.description}</p>
-                    <p>Position: {slide.position}</p>
-                    <Link to="">{slide.url}</Link>
+                    <p>Position: {slide.slide_position}</p>
+                    {/* <Link to={`${slide.product_name.toLowerCase().replace(/\s/g, '')}`}>pro
+                    </Link> */}
                     <div className="buttons">
                       <button
                         className="manage-icon"
@@ -115,7 +131,7 @@ const HomeContent = () => {
               ))
             )
           ) : (
-            <p>Data is Loading</p>
+            <p>Hero Slides Loading...</p>
           )}
         </div>
         <div className={`confirm-delete ${display === true ? 'active' : ''}`}>

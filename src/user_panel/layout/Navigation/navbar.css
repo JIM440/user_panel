@@ -70,11 +70,14 @@ svg {
   font-size: 12px;
   font-weight: 600;
   gap: 8px;
-  cursor: default;
 }
 
 .logo-container > span {
   margin-top: 5px;
+}
+
+.dark .logo-container > span {
+  color: #ffffff;
 }
 
 .cart-wishlist,
