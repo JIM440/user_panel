@@ -3,12 +3,15 @@ import Header from '../../../commons/Header';
 import TextAreaValue from '../../../commons/TextAreaValue';
 import TextInputValue from '../../../commons/TextInputValue';
 import performFetchPut from '../../../utils/Fetch/PerformFetchPut';
+import updateData from '../../../utils/async_await/put';
+import Loader from '../../../layout/Loader';
 import { useNavigate, useParams } from 'react-router-dom';
 import NotFound from '../../NotFound';
 
 const EditCategory = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [displayLoader, setDisplayLoader] = useState('hide');
   // const products = [
   //   {
   //     id: '1',
@@ -106,14 +109,17 @@ const EditCategory = () => {
 
   useEffect(() => {
     // const api = 'https://appleproductsbackend.vercel.app/v1/category/65f94817b547b219d8b049c9';
-    const api = `https://appleproductsbackend.vercel.app/v1/category/byName/${id}/`;
-    fetch(api)
+    const url = `https://appleproductsbackend.vercel.app/v1/category/byName/${id
+      .toLowerCase()
+      .replace(/\s/g, '')}/`;
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         if (data) {
           setIdExists(true);
           performInitialiase(data);
           setCategory(data);
+          // console.log(data.message);
         }
         setIsLoading(false);
       })
@@ -135,7 +141,7 @@ const EditCategory = () => {
     setPreviewImageHero(data.heroImage);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       categoryName: categoryName,
@@ -150,8 +156,13 @@ const EditCategory = () => {
       // heroImage: previewImageHero,
     };
     const url = `v1/category/${category.id}`;
+    setDisplayLoader('show');
+
+    await updateData(url, data);
+
+    setDisplayLoader('hide');
     alert(`Category Edited: ${category.id}`);
-    performFetchPut(url, data);
+    navigate('/admin/products/categories');
     // setTimeout(() => {
     //   navigate('/admin/products/categories/');
     // }, 1000);
@@ -185,13 +196,15 @@ const EditCategory = () => {
 
   // if category doesnt exist go to not found page
   if (isLoading) {
-    return <div style={{ height: '100vh' }}></div>;
+    return <Loader />;
   }
+  // console.log(idExists);
   if (!idExists) {
     return <NotFound />;
   }
   return (
     <>
+      <Loader display={`${displayLoader}`} />
       <Header text="Edit Category" />
       <div className="container">
         <form

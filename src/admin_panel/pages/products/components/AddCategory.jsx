@@ -2,11 +2,13 @@ import { useState } from 'react';
 import Header from '../../../commons/Header';
 import TextAreaValue from '../../../commons/TextAreaValue';
 import TextInputValue from '../../../commons/TextInputValue';
-import performFetchPost from '../../../utils/Fetch/PerformFetchPost';
+import postData from '../../../utils/async_await/post';
+import Loader from '../../../layout/Loader';
 import { useNavigate } from 'react-router-dom';
 
 const AddCategory = () => {
   const navigate = useNavigate();
+  const [displayLoader, setDisplayLoader] = useState('hide');
   const [categoryName, setCategoryName] = useState('');
   const [categoryHeroTitle, setCategoryHeroTitle] = useState('');
   const [categoryHeroDescription, setCategoryHeroDescription] = useState('');
@@ -17,7 +19,8 @@ const AddCategory = () => {
   const [categoryIntegration, setCategoryIntegration] = useState('');
   const [previewImageFeatured, setPreviewImageFeatured] = useState('');
   const [previewImageHero, setPreviewImageHero] = useState('');
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       categoryName: categoryName,
@@ -32,8 +35,9 @@ const AddCategory = () => {
       // heroImage: previewImageHero,
     };
     const url = 'v1/category';
-
-    performFetchPost(url, data);
+    setDisplayLoader('show');
+    await postData(url, data);
+    setDisplayLoader('hide');
     navigate('/admin/products/categories');
   };
 
@@ -63,6 +67,7 @@ const AddCategory = () => {
   };
   return (
     <>
+      <Loader display={`${displayLoader}`} />
       <Header text="Add Category" />
       <div className="container">
         <form

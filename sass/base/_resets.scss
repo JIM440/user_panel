@@ -21,6 +21,9 @@
     border: 1px solid $text-muted;
     padding: 10px;
   }
+  input:focus {
+    border: 1px solid $text-muted;
+  }
 }
 
 body {

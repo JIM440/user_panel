@@ -223,7 +223,9 @@ const Reviews = () => {
                         </div>
                       </td>
                       <td>{review.product_name}</td>
-                      <td>{StarRating(review.user_rating)}</td>
+                      <td className="stars">
+                        <div>{StarRating(review.user_rating)}</div>
+                      </td>
                       <td>date added</td>
                       {/* <td>{review.date_added.toLocaleDateString()}</td> */}
                       <td>{review.comment}</td>

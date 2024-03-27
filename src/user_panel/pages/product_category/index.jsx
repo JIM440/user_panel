@@ -45,7 +45,6 @@ const Category = () => {
   if (!category) {
     return <NotFound />;
   }
-
   return (
     <>
       <div className="jim">

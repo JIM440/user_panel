@@ -31,6 +31,13 @@
   .reviewer-name {
     min-width: 175px;
   }
+  .stars {
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
 
 .table-skeleton td {

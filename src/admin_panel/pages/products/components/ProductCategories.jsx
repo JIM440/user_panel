@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // fxns and components
-import performFetchDelete from '../../../utils/Fetch/PerformFetchDelete';
 import ProductCategorySkeleton from '../../../../user_panel/commons/skeletons/ProductCategorySkeleton';
 import HeaderBtn from '../../../commons/HeaderBtn';
 import handleSorting from '../../../utils/handlers/handleSort';
@@ -9,7 +8,8 @@ import handleSorting from '../../../utils/handlers/handleSort';
 // images
 import search from '../../../assets/icons/Search.svg';
 import dots from '../../../assets/icons/horizontal-dots.png';
-
+import deleteData from '../../../utils/async_await/delete';
+import Loader from '../../../layout/Loader';
 const ProductCategories = () => {
   const [products, setProducts] = useState(null);
   // const [products, setProducts] = useState([
@@ -60,6 +60,7 @@ const ProductCategories = () => {
         console.error('Error fetching products:', error);
       });
   }, []);
+  const [displayLoader, setDisplayLoader] = useState('hide');
   const [deleteId, setDeleteId] = useState(null);
   const [productName, setProductName] = useState('');
   // for the first display to confirm delete
@@ -76,11 +77,12 @@ const ProductCategories = () => {
     }
   };
   // perform product deletetion
-  const performDelete = () => {
+  const performDelete = async () => {
     if (inputProductVal === productName) {
       setInputProductVal('');
-      alert(`You deleted the category: ${productName}`);
-      performFetchDelete(`v1/category/${deleteId}`);
+      setDisplayLoader('show');
+      await deleteData(`v1/category/${deleteId}`);
+      setDisplayLoader('hide');
       setProducts(products.filter((product) => product.id !== deleteId));
       setDisplayedProducts(
         displayedProducts.filter((product) => product.id !== deleteId)
@@ -121,8 +123,23 @@ const ProductCategories = () => {
     }
   };
 
+  // fetchData('https://jsonplaceholder.typicode.com/posts/1');
+  // postData('https://jsonplaceholder.typicode.com/posts', {
+  //   title: 'yo fam',
+  //   body: 'fake shit',
+  //   userid: 1,
+  //   id: 3,
+  // });
+  // updateData('https://jsonplaceholder.typicode.com/posts/1', {
+  //   id: 1,
+  //   title: 'fffoo',
+  //   body: 'bbbar',
+  //   userId: 7,
+  // });
+
   return (
     <>
+      <Loader display={`${displayLoader}`} />
       <HeaderBtn
         text="Product Categories"
         url="/admin/products/categories/add"
