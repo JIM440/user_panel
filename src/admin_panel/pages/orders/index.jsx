@@ -6,6 +6,7 @@ import Header from '../../commons/Header';
 // images
 import search from '../../assets/icons/Search.svg';
 import performFetchPut from '../../utils/Fetch/PerformFetchPut';
+import Loader from '../../layout/Loader';
 
 const Orders = () => {
   // const [orders, setOrders] = useState([
@@ -74,31 +75,34 @@ const Orders = () => {
     <div className="jim">
       <Header text="Orders" />
       <div className="container">
-        <div className="search-filters">
-          <div className="search-container">
-            <img src={search} alt="search icon" />
-            <input
-              type="search"
-              placeholder="Search by customer name, payment method or location"
-              name="search"
-              onChange={handleOnchange}
-            />
+        {displayedOrders && (
+          <div className="search-filters">
+            <div className="search-container">
+              <img src={search} alt="search icon" />
+              <input
+                type="search"
+                placeholder="Search by customer name, payment method or location"
+                name="search"
+                onChange={handleOnchange}
+              />
+            </div>
+            <div className="filters-container">
+              {/* filter by status */}
+              <select name="order_status" id="" onChange={handleOnchange}>
+                <option value="">Status</option>
+                <option value="pending">Pending</option>
+                <option value="delivered">Delievered</option>
+              </select>
+              {/* order by date */}
+              <select name="order_by_date" id="" onChange={handleOnchange}>
+                <option value="">Order By</option>
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+              </select>
+            </div>
           </div>
-          <div className="filters-container">
-            {/* filter by status */}
-            <select name="order_status" id="" onChange={handleOnchange}>
-              <option value="">Status</option>
-              <option value="pending">Pending</option>
-              <option value="delivered">Delievered</option>
-            </select>
-            {/* order by date */}
-            <select name="order_by_date" id="" onChange={handleOnchange}>
-              <option value="">Order By</option>
-              <option value="newest">Newest First</option>
-              <option value="oldest">Oldest First</option>
-            </select>
-          </div>
-        </div>
+        )}
+        <Loader display="hide" />
         <div className="table-container orders-table">
           <table>
             <thead>
@@ -174,15 +178,66 @@ const Orders = () => {
                   ))
                 )
               ) : (
-                <td
-                  style={{
-                    width: '90vw',
-                    textAlign: 'center',
-                    fontSize: '28px',
-                  }}
-                >
-                  Loading...
-                </td>
+                <>
+                  <tr className="table-skeleton">
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                  </tr>
+                  <tr className="table-skeleton">
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                  </tr>
+                </>
               )}
             </tbody>
           </table>

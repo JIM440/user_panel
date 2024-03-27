@@ -205,3 +205,30 @@
     width: 100%;
   }
 }
+// preloader
+.about-content-skeleton {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  justify-content: start;
+  align-items: start;
+
+  @include breakpointDynamic(650px) {
+    & {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @include breakpointDynamic(1200px) {
+    & {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  div {
+    background-color: $bg-grey;
+    height: 200px;
+    width: 100%;
+    border-radius: 8px;
+    animation: skeleton-loading 0.5s infinite alternate;
+  }
+}

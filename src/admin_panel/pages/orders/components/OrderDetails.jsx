@@ -63,8 +63,8 @@ const OrderDetails = () => {
                 <tr>
                   <td>{order.delivery_info.delivery_person}</td>
                   <td>
-                    {order.products.map((item) => (
-                      <p>
+                    {order.products.map((item, index) => (
+                      <p key={index}>
                         {item.product_id} || {item.price} || {item.color}
                       </p>
                     ))}
@@ -76,7 +76,26 @@ const OrderDetails = () => {
                   <td>{order.createdAt}</td>
                 </tr>
               ) : (
-                <p>Order Details get issues</p>
+                <tr className="table-skeleton">
+                  <td>
+                    <div></div>
+                  </td>
+                  <td>
+                    <div></div>
+                  </td>
+                  <td>
+                    <div></div>
+                  </td>
+                  <td>
+                    <div></div>
+                  </td>
+                  <td>
+                    <div></div>
+                  </td>
+                  <td>
+                    <div></div>
+                  </td>
+                </tr>
               )}
             </tbody>
           </table>

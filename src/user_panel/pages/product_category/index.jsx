@@ -6,6 +6,7 @@ import Products from './components/Products';
 import { useParams } from 'react-router-dom';
 import NotFound from '../notFound';
 import RootLayout from '../../layout/RootLayout';
+import Loader from '../../../admin_panel/layout/Loader';
 
 const Category = () => {
   const { name } = useParams();
@@ -27,15 +28,18 @@ const Category = () => {
       });
   }, [name]);
 
+  // if (loading) {
+  //   return (
+  //     <section>
+  //       <div
+  //         className="jim container"
+  //         style={{ height: '100vh', marginTop: '100px' }}
+  //       ></div>
+  //     </section>
+  //   );
+  // }
   if (loading) {
-    return (
-      <section>
-        <div
-          className="jim container"
-          style={{ height: '100vh', marginTop: '100px' }}
-        ></div>
-      </section>
-    );
+    return <Loader />;
   }
 
   if (!category) {

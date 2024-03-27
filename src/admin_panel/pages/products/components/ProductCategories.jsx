@@ -130,25 +130,27 @@ const ProductCategories = () => {
       />
       <div className="container" onClick={handleClickOutside}>
         {/* search and filter */}
-        <div className="search-filters">
-          <div className="search-container">
-            <img src={search} alt="search icon" />
-            <input
-              type="search"
-              placeholder="Search by category name"
-              name="search"
-              onChange={handleOnchange}
-            />
+        {products && (
+          <div className="search-filters">
+            <div className="search-container">
+              <img src={search} alt="search icon" />
+              <input
+                type="search"
+                placeholder="Search by category name"
+                name="search"
+                onChange={handleOnchange}
+              />
+            </div>
+            <div className="filters-container">
+              {/* order by date */}
+              <select name="order_by_date" id="" onChange={handleOnchange}>
+                <option value="">Order By</option>
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+              </select>
+            </div>
           </div>
-          <div className="filters-container">
-            {/* order by date */}
-            <select name="order_by_date" id="" onChange={handleOnchange}>
-              <option value="">Order By</option>
-              <option value="newest">Newest First</option>
-              <option value="oldest">Oldest First</option>
-            </select>
-          </div>
-        </div>
+        )}
         <div className="product-container product-container-admin">
           {products ? (
             displayedProducts.length > 0 ? (

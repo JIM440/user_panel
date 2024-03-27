@@ -72,14 +72,14 @@ const AboutContent = () => {
         className="btw"
       />
       <div className="container" onClick={handleClickOutside}>
-        <div className="admin-testimonial-container">
-          {testimonials ? (
-            testimonials.length === 0 ? (
-              <p style={{ textAlign: 'center', width: '100%' }}>
-                No Testimonial Found!🚨🚨🚨
-              </p>
-            ) : (
-              testimonials.map((testimonial, index) => (
+        {testimonials ? (
+          testimonials.length === 0 ? (
+            <p style={{ textAlign: 'center', width: '100%' }}>
+              No Testimonial Found!🚨🚨🚨
+            </p>
+          ) : (
+            <div className="admin-testimonial-container">
+              {testimonials.map((testimonial, index) => (
                 <div className="testimonial-box" key={index}>
                   <div className="testimonial-details">
                     <div>
@@ -124,12 +124,19 @@ const AboutContent = () => {
                     </div>
                   </div>
                 </div>
-              ))
-            )
-          ) : (
-            <p>Loading Testimonials...</p>
-          )}
-        </div>
+              ))}
+            </div>
+          )
+        ) : (
+          <div className="about-content-skeleton">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        )}
         <div className={`confirm-delete ${display === true ? 'active' : ''}`}>
           <div>
             <p>Are you sure you want to delete this testimonial?</p>

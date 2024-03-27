@@ -225,39 +225,41 @@ const AllProducts = () => {
     <>
       <HeaderBtn
         text="All Products"
-        url="/admin/product/add"
+        url="/admin/products/add"
         urlText="Add Product"
       />
       <div className="container" onClick={handleClickOutside}>
         {/* search and filter */}
-        <div className="search-filters">
-          <div className="search-container">
-            <img src={search} alt="search icon" />
-            <input
-              type="search"
-              placeholder="Search by product name"
-              name="search"
-              onChange={handleOnchange}
-            />
+        {products && (
+          <div className="search-filters">
+            <div className="search-container">
+              <img src={search} alt="search icon" />
+              <input
+                type="search"
+                placeholder="Search by product name"
+                name="search"
+                onChange={handleOnchange}
+              />
+            </div>
+            <div className="filters-container">
+              {/* filter by category */}
+              <select name="category" id="" onChange={handleOnchange}>
+                <option value="">All Categories</option>
+                <option value="watch">Watch</option>
+                <option value="iphone">iPhone</option>
+                <option value="ipad">iPad</option>
+                <option value="airpod">AirPods</option>
+                <option value="macbook">MacBooks</option>
+              </select>
+              {/* order by date */}
+              <select name="order_by_date" id="" onChange={handleOnchange}>
+                <option value="">Order By</option>
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+              </select>
+            </div>
           </div>
-          <div className="filters-container">
-            {/* filter by category */}
-            <select name="category" id="" onChange={handleOnchange}>
-              <option value="">All Categories</option>
-              <option value="watch">Watch</option>
-              <option value="iphone">iPhone</option>
-              <option value="ipad">iPad</option>
-              <option value="airpod">AirPods</option>
-              <option value="macbook">MacBooks</option>
-            </select>
-            {/* order by date */}
-            <select name="order_by_date" id="" onChange={handleOnchange}>
-              <option value="">Order By</option>
-              <option value="newest">Newest First</option>
-              <option value="oldest">Oldest First</option>
-            </select>
-          </div>
-        </div>
+        )}
 
         <div className="product-container product-container-admin">
           {products ? (

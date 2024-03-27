@@ -83,14 +83,14 @@ const HomeContent = () => {
       />
       {/* header slides */}
       <div className="container" onClick={handleClickOutside}>
-        <div className="admin-header-container">
-          {headerSlides ? (
-            headerSlides.length === 0 ? (
-              <h2 style={{ textAlign: 'center' }}>
-                No Header Slides Found!🚨🚨🚨
-              </h2>
-            ) : (
-              headerSlides.map((slide, index) => (
+        {headerSlides ? (
+          headerSlides.length === 0 ? (
+            <h2 style={{ textAlign: 'center' }}>
+              No Header Slides Found!🚨🚨🚨
+            </h2>
+          ) : (
+            <div className="admin-header-container">
+              {headerSlides.map((slide, index) => (
                 <div className="admin-header-box" key={index}>
                   <div className="img">
                     <img src={slide.image} alt="" />
@@ -128,35 +128,68 @@ const HomeContent = () => {
                     </div>
                   </div>
                 </div>
-              ))
-            )
-          ) : (
-            <p>Hero Slides Loading...</p>
-          )}
-        </div>
-        <div className={`confirm-delete ${display === true ? 'active' : ''}`}>
-          <div>
-            <p>Are you sure you want to delete this header slide?</p>
-            <div className="btn-container">
-              <button
-                className="btn danger"
-                onClick={() => {
-                  performDelete();
-                  setActiveIndex(null);
-                }}
-              >
-                Delete
-              </button>
-              <button
-                className="btn"
-                onClick={() => {
-                  closeDisplay();
-                  setActiveIndex(null);
-                }}
-              >
-                Cancel
-              </button>
+              ))}
             </div>
+          )
+        ) : (
+          <div className="home-skeleton-content-container">
+            <div className="home-skeleton-content-card">
+              <div className="img"></div>
+              <div className="text">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+
+                <div></div>
+              </div>
+            </div>
+            <div className="home-skeleton-content-card">
+              <div className="img"></div>
+              <div className="text">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+            <div className="home-skeleton-content-card">
+              <div className="img"></div>
+              <div className="text">
+                <div></div>
+                <div></div>
+
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+      <div className={`confirm-delete ${display === true ? 'active' : ''}`}>
+        <div>
+          <p>Are you sure you want to delete this header slide?</p>
+          <div className="btn-container">
+            <button
+              className="btn danger"
+              onClick={() => {
+                performDelete();
+                setActiveIndex(null);
+              }}
+            >
+              Delete
+            </button>
+            <button
+              className="btn"
+              onClick={() => {
+                closeDisplay();
+                setActiveIndex(null);
+              }}
+            >
+              Cancel
+            </button>
           </div>
         </div>
       </div>

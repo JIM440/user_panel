@@ -13,16 +13,15 @@ const Navbar = ({ displaySidebar, toggleDisplay }) => {
         <span>iSTORE</span>
       </Link>
       <div className="nav-user-icons">
-        <button className="theme">
+        {/* <button className="theme">
           <img src={moon} alt="sun" />
-        </button>
-        <button className="language">
-          <span>EN</span>
-          <img src={language} alt="" />
-        </button>
-        <button className="chat">
+        </button> */}
+        <Link to="/admin/customers/chat" className="chat">
           <img src={chat} alt="" />
-        </button>
+          <div className="message-count">
+            <span>0</span>
+          </div>
+        </Link>
         <button className="profile-icon">
           <img
             src="https://thumbs.dreamstime.com/b/head-shot-angry-african-american-man-looking-sharply-towards-camera-254716914.jpg"

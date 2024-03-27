@@ -124,4 +124,43 @@
   }
 }
 
-// edit header slide
+// skeleton
+.home-skeleton-content-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: start;
+  gap: 2rem;
+
+  .home-skeleton-content-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1.2rem;
+    min-height: 180px;
+
+    @include breakpointDynamic(700px) {
+      & {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .img {
+      background-color: $bg-grey;
+      border-radius: 8px;
+      animation: skeleton-loading 0.5s infinite alternate;
+    }
+    .text {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      padding: 10px 0px;
+      gap: 10px;
+
+      div {
+        background-color: $bg-grey;
+        height: 10px;
+        border-radius: 8px;
+        animation: skeleton-loading 0.5s infinite alternate;
+      }
+    }
+  }
+}

@@ -147,43 +147,49 @@ const Reviews = () => {
     <div className="jim">
       <Header text="Reviews" />
       <div className="container">
-        <div className="search-filters">
-          <div className="search-container">
-            <img src={search} alt="search icon" />
-            <input
-              type="search"
-              placeholder="Search review by customer id or product name"
-              name="search"
-              onChange={handleOnchange}
-            />
+        {displayedReviews && (
+          <div className="search-filters">
+            <div className="search-container">
+              <img src={search} alt="search icon" />
+              <input
+                type="search"
+                placeholder="Search review by customer id or product name"
+                name="search"
+                onChange={handleOnchange}
+              />
+            </div>
+            <div className="filters-container">
+              {/* filter by category */}
+              <select name="category" review_id="" onChange={handleOnchange}>
+                <option value="">All Categories</option>
+                <option value="watch">Watch</option>
+                <option value="iphone">iPhone</option>
+                <option value="ipad">iPad</option>
+                <option value="airpod">AirPods</option>
+                <option value="macbook">MacBooks</option>
+              </select>
+              {/* filter by rating */}
+              <select name="rating" review_id="" onChange={handleOnchange}>
+                <option value="">Rating</option>
+                <option value="5">5 stars</option>
+                <option value="4">4 stars</option>
+                <option value="3">3 stars</option>
+                <option value="2">2 stars</option>
+                <option value="1">1 star</option>
+              </select>
+              {/* order by date */}
+              <select
+                name="order_by_date"
+                review_id=""
+                onChange={handleOnchange}
+              >
+                <option value="">Order By</option>
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+              </select>
+            </div>
           </div>
-          <div className="filters-container">
-            {/* filter by category */}
-            <select name="category" review_id="" onChange={handleOnchange}>
-              <option value="">All Categories</option>
-              <option value="watch">Watch</option>
-              <option value="iphone">iPhone</option>
-              <option value="ipad">iPad</option>
-              <option value="airpod">AirPods</option>
-              <option value="macbook">MacBooks</option>
-            </select>
-            {/* filter by rating */}
-            <select name="rating" review_id="" onChange={handleOnchange}>
-              <option value="">Rating</option>
-              <option value="5">5 stars</option>
-              <option value="4">4 stars</option>
-              <option value="3">3 stars</option>
-              <option value="2">2 stars</option>
-              <option value="1">1 star</option>
-            </select>
-            {/* order by date */}
-            <select name="order_by_date" review_id="" onChange={handleOnchange}>
-              <option value="">Order By</option>
-              <option value="newest">Newest First</option>
-              <option value="oldest">Oldest First</option>
-            </select>
-          </div>
-        </div>
+        )}
         <div className="table-container review-table">
           <table>
             <thead>
@@ -199,9 +205,9 @@ const Reviews = () => {
             <tbody>
               {displayedReviews ? (
                 displayedReviews.length === 0 ? (
-                  <h2 style={{ textAlign: 'center', wreview_idth: '90vw' }}>
+                  <td style={{ textAlign: 'center', width: '90vw' }}>
                     No Review Found
-                  </h2>
+                  </td>
                 ) : (
                   displayedReviews.map((review) => (
                     <tr key={review.review_id}>
@@ -238,15 +244,48 @@ const Reviews = () => {
                   ))
                 )
               ) : (
-                <td
-                  style={{
-                    wreview_idth: '90vw',
-                    textAlign: 'center',
-                    fontSize: '28px',
-                  }}
-                >
-                  Loading...
-                </td>
+                <>
+                  <tr className="table-skeleton">
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                  </tr>
+                  <tr className="table-skeleton">
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                    <td>
+                      <div></div>
+                    </td>
+                  </tr>
+                </>
               )}
             </tbody>
           </table>
