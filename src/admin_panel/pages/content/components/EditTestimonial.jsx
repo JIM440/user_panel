@@ -2,13 +2,15 @@ import { useState } from 'react';
 import TextInputValue from '../../../commons/TextInputValue';
 import TextAreaValue from '../../../commons/TextAreaValue';
 import Header from '../../../commons/Header';
-import performFetchPut from '../../../utils/Fetch/PerformFetchPut';
 import { useNavigate, useParams } from 'react-router-dom';
 import NotFound from '../../NotFound';
+import Loader from '../../../layout/Loader';
+import updateData from '../../../utils/async_await/put';
 
 const EditTestimonial = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [displayLoader, setDisplayLoader] = useState('hide');
 
   const testimonials = [
     {
@@ -51,7 +53,7 @@ const EditTestimonial = () => {
       reader.readAsDataURL(file);
     }
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const apiUrl = `api/testimonial/update/${id}`;
@@ -61,12 +63,11 @@ const EditTestimonial = () => {
       image: previewImage,
     };
 
+    setDisplayLoader('show');
+    await updateData(apiUrl, data);
+    setDisplayLoader('hide');
     alert(`You added the testimonial content as ${data.author_name}`);
-
-    performFetchPut(apiUrl, data);
-    setTimeout(() => {
-      navigate('/admin/content/about');
-    }, 1000);
+    navigate('/admin/content/about');
   };
   const idExists = testimonial.length !== 0 ? true : false;
 
@@ -75,6 +76,7 @@ const EditTestimonial = () => {
   }
   return (
     <>
+      <Loader display={`${displayLoader}`} />
       {/* header */}
       <Header text="Edit Testimonial" />
       <div className="container">

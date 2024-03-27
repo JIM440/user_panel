@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderBtn from '../../../commons/HeaderBtn';
-import performFetchDelete from '../../../utils/Fetch/PerformFetchDelete';
+import deleteData from '../../../utils/async_await/delete';
+
 // images
 import dots from '../../../assets/icons/horizontal-dots.png';
+import Loader from '../../../layout/Loader';
 
 const HomeContent = () => {
   // const [headerSlides, setHeaderSlides] = useState([
@@ -35,6 +37,7 @@ const HomeContent = () => {
   //       'https://www.apple.com/newsroom/images/2023/10/apple-unveils-new-macbook-pro-featuring-m3-chips/article/Apple-MacBook-Pro-2up-231030_Full-Bleed-Image.jpg.large.jpg',
   //   },
   // ]);
+  const [displayLoader, setDisplayLoader] = useState('hide');
 
   const [headerSlides, setHeaderSlides] = useState(null);
 
@@ -62,10 +65,12 @@ const HomeContent = () => {
     }
   };
 
-  const performDelete = () => {
-    performFetchDelete(`v1/hero/${deleteId}`);
+  const performDelete = async () => {
+    setDisplayLoader('show');
+    await deleteData(`v1/hero/${deleteId}`);
     alert('You deleted the header with id: ' + deleteId);
     setHeaderSlides(headerSlides.filter((slides) => slides.id !== deleteId));
+    setDisplayLoader('hide');
     closeDisplay();
   };
 
@@ -75,6 +80,7 @@ const HomeContent = () => {
 
   return (
     <>
+      <Loader display={`${displayLoader}`} />
       <HeaderBtn
         text="Content Management - Home"
         url="add"

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+// components
 import Contact from './components/Contact';
 import Header from './components/Header';
 import Impact from './components/Impact';
@@ -10,6 +11,7 @@ import Testimonials from './components/Testimonials';
 import Team from './components/Team';
 import Workplace from './components/Workplace';
 import RootLayout from '../../layout/RootLayout';
+// functions
 
 const Cart = () => {
   const [blurBackground, setBlurBackground] = useState(false);

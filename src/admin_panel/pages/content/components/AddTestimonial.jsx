@@ -2,9 +2,12 @@ import { useState } from 'react';
 import TextInputValue from '../../../commons/TextInputValue';
 import TextAreaValue from '../../../commons/TextAreaValue';
 import Header from '../../../commons/Header';
-import PerformFetchPost from '../../../utils/Fetch/PerformFetchPost';
+import Loader from '../../../layout/Loader';
+import postData from '../../../utils/async_await/post';
 
 const AddTestimonial = () => {
+  const [displayLoader, setDisplayLoader] = useState('hide');
+
   const [previewImage, setPreviewImage] = useState('');
 
   const [authorName, setAuthorName] = useState('');
@@ -23,7 +26,7 @@ const AddTestimonial = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const apiUrl = 'api/testimonial/create';
@@ -34,7 +37,9 @@ const AddTestimonial = () => {
       image: previewImage,
     };
 
-    PerformFetchPost(apiUrl, data);
+    setDisplayLoader('show');
+    await postData(apiUrl, data);
+    setDisplayLoader('hide');
     alert(`You added the testimonial content as ${data.author_name}`);
     setAuthorName('');
     setContent('');
@@ -43,6 +48,7 @@ const AddTestimonial = () => {
 
   return (
     <>
+      <Loader display={`${displayLoader}`} />
       <Header text="Add Testimonial" />
       <div className="container">
         <form action="" id="testimonial-form" onSubmit={handleSubmit}>

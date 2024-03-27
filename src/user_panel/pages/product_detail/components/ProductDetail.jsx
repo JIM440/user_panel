@@ -1,11 +1,11 @@
-import bigImage1 from '../../../assets/images/big-image-1.png';
-import bigImage2 from '../../../assets/images/big-image-2.png';
-import bigImage3 from '../../../assets/images/big-image-3.png';
+// import bigImage1 from '../../../assets/images/big-image-1.png';
+// import bigImage2 from '../../../assets/images/big-image-2.png';
+// import bigImage3 from '../../../assets/images/big-image-3.png';
+// import { useState } from 'react';
 import truck from '../../../assets/icons/detail/Free Shipping.svg';
 import moneyBack from '../../../assets/icons/detail/Money Box.svg';
 import support from '../../../assets/icons/detail/24 Hours Day Support.svg';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import ProductDetailImage from './ProductDetailImage';
 
 const ProductDetail = ({ product }) => {

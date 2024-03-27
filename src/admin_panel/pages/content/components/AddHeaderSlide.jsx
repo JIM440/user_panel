@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import Header from '../../../commons/Header';
 import TextInputValue from '../../../commons/TextInputValue';
-import PerformFetchPost from '../../../utils/Fetch/PerformFetchPost';
+import postData from '../../../utils/async_await/post';
+import Loader from '../../../layout/Loader';
 
 const AddHeaderSlide = () => {
+  const [displayLoader, setDisplayLoader] = useState('hide');
   const [previewImage, setPreviewImage] = useState('');
 
   const [productName, setProductName] = useState('');
@@ -25,7 +27,7 @@ const AddHeaderSlide = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const apiUrl = 'v1/hero';
@@ -37,15 +39,17 @@ const AddHeaderSlide = () => {
       slide_position: position,
     };
 
+    setDisplayLoader('show');
+    postData(apiUrl, data);
+    setDisplayLoader('hide');
     alert(
       `You added the header slide with the product name as ${data.product_name}`
     );
-
-    PerformFetchPost(apiUrl, data);
   };
 
   return (
     <>
+      <Loader display={`${displayLoader}`} />
       {/* header */}
       <Header text="Add Header Slide" />
       {/*  */}

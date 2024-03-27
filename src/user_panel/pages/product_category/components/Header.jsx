@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import bigMac from '../../../assets/images/category_hero.svg';
 
 const Header = ({ category }) => {
   return (

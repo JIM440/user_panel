@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-
+import { useState } from 'react';
 import { NavLink, Link, Outlet } from 'react-router-dom';
-
-import Faqs from './components/Faqs';
-
+// components
 import RootLayout from '../../layout/RootLayout';
+import Faqs from './components/Faqs';
+// functions
 
 const Contact = () => {
   const [blurBackground, setBlurBackground] = useState(false);

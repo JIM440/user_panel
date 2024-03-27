@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import LawEnforcement from '../../commons/LawEnforcement';
-import Description from './components/Description';
-import Header from './components/Header';
-import Products from './components/Products';
 import { useParams } from 'react-router-dom';
-import NotFound from '../notFound';
+// components
 import RootLayout from '../../layout/RootLayout';
 import Loader from '../../../admin_panel/layout/Loader';
+import NotFound from '../notFound';
+import Products from './components/Products';
+import Header from './components/Header';
+import Description from './components/Description';
+import LawEnforcement from '../../commons/LawEnforcement';
+// functions
 
 const Category = () => {
   const { name } = useParams();

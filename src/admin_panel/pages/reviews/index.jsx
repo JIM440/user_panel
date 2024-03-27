@@ -6,7 +6,8 @@ import star from '../../assets/icons/Star.svg';
 import search from '../../assets/icons/Search.svg';
 // functions
 import handleSorting from '../../utils/handlers/handleSort';
-import PerformFetchDelete from '../../utils/Fetch/PerformFetchDelete';
+import Loader from '../../../layout/Loader';
+import deleteData from '../../../utils/async_await/delete';
 
 const Reviews = () => {
   // const [reviews, setReviews] = useState([
@@ -24,6 +25,8 @@ const Reviews = () => {
   //   },
   // ]);
   const [reviews, setReviews] = useState([]);
+  const [displayLoader, setDisplayLoader] = useState('hide');
+
   // fetch all reviews
   useEffect(() => {
     fetch('https://appleproductsbackend.vercel.app/api/review/fetchall')
@@ -45,12 +48,14 @@ const Reviews = () => {
   const [delDisplay, setDelDisplay] = useState(false);
 
   // function to handle delete
-  const performDelete = () => {
+  const performDelete = async () => {
     alert('You deleted the review with id ' + deletereview_id);
-    PerformFetchDelete(`api/review/delete/${deletereview_id}`);
+    setDisplayLoader('show');
+    await deleteData(`api/review/delete/${deletereview_id}`);
     setReviews(
       reviews.filter((review) => review.review_id !== deletereview_id)
     );
+    setDisplayLoader('hide');
     setDisplayedReviews(
       displayedReviews.filter((review) => review.review_id !== deletereview_id)
     );
@@ -144,182 +149,187 @@ const Reviews = () => {
   };
 
   return (
-    <div className="jim">
-      <Header text="Reviews" />
-      <div className="container">
-        {displayedReviews && (
-          <div className="search-filters">
-            <div className="search-container">
-              <img src={search} alt="search icon" />
-              <input
-                type="search"
-                placeholder="Search review by customer id or product name"
-                name="search"
-                onChange={handleOnchange}
-              />
+    <>
+      <Loader display={`${displayLoader}`} />
+      <div className="jim">
+        <Header text="Reviews" />
+        <div className="container">
+          {displayedReviews && (
+            <div className="search-filters">
+              <div className="search-container">
+                <img src={search} alt="search icon" />
+                <input
+                  type="search"
+                  placeholder="Search review by customer id or product name"
+                  name="search"
+                  onChange={handleOnchange}
+                />
+              </div>
+              <div className="filters-container">
+                {/* filter by category */}
+                <select name="category" review_id="" onChange={handleOnchange}>
+                  <option value="">All Categories</option>
+                  <option value="watch">Watch</option>
+                  <option value="iphone">iPhone</option>
+                  <option value="ipad">iPad</option>
+                  <option value="airpod">AirPods</option>
+                  <option value="macbook">MacBooks</option>
+                </select>
+                {/* filter by rating */}
+                <select name="rating" review_id="" onChange={handleOnchange}>
+                  <option value="">Rating</option>
+                  <option value="5">5 stars</option>
+                  <option value="4">4 stars</option>
+                  <option value="3">3 stars</option>
+                  <option value="2">2 stars</option>
+                  <option value="1">1 star</option>
+                </select>
+                {/* order by date */}
+                <select
+                  name="order_by_date"
+                  review_id=""
+                  onChange={handleOnchange}
+                >
+                  <option value="">Order By</option>
+                  <option value="newest">Newest First</option>
+                  <option value="oldest">Oldest First</option>
+                </select>
+              </div>
             </div>
-            <div className="filters-container">
-              {/* filter by category */}
-              <select name="category" review_id="" onChange={handleOnchange}>
-                <option value="">All Categories</option>
-                <option value="watch">Watch</option>
-                <option value="iphone">iPhone</option>
-                <option value="ipad">iPad</option>
-                <option value="airpod">AirPods</option>
-                <option value="macbook">MacBooks</option>
-              </select>
-              {/* filter by rating */}
-              <select name="rating" review_id="" onChange={handleOnchange}>
-                <option value="">Rating</option>
-                <option value="5">5 stars</option>
-                <option value="4">4 stars</option>
-                <option value="3">3 stars</option>
-                <option value="2">2 stars</option>
-                <option value="1">1 star</option>
-              </select>
-              {/* order by date */}
-              <select
-                name="order_by_date"
-                review_id=""
-                onChange={handleOnchange}
-              >
-                <option value="">Order By</option>
-                <option value="newest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-              </select>
-            </div>
-          </div>
-        )}
-        <div className="table-container review-table">
-          <table>
-            <thead>
-              <tr>
-                <th className="reviewer-name">Reviewer Name</th>
-                <th className="product-name">Product Name</th>
-                <th className="rating">Rating</th>
-                <th className="date">Date</th>
-                <th className="text">Text</th>
-                <th className="actions">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {displayedReviews ? (
-                displayedReviews.length === 0 ? (
-                  <td style={{ textAlign: 'center', width: '90vw' }}>
-                    No Review Found
-                  </td>
+          )}
+          <div className="table-container review-table">
+            <table>
+              <thead>
+                <tr>
+                  <th className="reviewer-name">Reviewer Name</th>
+                  <th className="product-name">Product Name</th>
+                  <th className="rating">Rating</th>
+                  <th className="date">Date</th>
+                  <th className="text">Text</th>
+                  <th className="actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayedReviews ? (
+                  displayedReviews.length === 0 ? (
+                    <td style={{ textAlign: 'center', width: '90vw' }}>
+                      No Review Found
+                    </td>
+                  ) : (
+                    displayedReviews.map((review) => (
+                      <tr key={review.review_id}>
+                        <td>
+                          <div className="user-details">
+                            <img
+                              src={review.reviewer_image}
+                              alt=""
+                              wreview_idth="70px"
+                              height="70px"
+                            />
+                            <p className="name">{review.user_id}</p>
+                          </div>
+                        </td>
+                        <td>{review.product_name}</td>
+                        <td className="stars">
+                          <div>{StarRating(review.user_rating)}</div>
+                        </td>
+                        <td>date added</td>
+                        {/* <td>{review.date_added.toLocaleDateString()}</td> */}
+                        <td>{review.comment}</td>
+                        <td>
+                          <div className="buttons">
+                            <button
+                              className="delete"
+                              onClick={() => {
+                                setDeletereview_id(review.review_id);
+                                setDelDisplay(true);
+                              }}
+                            >
+                              <img src={trash} alt="" wreview_idth="20px" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )
                 ) : (
-                  displayedReviews.map((review) => (
-                    <tr key={review.review_id}>
+                  <>
+                    <tr className="table-skeleton">
                       <td>
-                        <div className="user-details">
-                          <img
-                            src={review.reviewer_image}
-                            alt=""
-                            wreview_idth="70px"
-                            height="70px"
-                          />
-                          <p className="name">{review.user_id}</p>
-                        </div>
+                        <div></div>
                       </td>
-                      <td>{review.product_name}</td>
-                      <td className="stars">
-                        <div>{StarRating(review.user_rating)}</div>
-                      </td>
-                      <td>date added</td>
-                      {/* <td>{review.date_added.toLocaleDateString()}</td> */}
-                      <td>{review.comment}</td>
                       <td>
-                        <div className="buttons">
-                          <button
-                            className="delete"
-                            onClick={() => {
-                              setDeletereview_id(review.review_id);
-                              setDelDisplay(true);
-                            }}
-                          >
-                            <img src={trash} alt="" wreview_idth="20px" />
-                          </button>
-                        </div>
+                        <div></div>
+                      </td>
+                      <td>
+                        <div></div>
+                      </td>
+                      <td>
+                        <div></div>
+                      </td>
+                      <td>
+                        <div></div>
+                      </td>
+                      <td>
+                        <div></div>
                       </td>
                     </tr>
-                  ))
-                )
-              ) : (
-                <>
-                  <tr className="table-skeleton">
-                    <td>
-                      <div></div>
-                    </td>
-                    <td>
-                      <div></div>
-                    </td>
-                    <td>
-                      <div></div>
-                    </td>
-                    <td>
-                      <div></div>
-                    </td>
-                    <td>
-                      <div></div>
-                    </td>
-                    <td>
-                      <div></div>
-                    </td>
-                  </tr>
-                  <tr className="table-skeleton">
-                    <td>
-                      <div></div>
-                    </td>
-                    <td>
-                      <div></div>
-                    </td>
-                    <td>
-                      <div></div>
-                    </td>
-                    <td>
-                      <div></div>
-                    </td>
-                    <td>
-                      <div></div>
-                    </td>
-                    <td>
-                      <div></div>
-                    </td>
-                  </tr>
-                </>
-              )}
-            </tbody>
-          </table>
-          {/* delete container */}
-          <div
-            className={`confirm-delete ${delDisplay === true ? 'active' : ''}`}
-          >
-            <div>
-              <p>Are you sure you want to delete this review?</p>
-              <div className="btn-container">
-                <button
-                  className="btn danger"
-                  onClick={() => {
-                    performDelete();
-                  }}
-                >
-                  Delete
-                </button>
-                <button
-                  className="btn"
-                  onClick={() => {
-                    closeDelBoxDisplay();
-                  }}
-                >
-                  Cancel
-                </button>
+                    <tr className="table-skeleton">
+                      <td>
+                        <div></div>
+                      </td>
+                      <td>
+                        <div></div>
+                      </td>
+                      <td>
+                        <div></div>
+                      </td>
+                      <td>
+                        <div></div>
+                      </td>
+                      <td>
+                        <div></div>
+                      </td>
+                      <td>
+                        <div></div>
+                      </td>
+                    </tr>
+                  </>
+                )}
+              </tbody>
+            </table>
+            {/* delete container */}
+            <div
+              className={`confirm-delete ${
+                delDisplay === true ? 'active' : ''
+              }`}
+            >
+              <div>
+                <p>Are you sure you want to delete this review?</p>
+                <div className="btn-container">
+                  <button
+                    className="btn danger"
+                    onClick={() => {
+                      performDelete();
+                    }}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    className="btn"
+                    onClick={() => {
+                      closeDelBoxDisplay();
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

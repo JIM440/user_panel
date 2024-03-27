@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+// components
 import ProductCategorySkeleton from '../../../commons/skeletons/ProductCategorySkeleton';
 
 const ProductsCart = () => {

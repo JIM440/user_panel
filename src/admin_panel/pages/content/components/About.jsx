@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import HeaderBtn from '../../../commons/HeaderBtn';
 // images
 import dots from '../../../assets/icons/horizontal-dots.png';
-import performFetchDelete from '../../../utils/Fetch/PerformFetchDelete';
+import deleteData from '../../../utils/async_await/delete';
+import Loader from '../../../layout/Loader';
 const AboutContent = () => {
   // const [testimonials, setTestimonials] = useState([
   //   {
@@ -38,6 +39,8 @@ const AboutContent = () => {
       })
     );
   }, []);
+  const [displayLoader, setDisplayLoader] = useState('hide');
+
   const [deleteId, setDeleteId] = useState(null);
   const [display, setDisplay] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
@@ -49,14 +52,16 @@ const AboutContent = () => {
       setActiveIndex(null);
     }
   };
-  const performDelete = () => {
+  const performDelete = async () => {
+    setDisplayLoader('show');
+    await deleteData(`api/content/about/delete/${deleteId}`);
     alert('You deleted the testimonial with id:  ' + deleteId);
-    performFetchDelete(`api/content/about/delete/${deleteId}`);
     setTestimonials(
       testimonials.filter(
         (testimonial) => testimonial.testimonial_id !== deleteId
       )
     );
+    setDisplayLoader('hide');
     closeDisplay();
   };
   const closeDisplay = () => {
@@ -65,6 +70,7 @@ const AboutContent = () => {
 
   return (
     <>
+      <Loader display={`${displayLoader}`} />
       <HeaderBtn
         text="Content Management - About"
         url="add"

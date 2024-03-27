@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+// components
 import ProductCategorySkeleton from '../../../commons/skeletons/ProductCategorySkeleton';
 // swiper
 import { Swiper, SwiperSlide } from 'swiper/react';

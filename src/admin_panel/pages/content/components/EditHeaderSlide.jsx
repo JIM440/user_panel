@@ -2,8 +2,9 @@ import { useState } from 'react';
 import Header from '../../../commons/Header';
 import TextInputValue from '../../../commons/TextInputValue';
 import { useParams, useHistory, useNavigate } from 'react-router-dom';
-import PerformFetchPut from '../../../utils/Fetch/PerformFetchPut';
 import NotFound from '../../NotFound';
+import updateData from '../../../utils/async_await/put';
+import Loader from '../../../layout/Loader';
 
 const EditHeaderSlide = () => {
   const { id } = useParams();
@@ -49,8 +50,7 @@ const EditHeaderSlide = () => {
       throw error;
     }
   };
-  console.log(editSlide);
-
+  const [displayLoader, setDisplayLoader] = useState('hide');
   const [previewImage, setPreviewImage] = useState(editSlide.image);
   console.log(previewImage);
   const [productName, setProductName] = useState(editSlide.name);
@@ -73,7 +73,7 @@ const EditHeaderSlide = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const apiUrl = `/${id}`;
@@ -85,11 +85,12 @@ const EditHeaderSlide = () => {
       slide_position: position,
     };
 
+    setDisplayLoader('show');
+    await updateData(apiUrl, data);
+    setDisplayLoader('hide');
     alert(
       `You edited the header slide with the product name as ${data.product_name}`
     );
-
-    PerformFetchPut(apiUrl, data);
   };
 
   const idExists = editSlide.length !== 0 ? true : false;
@@ -98,6 +99,7 @@ const EditHeaderSlide = () => {
   }
   return (
     <>
+      <Loader display={`${displayLoader}`} />
       {/* header */}
       <Header text="Edit Header Slide" />
       {/*  */}

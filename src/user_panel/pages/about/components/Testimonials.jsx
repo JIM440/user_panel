@@ -1,6 +1,8 @@
+// images
 import anisha from '../../../assets/images/about/anisha lee.svg';
 import cheng from '../../../assets/images/about/cheng wei.svg';
 import xhang from '../../../assets/images/about/xhang mei.svg';
+// components
 import TestimonialSkeleton from '../../../commons/skeletons/TestimonialSkeleton';
 
 const Testimonials = () => {
