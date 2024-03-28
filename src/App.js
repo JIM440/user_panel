@@ -24,6 +24,8 @@ import ProductsCart from './user_panel/pages/cart/components/Products';
 
 // admin pages
 import Dashboard from './admin_panel/pages/dashboard/index';
+// analytics
+import Analytics from './admin_panel/pages/analytics/index';
 // content
 import ContentManagement from './admin_panel/pages/content/index';
 import AboutContent from './admin_panel/pages/content/components/About';
@@ -43,8 +45,11 @@ import ProductCategories from './admin_panel/pages/products/components/ProductCa
 import AddProduct from './admin_panel/pages/products/components/AddProduct';
 import AddCategory from './admin_panel/pages/products/components/AddCategory';
 import EditCategory from './admin_panel/pages/products/components/EditCategory';
+// register and login
 import LoginAdmin from './admin_panel/pages/login/index';
 import RegisterAdmin from './admin_panel/pages/register/index';
+// promotions
+import Promotions from './admin_panel/pages/promotions';
 // Notfound
 import NotFoundAdmin from './admin_panel/pages/NotFound';
 // admin layouts
@@ -106,7 +111,7 @@ const router = createBrowserRouter(
         </Route>
 
         {/* analytics */}
-        <Route path="analytics" element={<h1>analytics</h1>} />
+        <Route path="analytics" element={<Analytics />} />
 
         {/* content */}
         <Route path="content" element={<ContentManagement />}>
@@ -123,7 +128,7 @@ const router = createBrowserRouter(
         {/* reviews */}
         <Route path="reviews" element={<Reviews />} />
         {/* promotions */}
-        <Route path="promotions" element={<h1>promotions</h1>} />
+        <Route path="promotions" element={<Promotions />} />
         {/* notfound */}
         <Route path="*" element={<NotFoundAdmin />} />
       </Route>

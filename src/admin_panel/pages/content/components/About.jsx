@@ -5,6 +5,8 @@ import HeaderBtn from '../../../commons/HeaderBtn';
 import dots from '../../../assets/icons/horizontal-dots.png';
 import deleteData from '../../../utils/async_await/delete';
 import Loader from '../../../layout/Loader';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const AboutContent = () => {
   // const [testimonials, setTestimonials] = useState([
   //   {
@@ -30,6 +32,15 @@ const AboutContent = () => {
   //   },
   // ]);
   const [testimonials, setTestimonials] = useState(null);
+  const fetchData = () => {
+    fetch(
+      'https://appleproductsbackend.vercel.app/api/testimonial/fetchall'
+    ).then((res) =>
+      res.json().then((data) => {
+        setTestimonials(data);
+      })
+    );
+  };
   useEffect(() => {
     fetch(
       'https://appleproductsbackend.vercel.app/api/testimonial/fetchall'
@@ -54,13 +65,11 @@ const AboutContent = () => {
   };
   const performDelete = async () => {
     setDisplayLoader('show');
-    await deleteData(`api/content/about/delete/${deleteId}`);
-    alert('You deleted the testimonial with id:  ' + deleteId);
-    setTestimonials(
-      testimonials.filter(
-        (testimonial) => testimonial.testimonial_id !== deleteId
-      )
+    await deleteData(
+      `api/content/about/delete/${deleteId}`,
+      'Testimonial Deleted Successfully'
     );
+    fetchData();
     setDisplayLoader('hide');
     closeDisplay();
   };
@@ -169,6 +178,18 @@ const AboutContent = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
     </>
   );
 };

@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../../../commons/Header';
 import TextInputValue from '../../../commons/TextInputValue';
 import { useParams, useHistory, useNavigate } from 'react-router-dom';
 import NotFound from '../../NotFound';
 import updateData from '../../../utils/async_await/put';
 import Loader from '../../../layout/Loader';
+import fetchData from '../../../utils/async_await/Get';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const EditHeaderSlide = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
   // const headerSlides = [
   //   {
   //     id: 1,
@@ -38,27 +42,30 @@ const EditHeaderSlide = () => {
   //       'https://www.apple.com/newsroom/images/2023/10/apple-unveils-new-macbook-pro-featuring-m3-chips/article/Apple-MacBook-Pro-2up-231030_Full-Bleed-Image.jpg.large.jpg',
   //   },
   // ];
-  const editSlide = async () => {
-    try {
-      const response = await fetch(
-        `https://appleproductsbackend.vercel.app/v1/hero/${id}`
-      );
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.log('An error occurred:', error);
-      throw error;
-    }
-  };
+  const [editSlide, setEditSlide] = useState(null);
+  useEffect(() => {
+    fetch(`https://appleproductsbackend.vercel.app/v1/hero/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setEditSlide(data);
+        setIsLoading(false);
+        InitialiseVariables(data);
+        setIdExists(data.length !== 0 ? true : false);
+      })
+      .catch((error) => console.log('Error:', error));
+  }, []);
+
+  fetchData(`https://appleproductsbackend.vercel.app/v1/hero/${id}`);
+
   const [displayLoader, setDisplayLoader] = useState('hide');
-  const [previewImage, setPreviewImage] = useState(editSlide.image);
-  console.log(previewImage);
-  const [productName, setProductName] = useState(editSlide.name);
+  const [idExists, setIdExists] = useState(true);
+  // const [previewImage, setPreviewImage] = useState(editSlide.image);
+  const [previewImage, setPreviewImage] = useState('');
+  const [productName, setProductName] = useState('');
   const [image, setImage] = useState(null);
-  const [description, setDescription] = useState(editSlide.description);
-  const [category, setCategory] = useState(editSlide.name);
-  const [url, setUrl] = useState(editSlide.url);
-  const [position, setPosition] = useState(editSlide.position);
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
+  const [position, setPosition] = useState('');
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -88,12 +95,21 @@ const EditHeaderSlide = () => {
     setDisplayLoader('show');
     await updateData(apiUrl, data);
     setDisplayLoader('hide');
-    alert(
-      `You edited the header slide with the product name as ${data.product_name}`
-    );
+    setTimeout(() => {
+      navigate('/admin/content/home');
+    }, 2000);
   };
 
-  const idExists = editSlide.length !== 0 ? true : false;
+  const InitialiseVariables = (data) => {
+    setProductName(data.product_name);
+    setDescription(data.description);
+    setCategory(data.category_name);
+    setPosition(data.slide_position);
+  };
+
+  if (isLoading) {
+    return <Loader />;
+  }
   if (!idExists) {
     return <NotFound />;
   }
@@ -153,15 +169,6 @@ const EditHeaderSlide = () => {
                 }}
               />
               <TextInputValue
-                name="URL"
-                label="URL"
-                placeholder="url to product"
-                value={url}
-                change={(e) => {
-                  setUrl(e.target.value);
-                }}
-              />
-              <TextInputValue
                 name="position"
                 label="Position"
                 placeholder="Position"
@@ -178,6 +185,18 @@ const EditHeaderSlide = () => {
           </button>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
     </>
   );
 };

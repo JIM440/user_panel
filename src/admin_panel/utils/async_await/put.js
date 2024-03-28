@@ -1,4 +1,6 @@
-const updateData = async (url, data) => {
+import { toast } from 'react-toastify';
+
+const updateData = async (url, data, message) => {
   try {
     const response = await fetch(
       'https://appleproductsbackend.vercel.app/' + url,
@@ -12,13 +14,39 @@ const updateData = async (url, data) => {
     );
 
     if (!response.ok) {
-      throw new Error('Failed to update data');
+      toast.error('An error occured', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } else {
+      toast.success(message, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     }
-
-    const responseData = await response.json();
-    console.log('put:', responseData);
   } catch (error) {
-    console.error(error);
+    toast.error('An error ocuured!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
   }
 };
 

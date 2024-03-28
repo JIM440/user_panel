@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 // fxns and components
 import ProductCategorySkeleton from '../../../../user_panel/commons/skeletons/ProductCategorySkeleton';
 import HeaderBtn from '../../../commons/HeaderBtn';
-import handleSorting from '../../../utils/handlers/handleSort';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // images
 import search from '../../../assets/icons/Search.svg';
 import dots from '../../../assets/icons/horizontal-dots.png';
@@ -12,43 +12,17 @@ import deleteData from '../../../utils/async_await/delete';
 import Loader from '../../../layout/Loader';
 const ProductCategories = () => {
   const [products, setProducts] = useState(null);
-  // const [products, setProducts] = useState([
-  //   {
-  //     id: '1',
-  //     name: 'iPhone',
-  //     image:
-  //       'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/refurb-iphone-12-pro-blue-2020?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1635202834000',
-  //     date_added: new Date('2012-02-02'),
-  //   },
-  //   {
-  //     id: '2',
-  //     name: 'iPad',
-  //     image:
-  //       'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/refurb-ipad-air-wifi-green-2021?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1644268592092',
-  //     date_added: new Date('2012-01-02'),
-  //   },
-  //   {
-  //     id: '3',
-  //     name: 'MacBook',
-  //     image:
-  //       'https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP854/mbp14-silver2.png',
-  //     date_added: new Date('2012-04-02'),
-  //   },
-  //   {
-  //     id: '4',
-  //     name: 'Watch',
-  //     image:
-  //       'https://i5.walmartimages.com/asr/3580b718-154d-427d-898c-05b3e46332ba.779952d7e83af1cd4883757c516eb7b5.png',
-  //     date_added: new Date('2012-06-02'),
-  //   },
-  //   {
-  //     id: '5',
-  //     name: 'AirPod',
-  //     image:
-  //       'https://images.macrumors.com/t/2oOomFnia-hmIfwvXVejKx3mNEE=/1600x/article-new/2019/10/airpods-pro-roundup.jpg',
-  //     date_added: new Date('2012-07-02'),
-  //   },
-  // ]);
+  const fetchProducts = () => {
+    fetch('https://appleproductsbackend.vercel.app/v1/category/')
+      .then((response) => response.json())
+      .then((data) => {
+        setProducts(data);
+        setDisplayedProducts(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching products:', error);
+      });
+  };
   useEffect(() => {
     fetch('https://appleproductsbackend.vercel.app/v1/category/')
       .then((response) => response.json())
@@ -81,12 +55,15 @@ const ProductCategories = () => {
     if (inputProductVal === productName) {
       setInputProductVal('');
       setDisplayLoader('show');
-      await deleteData(`v1/category/${deleteId}`);
-      setDisplayLoader('hide');
-      setProducts(products.filter((product) => product.id !== deleteId));
-      setDisplayedProducts(
-        displayedProducts.filter((product) => product.id !== deleteId)
+
+      await deleteData(
+        `v1/category/${deleteId}`,
+        `Category Deleted Succesfully`
       );
+
+      setDisplayLoader('hide');
+      fetchProducts();
+      // window.location.reload();
       closeDisplay();
     } else {
       return;
@@ -103,6 +80,28 @@ const ProductCategories = () => {
   const [orderByDateValue, setOrderByDateValue] = useState('');
   const [searchValue, setSearchValue] = useState('');
 
+  // fomat date
+  const FormatDate = (date) => {
+    return new Date(date);
+  };
+  // handle sorting
+  const handleSorting = (cat, orderByDateValue) => {
+    if (orderByDateValue === 'newest') {
+      return cat.sort((a, b) => {
+        const dateA = FormatDate(a.createdAt);
+        const dateB = FormatDate(b.createdAt);
+        return dateA < dateB ? 1 : -1;
+      });
+    } else if (orderByDateValue === 'oldest') {
+      return cat.sort((a, b) => {
+        const dateA = FormatDate(a.createdAt);
+        const dateB = FormatDate(b.createdAt);
+        return dateA > dateB ? 1 : -1;
+      });
+    } else {
+      return cat;
+    }
+  };
   const handleOnchange = (e) => {
     if (e.target.name === 'order_by_date') {
       setOrderByDateValue(e.target.value);
@@ -122,21 +121,6 @@ const ProductCategories = () => {
       setDisplayedProducts(date);
     }
   };
-
-  // fetchData('https://jsonplaceholder.typicode.com/posts/1');
-  // postData('https://jsonplaceholder.typicode.com/posts', {
-  //   title: 'yo fam',
-  //   body: 'fake shit',
-  //   userid: 1,
-  //   id: 3,
-  // });
-  // updateData('https://jsonplaceholder.typicode.com/posts/1', {
-  //   id: 1,
-  //   title: 'fffoo',
-  //   body: 'bbbar',
-  //   userId: 7,
-  // });
-
   return (
     <>
       <Loader display={`${displayLoader}`} />
@@ -314,6 +298,18 @@ const ProductCategories = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
     </>
   );
 };

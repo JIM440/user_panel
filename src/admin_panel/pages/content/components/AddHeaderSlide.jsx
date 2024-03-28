@@ -2,9 +2,13 @@ import { useState } from 'react';
 import Header from '../../../commons/Header';
 import TextInputValue from '../../../commons/TextInputValue';
 import postData from '../../../utils/async_await/post';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../../../layout/Loader';
+import { useNavigate } from 'react-router-dom';
 
 const AddHeaderSlide = () => {
+  const navigate = useNavigate();
   const [displayLoader, setDisplayLoader] = useState('hide');
   const [previewImage, setPreviewImage] = useState('');
 
@@ -40,11 +44,11 @@ const AddHeaderSlide = () => {
     };
 
     setDisplayLoader('show');
-    postData(apiUrl, data);
+    postData(apiUrl, data, 'Hero slide deleted successfully');
     setDisplayLoader('hide');
-    alert(
-      `You added the header slide with the product name as ${data.product_name}`
-    );
+    setTimeout(() => {
+      navigate('/admin/content/about');
+    }, 2000);
   };
 
   return (
@@ -126,6 +130,18 @@ const AddHeaderSlide = () => {
           </button>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
     </>
   );
 };

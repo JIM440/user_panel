@@ -1,45 +1,30 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+// components
 import HeaderBtn from '../../../commons/HeaderBtn';
+// fxns
 import deleteData from '../../../utils/async_await/delete';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // images
 import dots from '../../../assets/icons/horizontal-dots.png';
 import Loader from '../../../layout/Loader';
 
 const HomeContent = () => {
-  // const [headerSlides, setHeaderSlides] = useState([
-  //   {
-  //     id: 1,
-  //     name: 'Apple Watch Series 9',
-  //     url: 'url to apple watch',
-  //     description: 'The Next Level Adventure',
-  //     position: '1',
-  //     image:
-  //       'https://www.apple.com/v/watch/bk/images/overview/series-9/tile_s9_avail__c104b8nuoec2_large.jpg',
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'iPad Pro',
-  //     url: 'url to iPad Pro',
-  //     description: 'Change your life with just a click😂',
-  //     position: '2',
-  //     image:
-  //       'https://www.apple.com/v/ipad/home/ci/images/overview/hero/ipad_pro_hero__bh3eq6sqfjw2_large.jpg',
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'MacBook Pro',
-  //     url: 'url to macbook',
-  //     description: 'Macbook na book',
-  //     position: '3',
-  //     image:
-  //       'https://www.apple.com/newsroom/images/2023/10/apple-unveils-new-macbook-pro-featuring-m3-chips/article/Apple-MacBook-Pro-2up-231030_Full-Bleed-Image.jpg.large.jpg',
-  //   },
-  // ]);
   const [displayLoader, setDisplayLoader] = useState('hide');
 
   const [headerSlides, setHeaderSlides] = useState(null);
+  const fetchSlides = () => {
+    const api = 'https://appleproductsbackend.vercel.app/v1/hero';
+
+    fetch(api)
+      .then((res) => res.json())
+      .then((data) => {
+        setHeaderSlides(data);
+      })
+      .catch((err) => console.log('Error', err));
+  };
 
   useEffect(() => {
     const api = 'https://appleproductsbackend.vercel.app/v1/hero';
@@ -67,10 +52,8 @@ const HomeContent = () => {
 
   const performDelete = async () => {
     setDisplayLoader('show');
-    await deleteData(`v1/hero/${deleteId}`);
-    alert('You deleted the header with id: ' + deleteId);
-    setHeaderSlides(headerSlides.filter((slides) => slides.id !== deleteId));
-    setDisplayLoader('hide');
+    await deleteData(`v1/hero/${deleteId}`, 'Hero slide deleted successfully');
+    fetchSlides();
     closeDisplay();
   };
 
@@ -199,6 +182,18 @@ const HomeContent = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
     </>
   );
 };

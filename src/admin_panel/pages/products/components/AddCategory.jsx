@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+// components
 import Header from '../../../commons/Header';
 import TextAreaValue from '../../../commons/TextAreaValue';
 import TextInputValue from '../../../commons/TextInputValue';
-import postData from '../../../utils/async_await/post';
 import Loader from '../../../layout/Loader';
-import { useNavigate } from 'react-router-dom';
+// fxns
+import postData from '../../../utils/async_await/post';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddCategory = () => {
   const navigate = useNavigate();
@@ -36,9 +40,11 @@ const AddCategory = () => {
     };
     const url = 'v1/category';
     setDisplayLoader('show');
-    await postData(url, data);
+    await postData(url, data, 'Category Added Successfully');
     setDisplayLoader('hide');
-    navigate('/admin/products/categories');
+    setTimeout(() => {
+      navigate('/admin/products/categories');
+    }, 2000);
   };
 
   const handleFeatureImageChange = (event) => {
@@ -188,6 +194,18 @@ const AddCategory = () => {
           </button>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
     </>
   );
 };

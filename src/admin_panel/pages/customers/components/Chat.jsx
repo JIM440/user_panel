@@ -1,11 +1,10 @@
 import React from 'react';
+import Header from '../../../commons/Header';
 
 const Chat = () => {
   return (
     <>
-      <header>
-        <h2>Chat Support</h2>
-      </header>
+      <Header text="Chat" />
     </>
   );
 };

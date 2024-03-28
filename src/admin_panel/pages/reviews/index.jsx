@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import Header from '../../commons/Header';
 // images
 import trash from '../../assets/icons/Trash.svg';
 import star from '../../assets/icons/Star.svg';
 import search from '../../assets/icons/Search.svg';
+// components
+import Header from '../../commons/Header';
 // functions
-import handleSorting from '../../utils/handlers/handleSort';
-import Loader from '../../../layout/Loader';
-import deleteData from '../../../utils/async_await/delete';
+import Loader from '../../layout/Loader';
+import deleteData from '../../utils/async_await/delete';
 
 const Reviews = () => {
   // const [reviews, setReviews] = useState([
@@ -64,6 +64,28 @@ const Reviews = () => {
   // function to delete container
   const closeDelBoxDisplay = () => {
     setDelDisplay(false);
+  };
+  // fomat date
+  const FormatDate = (date) => {
+    return new Date(date);
+  };
+  // handle sorting
+  const handleSorting = (cat, orderByDateValue) => {
+    if (orderByDateValue === 'newest') {
+      return cat.sort((a, b) => {
+        const dateA = FormatDate(a.date_made);
+        const dateB = FormatDate(b.date_made);
+        return dateA < dateB ? 1 : -1;
+      });
+    } else if (orderByDateValue === 'oldest') {
+      return cat.sort((a, b) => {
+        const dateA = FormatDate(a.date_made);
+        const dateB = FormatDate(b.date_made);
+        return dateA > dateB ? 1 : -1;
+      });
+    } else {
+      return cat;
+    }
   };
 
   // handle changes by various filters
@@ -204,7 +226,7 @@ const Reviews = () => {
                   <th className="reviewer-name">Reviewer Name</th>
                   <th className="product-name">Product Name</th>
                   <th className="rating">Rating</th>
-                  <th className="date">Date</th>
+                  <th className="date">Date (dd/mm/yyyy)</th>
                   <th className="text">Text</th>
                   <th className="actions">Actions</th>
                 </tr>
@@ -233,8 +255,9 @@ const Reviews = () => {
                         <td className="stars">
                           <div>{StarRating(review.user_rating)}</div>
                         </td>
-                        <td>date added</td>
-                        {/* <td>{review.date_added.toLocaleDateString()}</td> */}
+                        <td className="date">
+                          {new Date(review.date_made).toLocaleString()}
+                        </td>
                         <td>{review.comment}</td>
                         <td>
                           <div className="buttons">

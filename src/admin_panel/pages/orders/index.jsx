@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // components
-import handleSorting from '../../utils/handlers/handleSort';
 import Header from '../../commons/Header';
 // images
 import search from '../../assets/icons/Search.svg';
@@ -37,11 +36,36 @@ const Orders = () => {
   const [searchValue, setSearchValue] = useState('');
   const [checked, setChecked] = useState(null);
 
+  // fomat date
+  const FormatDate = (date) => {
+    return new Date(date);
+  };
+  // handle sorting
+  const handleSorting = (cat, orderByDateValue) => {
+    if (orderByDateValue === 'newest') {
+      return cat.sort((a, b) => {
+        const dateA = FormatDate(a.createdAt);
+        const dateB = FormatDate(b.createdAt);
+        return dateA < dateB ? 1 : -1;
+      });
+    } else if (orderByDateValue === 'oldest') {
+      return cat.sort((a, b) => {
+        const dateA = FormatDate(a.createdAt);
+        const dateB = FormatDate(b.createdAt);
+        return dateA > dateB ? 1 : -1;
+      });
+    } else {
+      return cat;
+    }
+  };
+
   const handleOnchange = (e) => {
     if (e.target.name === 'order_by_date') {
       setOrderByDateValue(e.target.value);
       const search = orders.filter((order) =>
-        order.customerName.toLowerCase().includes(searchValue.toLowerCase())
+        order.delivery_info.delivery_person
+          .toLowerCase()
+          .includes(searchValue.toLowerCase())
       );
       const status = search.filter((order) =>
         order.order_status.toLowerCase().includes(order_status.toLowerCase())
@@ -51,7 +75,9 @@ const Orders = () => {
     } else if (e.target.name === 'search') {
       setSearchValue(e.target.value);
       const search = orders.filter((order) =>
-        order.customerName.toLowerCase().includes(e.target.value.toLowerCase())
+        order.delivery_info.delivery_person
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase())
       );
       const status = search.filter((order) =>
         order.order_status.toLowerCase().includes(order_status.toLowerCase())
@@ -61,7 +87,9 @@ const Orders = () => {
     } else if (e.target.name === 'order_status') {
       setorder_status(e.target.value);
       const search = orders.filter((order) =>
-        order.customerName.toLowerCase().includes(searchValue.toLowerCase())
+        order.delivery_info.delivery_person
+          .toLowerCase()
+          .includes(searchValue.toLowerCase())
       );
       const status = search.filter((order) =>
         order.order_status.toLowerCase().includes(e.target.value.toLowerCase())
@@ -132,7 +160,7 @@ const Orders = () => {
                       <td>{order.products.length}</td>
                       <td>${order.total_Amount}</td>
                       {/* <td>{order.date_added.toLocaleDateString()}</td> */}
-                      <td>{order.createdAt}</td>
+                      <td>{new Date(order.createdAt).toLocaleString()}</td>
                       <td>{order.location}</td>
                       <td className="checkbox">
                         <input

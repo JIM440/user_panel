@@ -1,4 +1,6 @@
-const deleteData = async (url) => {
+import { toast } from 'react-toastify';
+
+const deleteData = async (url, message) => {
   try {
     const response = await fetch(
       'https://appleproductsbackend.vercel.app/' + url,
@@ -11,14 +13,39 @@ const deleteData = async (url) => {
     );
 
     if (!response.ok) {
-      throw new Error('Failed to delete data');
+      toast.error('Delete Failed!', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } else {
+      toast.success(message, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     }
-
-    const responseData = await response.json();
-    console.log('delete:', responseData);
-    return responseData;
   } catch (error) {
-    console.error(error);
+    toast.error('An error occurred while deleting!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
   }
 };
 

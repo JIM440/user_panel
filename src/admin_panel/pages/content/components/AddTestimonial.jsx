@@ -4,8 +4,12 @@ import TextAreaValue from '../../../commons/TextAreaValue';
 import Header from '../../../commons/Header';
 import Loader from '../../../layout/Loader';
 import postData from '../../../utils/async_await/post';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const AddTestimonial = () => {
+  const navigate = useNavigate();
   const [displayLoader, setDisplayLoader] = useState('hide');
 
   const [previewImage, setPreviewImage] = useState('');
@@ -38,12 +42,11 @@ const AddTestimonial = () => {
     };
 
     setDisplayLoader('show');
-    await postData(apiUrl, data);
+    await postData(apiUrl, data, 'Testimonial Added Successfully');
     setDisplayLoader('hide');
-    alert(`You added the testimonial content as ${data.author_name}`);
-    setAuthorName('');
-    setContent('');
-    setPreviewImage('');
+    setTimeout(() => {
+      navigate('/admin/content/about');
+    }, 2000);
   };
 
   return (
@@ -89,6 +92,18 @@ const AddTestimonial = () => {
           </button>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
     </>
   );
 };

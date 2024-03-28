@@ -6,6 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import NotFound from '../../NotFound';
 import Loader from '../../../layout/Loader';
 import updateData from '../../../utils/async_await/put';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const EditTestimonial = () => {
   const { id } = useParams();
@@ -64,10 +66,11 @@ const EditTestimonial = () => {
     };
 
     setDisplayLoader('show');
-    await updateData(apiUrl, data);
+    await updateData(apiUrl, data, 'Testimonial Updated Succesfully');
     setDisplayLoader('hide');
-    alert(`You added the testimonial content as ${data.author_name}`);
-    navigate('/admin/content/about');
+    setTimeout(() => {
+      navigate('/admin/content/about');
+    }, 2000);
   };
   const idExists = testimonial.length !== 0 ? true : false;
 
@@ -126,6 +129,18 @@ const EditTestimonial = () => {
           </button>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
     </>
   );
 };

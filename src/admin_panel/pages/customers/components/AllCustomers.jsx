@@ -1,11 +1,10 @@
 import React from 'react';
+import Header from '../../../commons/Header';
 
 const AllCustomers = () => {
   return (
     <>
-      <header>
-        <h2>All Customers</h2>
-      </header>
+      <Header text="All Customers" />
     </>
   );
 };
